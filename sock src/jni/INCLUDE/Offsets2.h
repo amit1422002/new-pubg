@@ -1,0 +1,68 @@
+#ifndef ZERO_PV_OTHEROFFSET_H
+#define ZERO_PV_OTHEROFFSET_H
+
+#include <stdint.h>
+#include <algorithm>
+
+namespace OffsetsAllBt64 {
+    uint32_t kTargetFuncShellCode[11] = {0x10000100,
+                                         0xBD400003,
+                                         0xBD400404,
+                                         0xBD400805,
+                                         0x4EA31C60,
+                                         0x4EA41C81,
+                                         0x4EA51CA2,
+                                         0xD65F03C0,
+                                         0x00000000, 0x00000000, 0x00000000};
+    uint32_t kTargetFuncOrigCode[11] = {};
+    uint32_t BypassBT_patch[2] = {0x910003FF, 0x8A010021};
+    uint32_t BypassBT_orig[2] = {};
+    uintptr_t ps_ShellCode_Aim3DPosition = 0;
+    uintptr_t ps_Global_TargetFunc = 0;
+    uintptr_t ps_Global_Patch1 = 0;
+    uintptr_t ps_ASTExtraCharacter_PartHitComponent = 0;
+    uintptr_t ps_UPartHitComponent_ConfigCollisionDistSqAngles = 0;
+
+    void GameType64(int a) {
+        if (a == 1) {
+            // PUBGM
+            uint32_t sori[11] = {0xD10743FF, 0xFD00B3EA, 0x6D1723E9, 0xA9187BFD, 0xA91967FC,
+                                 0xA91A5FF8, 0xA91B57F6, 0xA91C4FF4, 0x910603FD, 0xAA0003F3,
+                                 0xF9416800};
+            uint32_t bori[2] = {0xBD002BE2, 0x97D847E8};
+            std::copy(bori, bori + 2, BypassBT_orig);
+            std::copy(sori, sori + 11, kTargetFuncOrigCode);
+            ps_ShellCode_Aim3DPosition = 0x20;
+            ps_Global_TargetFunc = 0x6BCCF20;
+            ps_Global_Patch1 = 0x6bcc904;
+            ps_ASTExtraCharacter_PartHitComponent = 0x10d8;
+            ps_UPartHitComponent_ConfigCollisionDistSqAngles = 0x1f8;
+        } else if (a == 2) {
+            // VNG
+            uint32_t sori[11] = {0xD10743FF, 0xFD00B3EA, 0x6D1723E9, 0xA9187BFD, 0xA91967FC,
+                                 0xA91A5FF8, 0xA91B57F6, 0xA91C4FF4, 0x910603FD, 0xAA0003F3,
+                                 0xF9416800};
+            uint32_t bori[2] = {0xBD002BE2, 0x97D847E8};
+            std::copy(bori, bori + 2, BypassBT_orig);
+            std::copy(sori, sori + 11, kTargetFuncOrigCode);
+            ps_ShellCode_Aim3DPosition = 0x20;
+            ps_Global_TargetFunc = 0x6BCCF20;
+            ps_Global_Patch1 = 0x6bcc904;
+            ps_ASTExtraCharacter_PartHitComponent = 0x10d8;
+            ps_UPartHitComponent_ConfigCollisionDistSqAngles = 0x1f8;
+        } else if (a == 3) {
+            // BGMI — latest dump
+            uint32_t sori[11] = {0xD10743FF, 0xFD00B3EA, 0x6D1723E9, 0xA9187BFD, 0xA91967FC,
+                                 0xA91A5FF8, 0xA91B57F6, 0xA91C4FF4, 0x910603FD, 0xAA0003F3,
+                                 0xF9416800};
+            uint32_t bori[2] = {0xBD002BE2, 0x97D7CDBA};
+            std::copy(bori, bori + 2, BypassBT_orig);
+            std::copy(sori, sori + 11, kTargetFuncOrigCode);
+            ps_ShellCode_Aim3DPosition = 0x20;
+            ps_Global_TargetFunc = 0x6BF8868;
+            ps_Global_Patch1 = 0x6BF824C;
+        }
+    }
+}
+
+#endif

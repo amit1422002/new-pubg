@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_login_anubis"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <ImageView
+            android:id="@+id/iv_login_logo"
+            android:layout_width="132dp"
+            android:layout_height="132dp"
+            android:layout_marginBottom="16dp"
+            android:contentDescription="@string/anubis_mobile"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_menu_logo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="4dp"
+            android:text="@string/anubis_mobile"
+            android:textAllCaps="true"
+            android:textColor="@color/anubis_login_text"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
+            android:text="@string/license_login"
+            android:textColor="@color/anubis_login_accent"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="24dp"
+            android:text="@string/license_login_subtitle"
+            android:textColor="@color/anubis_login_muted"
+            android:textSize="14sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/license_input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/license_key_hint"
+            android:textColorHint="@color/anubis_login_muted"
+            app:boxBackgroundColor="@color/anubis_login_card"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/anubis_login_accent"
+            app:endIconMode="clear_text"
+            app:hintTextColor="@color/anubis_login_accent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_license_key"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapCharacters"
+                android:maxLines="1"
+                android:textColor="@color/anubis_login_text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tv_device_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="12dp"
+            android:textColor="@color/anubis_login_muted"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_expiry_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:textColor="@color/anubis_login_muted"
+            android:textSize="13sp"
+            android:visibility="gone" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/activate_license"
+            android:textStyle="bold"
+            app:backgroundTint="@color/anubis_login_accent"
+            app:cornerRadius="4dp" />
+
+        <ProgressBar
+            android:id="@+id/progress_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:indeterminateTint="@color/anubis_login_accent"
+            android:visibility="gone" />
+
+    </LinearLayout>
+</ScrollView>

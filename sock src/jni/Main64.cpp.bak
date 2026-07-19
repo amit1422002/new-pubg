@@ -1,0 +1,895 @@
+/**************************
+* BUILD ON Android ide
+* TELEGRAM : @rayansyed77
+* *************************/
+
+#include "INCLUDE/struct.h"
+#include "INCLUDE/CameraView.h"
+#include "INCLUDE/Offsets2.h"
+#include "INCLUDE/Offsets.h"
+#include "INCLUDE/AimTouch.hpp"
+
+#include "INCLUDE/Log.h"
+
+int typeeee = 1;
+int32_t gGMemFD = -1;
+bool gEnable = false;
+bool Trigger = false;
+
+bool vngver = false;
+
+
+// --- 
+uintptr_t ReadValue(uintptr_t addr) {
+    uintptr_t var = 0;
+    if (gGMemFD == -1) return 0;
+    pread64(gGMemFD, &var, sizeof(var), addr);
+    return var;
+}
+
+void RAYAN_BaseAddress_FLOAT(uintptr_t addr, float value) {
+    if (gGMemFD != -1) {
+        pwrite64(gGMemFD, &value, sizeof(value), addr);
+    }
+}
+
+// --- Global Toggle Booleans ---
+bool isSwitchWeapon = false;
+bool isHighJump = false;
+
+FRotator RotatorRotation(Vec3 camera, Vec3 xyz) {
+    Vec3 vecDelta = Vec3((camera.X - xyz.X), (camera.Y - xyz.Y), (camera.Z - xyz.Z));
+    float hyp = sqrt(vecDelta.X * vecDelta.X + vecDelta.Y * vecDelta.Y);
+
+    FRotator ViewAngles = FRotator();
+    ViewAngles.Pitch = -(float) atan(vecDelta.Z / hyp) * (float) (180.0f / PI);
+    ViewAngles.Yaw = (float) atan(vecDelta.Y / vecDelta.X) * (float) (180.0f / PI);
+    ViewAngles.Roll = (float) 0;
+
+    if (vecDelta.X >= 0.0f)
+        ViewAngles.Yaw += 180.0f;
+
+    return ViewAngles;
+}
+
+struct Vec2 GetBonePosToScreen(uintptr_t pBase, int bones, CameraView &cameraView) {
+    uintptr_t boneAddr = getA(pBase + OffsetsAll64::Mesh);
+    struct D3DMatrix baseMatrix = getOMatrix(boneAddr + OffsetsAll64::FixAttachInfoList + 0x10);
+    //boneAddr = getA(boneAddr + OffsetsAll64::MasterPoseComponent + 0x8);
+    boneAddr = getA(boneAddr + OffsetsAll64::StaticMesh);
+    struct D3DMatrix oMatrix = getOMatrix(boneAddr + (bones) * 48);
+    return World2ScreenMain(cameraView, mat2Cord(oMatrix, baseMatrix));
+}
+
+struct Vec3 GetBoneFromIndx(uintptr_t actor, int idx) {
+    uintptr_t boneAddr = getA(actor + OffsetsAll64::Mesh);
+    struct D3DMatrix baseMatrix = getOMatrix(boneAddr + OffsetsAll64::FixAttachInfoList + 0x10);
+   // boneAddr = getA(boneAddr + OffsetsAll64::MasterPoseComponent + 0x8);
+   boneAddr = getA(boneAddr + OffsetsAll64::StaticMesh);
+    struct D3DMatrix oMatrix = getOMatrix(boneAddr + (idx * 48));
+    return mat2Cord(oMatrix, baseMatrix);
+}
+
+PlayerWeapon getPlayerWeapon(uintptr_t base) {
+    PlayerWeapon p;
+    uintptr_t addr[3];
+    vm_readv(getA(base + OffsetsAll64::Children), addr, sizeof(addr));
+    for (int i = 0; i < (sizeof(addr) / sizeof(uintptr_t)); i++) {
+        if (isValid64(addr[0]) && getI(addr[i] + OffsetsAll64::DrawShootLineTime) == 2) {
+            p.isWeapon = true;
+            p.id = getI(getA(addr[i] + OffsetsAll64::WeaponEntityComp) + OffsetsAll64::WeaponId);
+            p.ammo = getI(addr[i] + OffsetsAll64::CurBulletNumInClip);
+        }
+    }
+    return p;
+}
+
+
+PlayerBone getPlayerBone(uintptr_t pBase, CameraView &cameraView, bool isTrainingModel, bool isMetroMode) {
+    PlayerBone b;
+    b.isBone = true;
+    int bones[16] = {6, 5, 5, 1, 12, 33, 13, 34, 14, 35, 53, 57, 54, 58, 55, 59};
+    if (isMetroMode) {
+        int metroBones[16] = {6, 5, 5, 1, 8, 14, 9, 15, 10, 16, 19, 22, 20, 23, 21, 24};
+        std::copy(std::begin(metroBones), std::end(metroBones), std::begin(bones));
+    }else if (isTrainingModel) {
+        int trainingBones[16] = {6, 5, 4, 1, 14, 35, 15, 36, 16, 37, 55, 59, 56, 60, 57, 61};
+        std::copy(std::begin(trainingBones), std::end(trainingBones), std::begin(bones));
+    }
+    b.head = GetBonePosToScreen(pBase, bones[0], cameraView);
+    b.neck = GetBonePosToScreen(pBase, bones[1], cameraView);
+    b.cheast = GetBonePosToScreen(pBase, bones[2], cameraView);
+    b.pelvis = GetBonePosToScreen(pBase, bones[3], cameraView);
+    b.lSh = GetBonePosToScreen(pBase, bones[4], cameraView);
+    b.rSh = GetBonePosToScreen(pBase, bones[5], cameraView);
+    b.lElb = GetBonePosToScreen(pBase, bones[6], cameraView);
+    b.rElb = GetBonePosToScreen(pBase, bones[7], cameraView);
+    b.lWr = GetBonePosToScreen(pBase, bones[8], cameraView);
+    b.rWr = GetBonePosToScreen(pBase, bones[9], cameraView);
+    b.lTh = GetBonePosToScreen(pBase, bones[10], cameraView);
+    b.rTh = GetBonePosToScreen(pBase, bones[11], cameraView);
+    b.lKn = GetBonePosToScreen(pBase, bones[12], cameraView);
+    b.rKn = GetBonePosToScreen(pBase, bones[13], cameraView);
+    b.lAn = GetBonePosToScreen(pBase, bones[14], cameraView);
+    b.rAn = GetBonePosToScreen(pBase, bones[15], cameraView);
+    return b;
+}
+
+struct PawnComponent {
+    uintptr_t Controller;
+    PawnComponent (uintptr_t pBase) {
+        Controller = getA(pBase + OffsetsAll64::Controller);
+    }
+    void setShowDamage() {
+        Write(Controller + OffsetsAll64::GameReplayType, "2", TYPE_DWORD);
+    }
+    bool isValid() {
+        return (Controller != 0);
+    }
+};
+
+
+struct ShootWeaponBase {
+    uintptr_t FromBase;
+    uintptr_t Base;
+    uintptr_t ShootWeaponEntity;
+    
+    uintptr_t CurrentVehicle;
+    int bIsWeaponFiring;
+
+    ShootWeaponBase(uintptr_t pBase) {
+        FromBase = getA(pBase + OffsetsAll64::WeaponManagerComponent);
+        Base = getA(FromBase + OffsetsAll64::CurrentWeaponReplicated);
+        ShootWeaponEntity = getA(Base + OffsetsAll64::ShootWeaponEntityComp);
+        bIsWeaponFiring = getI(pBase + OffsetsAll64::bIsWeaponFiring);
+        
+        CurrentVehicle = getA(pBase + OffsetsAll64::CurrentVehicle);
+
+    }
+
+    void bypassBT() {
+        Write2<char>(Base + OffsetsAll64::ShootMode, 2);
+        Write2<char>(Base + OffsetsAll64::ShootMode, 2);
+    }
+
+    void setMagic(){
+        
+    }
+
+    void setLessRecoil() {
+        constexpr int offsets[] = {0x50, 0x54, 0x58};
+        for (const auto& offset : offsets) {
+            if (getF(ShootWeaponEntity + OffsetsAll64::SRecoilInfo + offset) != 0) {
+                Write(ShootWeaponEntity + OffsetsAll64::SRecoilInfo + offset, "0", TYPE_FLOAT);
+            }
+        }
+    }
+
+    void FixBT(){
+         Write(ShootWeaponEntity + OffsetsAll64::BulletTrackDistanceFix, "1000.0", TYPE_FLOAT);
+         Write(ShootWeaponEntity + OffsetsAll64::MaxBulletImpactFXClampDistance, "1000.0", TYPE_FLOAT);
+    }
+
+    void setSmallCrosshair() {
+        if (getF(ShootWeaponEntity + OffsetsAll64::GameDeviationFactor) != 0) {
+            Write(ShootWeaponEntity + OffsetsAll64::GameDeviationFactor, "0", TYPE_FLOAT);
+        }
+    }
+
+    void setHitX() {
+        if (getF(ShootWeaponEntity + OffsetsAll64::ExtraHitPerformScale) != 50) {
+            Write(ShootWeaponEntity + OffsetsAll64::ExtraHitPerformScale, "50", TYPE_FLOAT);
+        }
+    }
+    
+    void setNoShake() {
+        if (getI(ShootWeaponEntity + OffsetsAll64::AnimationKick) != 0) {
+             Write(ShootWeaponEntity + OffsetsAll64::AnimationKick, "0", TYPE_FLOAT);
+        }
+    }
+
+    void setFastSwitchWeapon() {
+        if (getI(ShootWeaponEntity + OffsetsAll64::SwitchWeaponSpeedScale) != 100) {
+             Write(ShootWeaponEntity + OffsetsAll64::SwitchWeaponSpeedScale, "100", TYPE_FLOAT);
+        }
+    }
+    
+    void setInstantHit() {
+        if (getI(ShootWeaponEntity + OffsetsAll64::BulletFireSpeed) >= 900000) {
+             Write(ShootWeaponEntity + OffsetsAll64::BulletFireSpeed, "900000", TYPE_FLOAT);
+        }
+    }
+    
+    void setFastShootInterval() {
+        if (getF(ShootWeaponEntity + OffsetsAll64::ShootInterval) != 0.048000) {
+            Write(ShootWeaponEntity + OffsetsAll64::ShootInterval, "0.048000", TYPE_FLOAT);
+        }
+    }
+
+    void FastVehicle(){
+        int bIsEngineStarted = getI(CurrentVehicle + OffsetsAll64::bIsEngineStarted);
+        if (bIsEngineStarted != 0){
+            Write(CurrentVehicle + OffsetsAll64::ExtraBoostFactor, "400",TYPE_FLOAT);
+        }
+    }
+ 
+ 
+     void setAimbot() {
+        
+    }
+    
+    
+    
+
+    bool isFiring() const {
+        return (bIsWeaponFiring != 0);
+    }
+
+    bool isValid() const {
+        return (Base != 0);
+    }
+};
+
+
+struct SceneComponent {
+    uintptr_t CameraComponent;
+    SceneComponent(uintptr_t pBase) {
+        CameraComponent = getA(pBase + OffsetsAll64::ThirdPersonCameraComponent);
+    }
+    void setWideView(float fov) {
+        if (getI(CameraComponent + OffsetsAll64::FieldOfView) != 0.0) {
+            Write(CameraComponent + OffsetsAll64::FieldOfView, std::to_string(fov).c_str(), TYPE_FLOAT);
+        }
+    }
+    bool isValid() const {
+        return (CameraComponent != 0);
+    }
+};
+
+
+
+
+
+
+int main() {
+	//CheckPackage();
+    if (!Create()) {
+        perror("Creation Failed");
+        return 0;
+    }
+    if (!Connect()) {
+        perror("Connection Failed");
+        return 0;
+    }
+    pid = getPid("com.tencent.ig");
+    typeeee = 1;
+    if (pid == 0) {
+        pid = getPid("com.pubg.krmobile");
+        typeeee = 1;
+        if (pid == 0) {
+            pid = getPid("com.vng.pubgmobile");
+            vngver = true;
+            
+            typeeee = 2;
+            if (pid == 0) {
+                pid = getPid("com.rekoo.pubgm");
+                typeeee = 1;
+                if (pid == 0) {
+                    pid = getPid("com.pubg.imobile");
+                    typeeee = 3;
+                    if (pid == 0) {
+                        printf("\nGame is not running @rayansyed77");
+                        Close();
+                        return 0;
+                    }
+                }
+            }
+        }
+    }
+
+    uintptr_t base = getBase();
+    Request request{};
+    char lj[64];
+    sprintf(lj, "/proc/%d/mem", pid);
+    gGMemFD = open(lj, O_RDWR);
+    lseek(gGMemFD, 0, SEEK_SET);
+ OffsetsAll64::GameType64(typeeee);
+    OffsetsGame::GameOffset(typeeee);
+  OffsetsAllBt64::GameType64(typeeee);
+ using namespace OffsetsAllBt64;
+
+    bool aimbot = true;
+    bool aimKnoced = false;
+    bool isAvlive = true;
+    bool aimAI = true;
+    bool checkWideView = false;
+    bool clothesskin = false;
+    bool isShowDamage = false;
+    bool predicitionaim = true;
+
+    int aimBy = 1, aimFor = 1, aimWhen = 3;
+    bool firing = false, ads = false, adsfiring = false, trigger = false;
+    float aimRadius = 200, aimDist = 50, aimSpeed = 660, recCom = 50, RadarSize = 0;
+    FRotator aimRotation;
+    Vec3 pointingAngle;
+    uint64_t cameraManager;
+    struct Vec3 cam;
+    uint64_t yawPitch = 0;
+    float xy0, xy1;
+    float timeToTravel;
+    struct Vec2 RadarPosition = {static_cast<float>(width / 4), static_cast<float>(height / 4)};
+    struct Vec3 sex,predicted, bonePos, velocity, MyPos, ObjPos, targetLoc, targetLocBt, targetAimTouch;
+    struct D3DMatrix vMat;
+    int isBack = 0, type = 69;
+    int changed = 1;
+    int myteamID = 101;
+    char loaded[0x4000], loadedpn[20];
+    char weaponData[100], name[100];
+    int weaponID = 0;
+    FVector3D targetLocked;
+    FMinimalViewInfo POV = FMinimalViewInfo();
+    struct FCameraCacheEntry CameraCache;
+    Response response{};
+    Response emptyResponse{};
+    uintptr_t FromBase;
+    uintptr_t Base;
+    uintptr_t ShootWeaponEntity;
+    uintptr_t CameraComponent;
+    int bIsWeaponFiring;
+    static bool psilent_aim_patch = false;
+    struct Vec2 headPos, rootPos;
+    bool psilent_aim = false;
+    bool customScope = false;
+    bool isVisibility = false;
+    float recScope[9] = {};
+    uintptr_t slot = 0;
+    uintptr_t weaponSlot = 0;
+    int recCom2 = 35, recoilTouch = 35;
+    int recCom1 = 35;
+    bool showdamage = false;
+    uintptr_t gname_buff[30];
+  //  pthread_t aim_thread;
+  //  pthread_create(&aim_thread, NULL, AimBotAuto, NULL);
+
+
+    while ((receive((void *) &request) > 0)) {
+
+        auto uWorld = getA(getA(base + OffsetsGame::GWorld) - 0x20);
+        auto level = getA(uWorld + OffsetsAll64::PersistentLevel);
+        auto playerController = getA(getA(getA(uWorld + OffsetsAll64::NetDriver) +
+                                          OffsetsAll64::ServerConnection) +
+                                     OffsetsAll64::PlayerController);
+        auto uMyObject = getA(
+                playerController + OffsetsAll64::STExtraBaseCharacter);
+        auto gname = getA(getA(base + OffsetsGame::GNames) + 0x110);
+        auto CameraManager = getA(
+                playerController + OffsetsAll64::PlayerCameraManager);
+        auto LocalPlayer = getA(playerController + OffsetsAll64::AcknowledgedPawn);
+        
+        
+        auto CharMove = ReadValue(LocalPlayer + 0x518);
+        
+        auto switchweapon = ReadValue(LocalPlayer + 0x2BFC);
+        
+
+
+        FMinimalViewInfo POV = FMinimalViewInfo();
+        FCameraCacheEntry CameraCache = FCameraCacheEntry();
+
+        if (CameraManager) {
+            CameraCache = Read<FCameraCacheEntry>(
+                    CameraManager + OffsetsAll64::CameraCache);
+            POV = CameraCache.POV;
+        }
+
+        if (request.Mode == InitMode) {
+            height = request.ScreenHeight;
+            width = request.ScreenWidth;
+
+            aimRadius = (float) request.options.aimingRange;
+            aimDist = (float) request.options.aimingDist;
+            aimSpeed = (float) request.options.aimingSpeed;
+            aimFor = request.options.aimbotmode;
+            aimWhen = request.options.aimingState;
+            aimBy = request.options.priority;
+            aimKnoced = request.options.pour;
+            aimAI = request.options.ignoreBot;
+            recCom = (float) request.options.recCompe;
+            aimbot = request.options.openState == 0;
+            predicitionaim = request.options.prediction;
+            gEnable = request.options.aimBullet == 0;
+
+            aimTouch = request.options.aimT == 0;
+            ScrWidth = request.ScreenWidth;
+            ScrHeight = request.ScreenHeight;
+            aimSmooth = request.options.Smoothing;
+            touchRange = (float) request.options.touchSize;
+            touchX = (float) request.options.touchX;
+            touchY = (float) request.options.touchY;
+            ChargingPortLeft = request.options.InputInversion;
+            aimingSpeed = (float) request.options.touchSpeed;
+            std::copy(request.options.recScope, request.options.recScope + 9, recScope);
+            recCom1 = request.options.recCompe1;
+            recCom2 = request.options.recCompe2;
+            customScope = request.options.customScope;
+
+            RadarPosition = request.radarPos;
+            RadarSize = request.radarSize;
+
+            isShowDamage = request.otherFeature.ShowDamage;
+        //    isLessRecoil = request.otherFeature.LessRecoil;
+        //    isMagicH = request.otherFeature.InstantHit;
+            isSmallCrosshair = request.otherFeature.SmallCrosshair;
+            isWideView = request.otherFeature.WideView;
+            isClothes = request.otherFeature.clothes;
+            isBag = request.otherFeature.bag;
+            isHelmet = request.otherFeature.helmet;
+            
+            
+        //    isZeroRecoil = request.otherFeature.ZeroRecoil;
+        //    isAimbot = request.otherFeature.Aimbot  ;
+        //    isFastShootInterval = request.otherFeature.FastShootInterval;
+          //  isHitX = request.otherFeature.HitX;
+         //   isNoShake = request.otherFeature.NoShake;
+          //  isFastSwitchWeapon = request.otherFeature.FastSwitchWeapon;
+        }
+
+        response.Success = false;
+        response.InLobby = false;
+        response.PlayerCount = 0;
+        response.VehicleCount = 0;
+        response.ItemsCount = 0;
+        response.GrenadeCount = 0;
+        response.BoxItemsCount = 0;
+	//	response.ZoneoCount = 0;        
+
+        auto ActorArray = Read<TArray<uint64_t>>(DecryptActorsArray64(level, 0xA0, 0x448));
+        strcpy(loaded, "");
+        float nearest = -1.0f;
+        for (int i = 0; i < ActorArray.count; i++) {
+            uintptr_t pBase = ActorArray[i];
+
+            if (!isValid64(pBase))
+                continue;
+            if (getI(pBase + SIZE) != 8)
+                continue;
+
+
+            cameraView = getCameraView(
+                    getA(playerController + OffsetsAll64::PlayerCameraManager) +
+                    OffsetsAll64::CameraCache + OffsetsAll64::POV);
+            response.fov = tanf(cameraView.FOV * ((float) PI / 360.0f));
+            response.fov = tanf(CameraCache.POV.FOV * ((float) PI / 360.0f));
+
+            MyPos = cameraView.Location;
+
+          getGNameRes(gname, pBase, name);
+			if (strlen(name) < 5)
+				continue;
+
+            if (strstr(name, "Lobby") || strstr(name, "Lobby_") || strstr(name, "_Lobby")) {
+                response.InLobby = true;
+            }
+
+            if (strstr(name, "BP_PlayerPawn") || strstr(name, "BP_PlayerCharacter") ||
+                strstr(name, "CharacterModelTaget") || strstr(name, "BP_PlayerCharacter_Mecha")) {
+                if (getI(pBase + OffsetsAll64::bDead))
+                    continue;
+
+                vm_readv(pBase + OffsetsAll64::Health, healthbuff, sizeof(healthbuff));
+
+                PlayerData *data = &response.Players[response.PlayerCount];
+                data->Health = healthbuff[0] / healthbuff[1] * 100;
+                data->TeamID = getI(pBase + OffsetsAll64::TeamID);
+                uintptr_t me = getI(pBase + OffsetsAll64::Role);
+
+                // --- [ Is section ko loop ke shuru se delete kar dein aur yahan se check karein ] ---
+
+if (me == 258) {
+
+    if (isLessRecoil) {
+        float newValue = 3.0f;
+        vm_writev(base + OffsetsAll64::CustomTimeDilation, &newValue, sizeof(newValue));
+    }
+   
+    if (aimbot) {
+        uintptr_t control = getA(pBase + OffsetsAll64::STPlayerController);
+        cameraManager = getA(control + OffsetsAll64::PlayerCameraManager);
+        if (aimWhen == 3 || aimWhen == 2)
+            vm_readv(pBase + OffsetsAll64::bIsWeaponFiring, &firing, 1);
+        if (aimWhen == 3 || aimWhen == 1)
+            vm_readv(pBase + OffsetsAll64::bIsGunADS, &ads, 1);
+    }
+
+    if (gEnable) {
+        if (!vngver) {
+            if (aimWhen == 3) {
+                Trigger = true;
+            } else if (aimWhen == 1) {
+                Trigger = Read<bool>(pBase + OffsetsAll64::bIsWeaponFiring); //SCOPE
+            } else if (aimWhen == 2) {
+                Trigger = !Read<bool>(pBase + OffsetsAll64::bIsGunADS); //NO SCOPE
+            }
+        }
+    }
+
+    slot = getI(FromBase + OffsetsAll64::CurUseWeaponLogicSocketRep);
+
+    ShootWeaponBase shootWeaponBase(pBase);
+    if (shootWeaponBase.isValid()) {
+
+        shootWeaponBase.FixBT();
+
+        if (fixdamage){
+            shootWeaponBase.bypassBT();
+        }
+
+        if (isSmallCrosshair) {
+            shootWeaponBase.setSmallCrosshair();
+        }
+                                                                          
+        if (isAimbot) {
+            //  shootWeaponBase.setAimbot();
+        }
+
+        
+        // =====================================================================
+    }
+
+                
+                    PawnComponent pawnComponent(pBase);
+                    if (pawnComponent.isValid()) {
+                        if (isShowDamage) {
+                            pawnComponent.setShowDamage();
+                        }
+                    }
+
+                    SceneComponent sceneComponent(pBase);
+                    if (sceneComponent.isValid()) {
+                        if (isWideView == 0 && checkWideView) {
+                            checkWideView = false;
+                            sceneComponent.setWideView(85.0f);
+                        } else if (isWideView >= 1 && isWideView <= 8) {
+                            checkWideView = true;
+                            static const float fovValues[] = {85.0f, 90.0f, 95.0f, 100.0f, 110.0f, 120.0f, 130.0f, 140.0f};
+                            if (isWideView < sizeof(fovValues) / sizeof(fovValues[0])) {
+                                sceneComponent.setWideView(fovValues[isWideView]);
+                            }
+                        }
+                    }
+
+                    myteamID = data->TeamID;
+                    continue;
+
+                    if (data->Health > 100)
+                        continue;
+
+                } else if (me != 257)
+                    continue;
+                if (data->TeamID == myteamID && myteamID <= 100)
+                    continue;
+
+                bool isTrainingModel = strstr(name, "CharacterModelTaget");
+                bool isMetroMode = strstr(name, "PlayerPawn_TPlanAI");
+                intptr_t Mesh = getA(pBase + OffsetsAll64::Mesh);
+                uintptr_t LocalMesh = getA(LocalPlayer + OffsetsAll64::Mesh);
+                float EntityRenderTime = getF(Mesh + OffsetsAll64::LastRenderTime);
+                float LocalRenderTime = getF(
+                        LocalMesh + OffsetsAll64::LastRenderTime);
+
+                if (EntityRenderTime == LocalRenderTime) {
+                    isVisibility = true;
+                } else {
+                    isVisibility = false;
+                }
+
+                ObjPos = GetBoneFromIndx(pBase, 6);
+                data->HeadLocation = World2Screen(cameraView, ObjPos);
+                data->RadarLocation = World2RadarRound(CameraCache, ObjPos, RadarPosition, RadarSize);
+                data->isVisible = isVisibility;
+                data->StatusPlayer = getI(pBase + OffsetsAll64::CurrentStates);
+                data->Distance = getDistance(MyPos, ObjPos);
+
+
+                if (data->Distance > 600.0f)
+                    if (data->Distance > 600.0f)
+                        continue;
+
+			 			  if (getA(pBase + 0x9e9) != 0) {
+			  vm_readv(pBase + 0x9e9, &data->isBot, sizeof(data->isBot));
+			  } else if (getA(pBase + 0x9d0) != 0) {
+			  vm_readv(pBase + 0x9d0, &data->isBot, sizeof(data->isBot));
+			  }
+
+                vm_readv(pBase + OffsetsAll64::NearDeathBreath, &data->Healthy,
+                         sizeof(data->Healthy));
+                vm_readv(pBase + OffsetsAll64::bIsAI, &data->isBot, sizeof(data->isBot));
+                if (request.options.ignoreAi && data->isBot)
+                    continue;
+                strcpy(data->PlayerNameByte, OBFUSCATE("82:79:66:79:84:"));
+                strcpy(data->PlayerNation, OBFUSCATE("69:999:000:"));
+                strcpy(data->PlayerUID, OBFUSCATE("66:111:116:"));
+                if (data->HeadLocation.Z != 1.0f && data->HeadLocation.X < width + 100 &&
+                    data->HeadLocation.X > -50) {
+                    data->Bone = getPlayerBone(pBase, cameraView, isTrainingModel, isMetroMode);
+                    data->Weapon = getPlayerWeapon(pBase);
+
+                    if (!data->isBot) {
+                        strcpy(data->PlayerNameByte, getNameByte(getA(pBase + OffsetsAll64::PlayerName)));
+                        strcpy(data->PlayerNation, getNameByte(getA(pBase + OffsetsAll64::Nation)));
+                        strcpy(data->PlayerUID, getNameByte(getA(pBase + OffsetsAll64::PlayerUID)));
+                        if (strlen(data->PlayerNameByte) < 4)
+                            continue;
+                        if (strlen(data->PlayerNation) < 4)
+                            continue;
+                        if (strlen(data->PlayerUID) < 4)
+                            continue;
+                    }
+                }
+                if (response.PlayerCount >= maxplayerCount)
+                    continue;
+            if (data->HeadLocation.Z != 1.0f && (aimKnoced || data->Health > 0) && data->Distance <= aimDist && isVisibility == 1 && (!aimAI || !data->isBot) && (aimbot|| gEnable || aimTouch))
+                {
+                    float centerDist = sqrt((data->HeadLocation.X - width / 2) * (data->HeadLocation.X - width / 2) + (data->HeadLocation.Y - height / 2) * (data->HeadLocation.Y - height / 2));
+                    if (centerDist < aimRadius)
+                    {
+                        if (aimBy != 1)
+                            centerDist = data->Distance;
+                        if (nearest > centerDist || nearest < 0)
+                        {
+                            nearest = centerDist;
+
+                            if (aimFor == 1) {
+                                targetLoc = GetBoneFromIndx(pBase, 5);
+                            } else if (aimFor == 2) {
+                                targetLoc = GetBoneFromIndx(pBase, 5);
+                            } else {
+                                targetLoc = GetBoneFromIndx(pBase, 3);
+                            }
+
+
+                            if(aimSpeed != 0) {
+                                uintptr_t MovementComponent = getA(pBase + OffsetsAll64::CharacterMovement);
+                                uintptr_t CurrentVehicle = getA(pBase + OffsetsAll64::CurrentVehicle);
+
+                                if (CurrentVehicle)
+                                {
+                                    Vec3 LinearVelocity = getVec3(CurrentVehicle + OffsetsAll64::ReplicatedMovement);
+                                    float Dist = getDistance(MyPos, targetLoc);
+                                    auto timeToTravel = Dist / aimSpeed;
+                                    targetLoc = Add_VectorVector(targetLoc, Multiply_VectorFloat(LinearVelocity, timeToTravel));
+                                }
+                                else
+                                {
+                                    auto Velocity = getVec3(MovementComponent + OffsetsAll64::Velocity);
+                                    float Dist = getDistance(MyPos, targetLoc);
+                                    auto timeToTravel = Dist / aimSpeed;
+                                    targetLoc = Add_VectorVector(targetLoc, Multiply_VectorFloat(Velocity, timeToTravel));
+                                }
+                            }
+
+                            if (psilent_aim_patch && gEnable) {
+                                targetLocBt = targetLoc;
+                                iovec iov{&targetLocBt, sizeof(targetLocBt)};
+                                if (syscall(SYS_pwritev, gGMemFD, &iov, 1, base  + ps_Global_TargetFunc + ps_ShellCode_Aim3DPosition, 0) == sizeof(targetLocBt)){
+                                    psilent_aim=true;
+                                }
+                            }
+
+                            if(aimTouch) {
+                                targetAimTouch = targetLoc;
+                                targetAimTouch = World2Screen(cameraView, targetAimTouch);
+                                float Dist = getDistance(MyPos, targetAimTouch);
+                                float scope = cameraView.FOV;
+                                float ok = 0;
+
+                                if((int)Dist > 80)
+                                    ok = Dist / Dist;
+                                else if((int)Dist > 180)
+                                    ok = Dist / 16;
+                                else if((int)Dist > 270)
+                                    ok = Dist / 8;
+                                else if((int)Dist > 350)
+                                    ok = Dist / 5;
+
+                                if(slot == 2) {
+                                    if(ads > 0) {
+                                        recoilTouch = 0;
+                                    }
+                                    if(firing > 0){
+                                        recoilTouch = recCom2;
+                                    }
+                                } else {
+                                    if(ads > 0) {
+                                        recoilTouch = 0;
+                                    }
+                                    if(firing > 0){
+                                        recoilTouch = recCom1;
+                                    }
+                                }
+                                if(!customScope) {
+                                    targetAimTouch.Y += GetPitch(scope,recoilTouch,ok);
+                                } else {
+                                    targetAimTouch.Y += GetPitchCustom(scope,recoilTouch,ok,recScope);
+                                }
+
+                            }
+                            cam = getVec3(cameraManager + OffsetsAll64::CameraCache + 0x10 + 0x0);
+                            pointingAngle = CalcMousePos(targetLoc,cam);
+                            pointingAngle.Y -= recCom / 100;
+                        }
+                    }
+                }
+                
+
+                response.PlayerCount++;
+            } else if (strstr(name, "VH") || (strstr(name, "PickUp_") && !strstr(name, "BP")) ||
+                       strstr(name, "Rony") || strstr(name, "Mirado") || strstr(name, "LadaNiva") ||
+                       strstr(name, "AquaRail")) {
+                VehicleData* data = &response.Vehicles[response.VehicleCount];
+                vm_readv(getA(pBase + OffsetsAll64::RootComponent) + OffsetsAll64::Position, &ObjPos, sizeof(ObjPos));
+                uintptr_t Vehicle = getA(pBase + OffsetsAll64::VehicleCommon);
+                data->Location = World2Screen(cameraView, ObjPos);
+                if (data->Location.Z == 1.0f || data->Location.X > width + 200 || data->Location.X < -200)
+                    continue;
+                data->Distance = getDistance(MyPos, ObjPos);
+                data->Fuel = getF(Vehicle + OffsetsAll64::VFuel) * 100 / getF(Vehicle + OffsetsAll64::VFuelMax);
+                data->Health = getF(Vehicle + OffsetsAll64::VHealth) * 100 / getF(Vehicle + OffsetsAll64::VHealthMax);
+                strcpy(data->VehicleName, name);
+                if (response.VehicleCount >= maxvehicleCount) {
+                    continue;
+                }
+                response.VehicleCount++;
+            } else if (strstr(name, "Pickup_C") || strstr(name, "PickUp") ||
+                       strstr(name, "BP_Ammo") || strstr(name, "BP_QK") ||
+                       strstr(name, "Wrapper")) {
+                ItemData *data = &response.Items[response.ItemsCount];
+                vm_readv(getA(pBase + OffsetsAll64::RootComponent) + OffsetsAll64::Position,
+                         &ObjPos, sizeof(ObjPos));
+                data->Location = World2Screen(cameraView, ObjPos);
+                if (data->Location.Z == 1.0f || data->Location.X > width + 100 ||
+                    data->Location.X < -50)
+                    continue;
+                data->Distance = getDistance(MyPos, ObjPos);
+                if (data->Distance > 1000.0f)
+                    continue;
+                strcpy(data->ItemName, name);
+                if (response.ItemsCount >= maxitemsCount)
+                    continue;
+                response.ItemsCount++;
+            }else if (strstr(name, "AirDropPlane") || strstr(name, "PlayerDeadInventoryBox_C") || strstr(name, "AirDropBox") || strstr(name, "AirDropSpacecraft")) {
+                ItemData *data = &response.Items[response.ItemsCount];
+                vm_readv(getA(pBase + OffsetsAll64::RootComponent) + OffsetsAll64::Position,
+                         &ObjPos, sizeof(ObjPos));
+                data->Location = World2Screen(cameraView, ObjPos);
+                if (data->Location.Z == 1.0f || data->Location.X > width + 100 ||
+                    data->Location.X < -50)
+                    continue;
+                data->Distance = getDistance(MyPos, ObjPos);
+                strcpy(data->ItemName, name);
+                if (response.ItemsCount >= maxitemsCount)
+                    continue;
+                response.ItemsCount++;
+            } else if (strstr(name, "BP_Projectile_FragGrenade_C") || strstr(name, "BP_Grenade_Burn_C") ||
+                       strstr(name, "BP_Projectile_BurnGrenade_C") || strstr(name, "BP_Projectile_StunGrenade_C") ||
+                       strstr(name, "BP_Projectile_SmokeBomb_C")) {                       
+
+                GrenadeData *data = &response.Grenade[response.GrenadeCount];
+                vm_readv(getA(pBase + OffsetsAll64::RootComponent) + OffsetsAll64::Position,
+                         &ObjPos, sizeof(ObjPos));
+                data->Location = World2Screen(cameraView, ObjPos);
+                data->Distance = getDistance(MyPos, ObjPos);
+                if (data->Distance > 150.0f)
+                    continue;
+                if (strstr(name, "Shoulei"))
+                    data->type = 1;
+                else if (strstr(name, "Burn"))
+                    data->type = 2;
+                else if (strstr(name, "Stun"))
+                    data->type = 3;
+                else if (strstr(name, "Smoke"))
+                    data->type = 4;
+				if (response.GrenadeCount >= maxgrenadeCount)
+				{
+					continue;
+				}
+				response.GrenadeCount++;
+			} 
+					
+            
+            if (strstr(name, "PickUpListWrapperActor") || strstr(name, "AirDropListWrapperActor")) {
+                BoxItemData *data = &response.BoxItems[response.BoxItemsCount];
+                vm_readv(getA(pBase + OffsetsAll64::RootComponent) + OffsetsAll64::Position, &ObjPos, sizeof(ObjPos));
+                data->Location = World2Screen(cameraView, ObjPos);
+                if (data->Location.Z == 1.0f || data->Location.X > width + 100 || data->Location.X < -50)
+                    continue;
+                data->Distance = getDistance(MyPos, ObjPos);
+                if (data->Distance > 150.0f)
+                    continue;
+                auto PickUpData = getA(pBase + OffsetsAll64::PickUpDataList);
+                data->itemCount = getI(pBase + OffsetsAll64::PickUpDataList + sizeof(uintptr_t));
+                for (int ij = 0; ij < data->itemCount; ij++) {
+                    data->itemID[ij] = getI(PickUpData + (ij * 0x38 + 0x4));
+                }
+                if (response.BoxItemsCount >= maxboxitemsCount) {
+                    continue;
+                }
+                response.BoxItemsCount++;
+            }
+
+        }
+
+
+        if (response.PlayerCount + response.ItemsCount + response.VehicleCount +
+            response.GrenadeCount + response.BoxItemsCount > 0)
+            response.Success = true;
+        send((void *) &response, sizeof(response));
+
+
+
+  if ((firing || ads) && nearest > 0 && aimbot) {
+                Writes(cameraManager + OffsetsAll64::ViewPitchMin,pointingAngle.Y); // float ViewPitchMin;//[Offset: 0x1c5c, Size: 0x4]
+                Writes(cameraManager + OffsetsAll64::ViewPitchMax,pointingAngle.Y); // float ViewPitchMax;//[Offset: 0x1c60, Size: 0x4]
+                Writes(cameraManager + OffsetsAll64::ViewYawMin,pointingAngle.X); // float ViewYawMin;//[Offset: 0x1c24, Size: 0x4]
+                Writes(cameraManager + OffsetsAll64::ViewYawMax,pointingAngle.X); // float ViewYawMax;//[Offset: 0x1c28, Size: 0x4]
+            } else {		
+                Writes(cameraManager + OffsetsAll64::ViewPitchMin, -70.f);
+                Writes(cameraManager + OffsetsAll64::ViewPitchMax, 75.f);
+                Writes(cameraManager + OffsetsAll64::ViewYawMin, 0.0f);
+                Writes(cameraManager + OffsetsAll64::ViewYawMax, 359.99899291992f);
+            }
+
+        if ((firing || ads) && nearest > 0 && aimTouch) {
+            if (targetAimTouch != Vec3::Zero()) {
+                aim_x = targetAimTouch.X;
+                aim_y = targetAimTouch.Y;
+            }
+            isAim = true;
+        } else {
+            aim_x = 0;
+            aim_y = 0;
+            isAim = false;
+
+        }
+
+  if(gEnable) {
+    if (!vngver) {
+            if (Trigger && nearest > 0) {
+                uint32_t first_word_in_target_func = 0x00000000;
+                iovec iov{&first_word_in_target_func, sizeof(uint32_t)};
+                if (syscall(SYS_preadv, gGMemFD, &iov, 1, base + ps_Global_TargetFunc, 0) == sizeof(uint32_t) && first_word_in_target_func == kTargetFuncOrigCode[0])
+                {
+                    iov = iovec{kTargetFuncShellCode, sizeof(kTargetFuncShellCode)};
+                    iovec iovpatch{BypassBT_patch, sizeof(BypassBT_patch)};
+                    if (syscall(SYS_pwritev, gGMemFD, &iov, 1, base + ps_Global_TargetFunc, 0) == sizeof(kTargetFuncShellCode) && syscall(SYS_pwritev, gGMemFD, &iovpatch, 1, base + ps_Global_Patch1, 0) == sizeof(BypassBT_patch))
+                    {
+                        psilent_aim_patch = true;
+                    }
+                }
+            } else {
+                iovec iov{kTargetFuncOrigCode, sizeof(kTargetFuncOrigCode)};
+                syscall(SYS_pwritev, gGMemFD, &iov, 1, base + ps_Global_TargetFunc, 0);
+                iovec iovpatch{BypassBT_orig, sizeof(BypassBT_orig)};
+                syscall(SYS_pwritev, gGMemFD, &iovpatch, 1, base + ps_Global_Patch1, 0);
+                psilent_aim_patch = false;
+            }
+            }
+        } else if(!gEnable) {
+        if (!vngver) {
+            uint32_t first_word_in_target_func = 0x00000000;
+            iovec iov{&first_word_in_target_func, sizeof(uint32_t)};
+            if (syscall(SYS_preadv, gGMemFD, &iov, 1, base + ps_Global_TargetFunc, 0) == sizeof(uint32_t) && first_word_in_target_func != kTargetFuncOrigCode[0]) {
+                iovec iov{kTargetFuncOrigCode, sizeof(kTargetFuncOrigCode)};
+                syscall(SYS_pwritev, gGMemFD, &iov, 1, base + ps_Global_TargetFunc, 0);
+                iovec iovpatch{BypassBT_orig, sizeof(BypassBT_orig)};
+                syscall(SYS_pwritev, gGMemFD, &iovpatch, 1, base + ps_Global_Patch1, 0);
+                psilent_aim_patch = false;
+            }
+}
+}
+
+        
+
+    }
+}
+

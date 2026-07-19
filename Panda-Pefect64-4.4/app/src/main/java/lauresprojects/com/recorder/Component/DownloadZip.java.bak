@@ -1,0 +1,219 @@
+package lauresprojects.com.recorder.Component;
+
+import android.app.Dialog;
+import android.content.Context;
+import android.graphics.Color;
+import android.os.AsyncTask;
+import android.view.Gravity;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
+import lauresprojects.com.recorder.R;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
+import android.util.Log;
+
+public class DownloadZip extends AsyncTask<String, Integer, String> {
+
+    private Context context;
+    private Dialog progressDialog;
+    private TextView progressText;
+    private ProgressBar progressBar;
+    private String fileName;
+
+    public DownloadZip(Context context) {
+        this.context = context;
+    }
+
+    @Override
+    protected void onPreExecute() {
+        progressDialog = new Dialog(context);
+        progressDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        progressDialog.setCancelable(false);
+
+        LinearLayout layout = new LinearLayout(context);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        layout.setGravity(Gravity.CENTER);
+        layout.setPadding(70, 60, 70, 60);
+
+        progressBar = new ProgressBar(context, null, android.R.attr.progressBarStyleHorizontal);
+        progressBar.setMax(100);
+        progressBar.setProgress(0);
+
+        try {
+            progressBar.setProgressDrawable(context.getResources().getDrawable(R.drawable.progress_blue));
+        } catch (Exception e) {}
+
+        progressText = new TextView(context);
+        progressText.setText("Downloading... 0%");
+        progressText.setTextSize(16);
+        progressText.setTextColor(Color.BLACK);
+        progressText.setGravity(Gravity.CENTER);
+        progressText.setPadding(0, 30, 0, 0);
+
+        layout.addView(progressBar);
+        layout.addView(progressText);
+        progressDialog.setContentView(layout);
+
+        if (progressDialog.getWindow() != null) {
+            progressDialog.getWindow().setBackgroundDrawableResource(R.drawable.dialog_bg);
+            progressDialog.getWindow().setDimAmount(0.6f);
+            progressDialog.getWindow().setLayout(
+                    WindowManager.LayoutParams.WRAP_CONTENT,
+                    WindowManager.LayoutParams.WRAP_CONTENT
+            );
+        }
+
+        progressDialog.show();
+    }
+
+    @Override
+    protected String doInBackground(String... params) {
+
+        File dir = context.getFilesDir();
+
+        try {
+            // ✅ ONLY HANDLE ano_tmp (SAFE)
+            File tempFile = new File(dir, "ano_tmp");
+
+            if (tempFile.exists()) {
+                boolean deleted = tempFile.delete();
+                if (!deleted) {
+                    Log.w("Download", "Failed to delete ");
+                }
+            }
+
+            boolean created = tempFile.createNewFile();
+            if (!created) {
+                return "ERR: Failed to create ";
+            }
+
+            // 2. DOWNLOAD SETUP
+            String downloadUrl = params[0];
+            fileName = params[1];
+
+            File outputFile = new File(dir, fileName);
+
+            HttpURLConnection connection = (HttpURLConnection) new URL(downloadUrl).openConnection();
+            connection.setConnectTimeout(15000);
+            connection.setReadTimeout(20000);
+            connection.connect();
+
+            if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
+                return "ERR: Server error " + connection.getResponseCode();
+            }
+
+            int fileLength = connection.getContentLength();
+
+            InputStream input = new BufferedInputStream(connection.getInputStream());
+            OutputStream output = new FileOutputStream(outputFile);
+
+            byte[] buffer = new byte[8192];
+            long total = 0;
+            int count;
+
+            while ((count = input.read(buffer)) != -1) {
+                total += count;
+
+                if (fileLength > 0) {
+                    publishProgress((int) (total * 100 / fileLength));
+                }
+
+                output.write(buffer, 0, count);
+            }
+
+            output.flush();
+            output.close();
+            input.close();
+
+            // 3. UNZIP
+            if (fileName != null && fileName.endsWith(".zip")) {
+                publishProgress(-1);
+                unzip(outputFile, dir);
+
+                if (!outputFile.delete()) {
+                    Log.e("Download", "Zip delete failed: " + outputFile.getName());
+                }
+            }
+
+            return "OK";
+
+        } catch (Exception e) {
+            Log.e("Download", "Error", e);
+            return "ERR: " + e.getMessage();
+        }
+    }
+
+    private void unzip(File zipFile, File targetDirectory) throws Exception {
+
+        ZipInputStream zis = new ZipInputStream(
+                new BufferedInputStream(new FileInputStream(zipFile))
+        );
+
+        try {
+            ZipEntry ze;
+            byte[] buffer = new byte[8192];
+
+            while ((ze = zis.getNextEntry()) != null) {
+
+                File file = new File(targetDirectory, ze.getName());
+
+                File dir = ze.isDirectory() ? file : file.getParentFile();
+                if (!dir.exists()) dir.mkdirs();
+
+                if (!ze.isDirectory()) {
+                    FileOutputStream fos = new FileOutputStream(file);
+
+                    int count;
+                    while ((count = zis.read(buffer)) != -1) {
+                        fos.write(buffer, 0, count);
+                    }
+
+                    fos.close();
+                }
+
+                zis.closeEntry();
+            }
+
+        } finally {
+            zis.close();
+        }
+    }
+
+    @Override
+    protected void onProgressUpdate(Integer... values) {
+        int progress = values[0];
+
+        if (progress == -1) {
+            progressText.setText("Extracting files...");
+        } else {
+            progressBar.setProgress(progress);
+            progressText.setText("Downloading... " + progress + "%");
+        }
+    }
+
+    @Override
+    protected void onPostExecute(String result) {
+
+        if (progressDialog != null && progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
+
+        if (result.equals("OK")) {
+            Toast.makeText(context, "All files ready!", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Error: " + result, Toast.LENGTH_LONG).show();
+        }
+    }
+}

@@ -1,0 +1,55 @@
+{
+  "buildFiles": [
+    "E:\\panda-build\\app\\src\\main\\jni\\Android.mk",
+    "E:\\panda-build\\app\\src\\main\\jni\\Application.mk"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "C:\\Users\\Amit\\AppData\\Local\\Android\\Sdk\\ndk\\24.0.8215888\\ndk-build.cmd",
+      "NDK_PROJECT_PATH\u003dnull",
+      "APP_BUILD_SCRIPT\u003dE:\\panda-build\\app\\src\\main\\jni\\Android.mk",
+      "NDK_APPLICATION_MK\u003dE:\\panda-build\\app\\src\\main\\jni\\Application.mk",
+      "APP_ABI\u003darm64-v8a",
+      "NDK_ALL_ABIS\u003darm64-v8a",
+      "NDK_DEBUG\u003d1",
+      "APP_PLATFORM\u003dandroid-24",
+      "NDK_OUT\u003dE:\\panda-build\\app\\build\\intermediates\\cxx\\Debug\\341x5k27/obj",
+      "NDK_LIBS_OUT\u003dE:\\panda-build\\app\\build\\intermediates\\cxx\\Debug\\341x5k27/lib",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "C:\\Users\\Amit\\AppData\\Local\\Android\\Sdk\\ndk\\24.0.8215888\\ndk-build.cmd",
+    "NDK_PROJECT_PATH\u003dnull",
+    "APP_BUILD_SCRIPT\u003dE:\\panda-build\\app\\src\\main\\jni\\Android.mk",
+    "NDK_APPLICATION_MK\u003dE:\\panda-build\\app\\src\\main\\jni\\Application.mk",
+    "APP_ABI\u003darm64-v8a",
+    "NDK_ALL_ABIS\u003darm64-v8a",
+    "NDK_DEBUG\u003d1",
+    "APP_PLATFORM\u003dandroid-24",
+    "NDK_OUT\u003dE:\\panda-build\\app\\build\\intermediates\\cxx\\Debug\\341x5k27/obj",
+    "NDK_LIBS_OUT\u003dE:\\panda-build\\app\\build\\intermediates\\cxx\\Debug\\341x5k27/lib",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {
+    "safecheat-debug-arm64-v8a": {
+      "artifactName": "safecheat",
+      "buildCommandComponents": [
+        "C:\\Users\\Amit\\AppData\\Local\\Android\\Sdk\\ndk\\24.0.8215888\\ndk-build.cmd",
+        "NDK_PROJECT_PATH\u003dnull",
+        "APP_BUILD_SCRIPT\u003dE:\\panda-build\\app\\src\\main\\jni\\Android.mk",
+        "NDK_APPLICATION_MK\u003dE:\\panda-build\\app\\src\\main\\jni\\Application.mk",
+        "APP_ABI\u003darm64-v8a",
+        "NDK_ALL_ABIS\u003darm64-v8a",
+        "NDK_DEBUG\u003d1",
+        "APP_PLATFORM\u003dandroid-24",
+        "NDK_OUT\u003dE:\\panda-build\\app\\build\\intermediates\\cxx\\Debug\\341x5k27/obj",
+        "NDK_LIBS_OUT\u003dE:\\panda-build\\app\\build\\intermediates\\cxx\\Debug\\341x5k27/lib",
+        "E:\\panda-build\\app\\build\\intermediates\\cxx\\Debug\\341x5k27/obj/local/arm64-v8a/libsafecheat.so"
+      ],
+      "abi": "arm64-v8a",
+      "output": "E:\\panda-build\\app\\build\\intermediates\\cxx\\Debug\\341x5k27\\obj\\local\\arm64-v8a\\libsafecheat.so",
+      "runtimeFiles": []
+    }
+  }
+}

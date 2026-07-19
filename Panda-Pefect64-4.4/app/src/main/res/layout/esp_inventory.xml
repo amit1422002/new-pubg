@@ -1,0 +1,3179 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layoutDirection="ltr">
+
+    <ScrollView
+        android:scrollbars="none"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/lefttab"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <!-- Vertical tab bar -->
+            <include layout="@layout/vertical_tab_bar"/>
+
+            <!-- Content -->
+            <FrameLayout
+                android:id="@+id/contentContainer"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#fff" />
+        </LinearLayout>
+    </ScrollView>
+
+
+    <ScrollView
+        android:scrollbars="none"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:id="@+id/menu2"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            
+            android:visibility="visible">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:visibility="gone"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+
+                <LinearLayout
+                    android:id="@+id/navitems"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center|bottom"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center">
+
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/items"
+                            android:backgroundTint="@color/white" />
+
+
+                    </LinearLayout>
+
+
+                    <View
+                        android:id="@+id/bottomi1"
+                        android:layout_width="match_parent"
+                        android:layout_height="5dp"
+                        android:layout_marginStart="60dp"
+                        android:layout_marginEnd="60dp"
+                        android:background="@drawable/button_coming" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/navvehicle"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center|bottom"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center">
+
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/ic_baseline_directions_car_24"
+                            android:backgroundTint="@color/white" />
+
+
+                    </LinearLayout>
+
+
+                    <View
+                        android:id="@+id/bottomi2"
+                        android:layout_width="match_parent"
+                        android:layout_height="5dp"
+                        android:layout_marginStart="60dp"
+                        android:layout_marginEnd="60dp"
+                        android:background="@drawable/button_coming"
+                        android:visibility="gone" />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/lyvehicle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:layout_margin="5dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:alpha="0.8"
+                    android:fontFamily="@font/cof"
+                    android:gravity="left"
+                    android:layout_marginTop="20dp"
+                    android:text="Vehicles"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:textStyle="normal" />
+
+                <!-- Row 1 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/UTV"
+                        android:text="@string/esp_inventory_UTV_text"
+                        style="@style/MainFont"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/float_unselect"
+                        android:padding="12dp"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textAlignment="center"
+                        android:layout_marginEnd="5dp"/>
+                    <TextView
+                        android:id="@+id/MonsterTruck"
+                        android:text="@string/esp_inventory_MonsterTruck_text"
+                        style="@style/MainFont"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/float_unselect"
+                        android:padding="12dp"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textAlignment="center"/>
+                </LinearLayout>
+
+                <!-- Row 2 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
+                    <TextView
+                        android:id="@+id/Buggy"
+                        android:text="@string/esp_inventory_Buggy_text"
+                        style="@style/MainFont"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/float_unselect"
+                        android:padding="12dp"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textAlignment="center"
+                        android:layout_marginEnd="5dp"/>
+                    <TextView
+                        android:id="@+id/UAZ"
+                        android:text="@string/esp_inventory_UAZ_text"
+                        style="@style/MainFont"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/float_unselect"
+                        android:padding="12dp"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textAlignment="center"/>
+                </LinearLayout>
+
+                <!-- Row 3 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
+                    <TextView
+                        android:id="@+id/Trike"
+                        android:text="@string/esp_inventory_Trike_text"
+                        style="@style/MainFont"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/float_unselect"
+                        android:padding="12dp"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textAlignment="center"
+                        android:layout_marginEnd="5dp"/>
+                    <TextView
+                        android:id="@+id/Jet"
+                        android:text="@string/esp_inventory_Jet_text"
+                        style="@style/MainFont"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/float_unselect"
+                        android:padding="12dp"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textAlignment="center"/>
+                </LinearLayout>
+
+                <!-- Row 4 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
+                    <TextView
+                        android:id="@+id/CoupeRB"
+                        android:text="@string/esp_inventory_CoupeRB_text"
+                        style="@style/MainFont"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/float_unselect"
+                        android:padding="12dp"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textAlignment="center"
+                        android:layout_marginEnd="5dp"/>
+                    <TextView
+                        android:id="@+id/Motorglider"
+                        android:text="@string/esp_inventory_Motorglider_text"
+                        style="@style/MainFont"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/float_unselect"
+                        android:padding="12dp"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textAlignment="center"/>
+                </LinearLayout>
+
+                <!-- Row 5 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
+                    <TextView
+                        android:id="@+id/Bike"
+                        android:text="@string/esp_inventory_Bike_text"
+                        style="@style/MainFont"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/float_unselect"
+                        android:padding="12dp"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textAlignment="center"
+                        android:layout_marginEnd="5dp"/>
+                    <TextView
+                        android:id="@+id/Dacia"
+                        android:text="@string/esp_inventory_Dacia_text"
+                        style="@style/MainFont"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/float_unselect"
+                        android:padding="12dp"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textAlignment="center"/>
+                </LinearLayout>
+
+                <!-- Row 6 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
+                    <TextView
+                        android:id="@+id/Boat"
+                        android:text="@string/esp_inventory_Boat_text"
+                        style="@style/MainFont"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/float_unselect"
+                        android:padding="12dp"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textAlignment="center"
+                        android:layout_marginEnd="5dp"/>
+                    <TextView
+                        android:id="@+id/Bus"
+                        android:text="@string/esp_inventory_Bus_text"
+                        style="@style/MainFont"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/float_unselect"
+                        android:padding="12dp"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textAlignment="center"/>
+                </LinearLayout>
+
+                <!-- Row 7 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
+                    <TextView
+                        android:id="@+id/Mirado"
+                        android:text="@string/esp_inventory_Mirado_text"
+                        style="@style/MainFont"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/float_unselect"
+                        android:padding="12dp"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textAlignment="center"
+                        android:layout_marginEnd="5dp"/>
+                    <TextView
+                        android:id="@+id/Snowbike"
+                        android:text="@string/esp_inventory_Snowbike_text"
+                        style="@style/MainFont"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/float_unselect"
+                        android:padding="12dp"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textAlignment="center"/>
+                </LinearLayout>
+
+                <!-- Row 8 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
+                    <TextView
+                        android:id="@+id/Scooter"
+                        android:text="@string/esp_inventory_Scooter_text"
+                        style="@style/MainFont"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/float_unselect"
+                        android:padding="12dp"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textAlignment="center"
+                        android:layout_marginEnd="5dp"/>
+                    <TextView
+                        android:id="@+id/Rony"
+                        android:text="@string/esp_inventory_Rony_text"
+                        style="@style/MainFont"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/float_unselect"
+                        android:padding="12dp"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textAlignment="center"/>
+                </LinearLayout>
+
+                <!-- Row 9 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
+                    <TextView
+                        android:id="@+id/Snowmobile"
+                        android:text="@string/esp_inventory_Snowmobile_text"
+                        style="@style/MainFont"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/float_unselect"
+                        android:padding="12dp"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textAlignment="center"
+                        android:layout_marginEnd="5dp"/>
+                    <TextView
+                        android:id="@+id/Tempo"
+                        android:text="@string/esp_inventory_Tempo_text"
+                        style="@style/MainFont"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/float_unselect"
+                        android:padding="12dp"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textAlignment="center"/>
+                </LinearLayout>
+
+                <!-- Row 10 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
+                    <TextView
+                        android:id="@+id/Truck"
+                        android:text="@string/esp_inventory_Truck_text"
+                        style="@style/MainFont"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/float_unselect"
+                        android:padding="12dp"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textAlignment="center"
+                        android:layout_marginEnd="5dp"/>
+                    <TextView
+                        android:id="@+id/LadaNiva"
+                        android:text="@string/esp_inventory_LadaNiva_text"
+                        style="@style/MainFont"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/float_unselect"
+                        android:padding="12dp"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textAlignment="center"/>
+                </LinearLayout>
+
+                <!-- Row 11 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
+                    <TextView
+                        android:id="@+id/BRDM"
+                        android:text="@string/esp_inventory_BRDM_text"
+                        style="@style/MainFont"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/float_unselect"
+                        android:padding="12dp"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textAlignment="center"
+                        android:layout_marginEnd="5dp"/>
+                    <TextView
+                        android:id="@+id/ATV"
+                        android:text="@string/esp_inventory_ATV_text"
+                        style="@style/MainFont"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/float_unselect"
+                        android:padding="12dp"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textAlignment="center"/>
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/items1"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:visibility="visible"
+                    android:id="@+id/specialitems"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.8"
+                        android:fontFamily="@font/cof"
+                        android:gravity="left"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/special_item"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:textStyle="normal" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/Crate"
+                            android:text="@string/esp_inventory_Crate_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:textSize="14.0sp"
+                            android:textColor="@color/white"
+                            android:layout_weight="1"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12.0dip"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/Airdrop"
+                            android:text="@string/esp_inventory_Airdrop_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:textSize="14.0sp"
+                            android:textColor="@color/white"
+                            android:layout_weight="1"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12.0dip"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/DropPlane"
+                            android:text="@string/esp_inventory_DropPlane_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:textSize="14.0sp"
+                            android:textColor="@color/white"
+                            android:layout_weight="1"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12.0dip"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/FlareGun"
+                            android:text="@string/esp_inventory_FlareGun_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:textSize="14.0sp"
+                            android:textColor="@color/white"
+                            android:layout_weight="1"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12.0dip"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/lootbox"
+                            android:text="@string/esp_inventory_lootbox_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:textSize="14.0sp"
+                            android:textColor="@color/white"
+                            android:layout_weight="1"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12.0dip"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/scope"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.8"
+                        android:fontFamily="@font/cof"
+                        android:gravity="left"
+                        android:text="@string/scopes"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:textStyle="normal" />
+
+                    <!-- Row 1 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/x2"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:gravity="center"
+                            android:text="@string/esp_inventory_x2_text"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/x3"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:gravity="center"
+                            android:text="@string/esp_inventory_x3_text"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+
+                    <!-- Row 2 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/x4"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:gravity="center"
+                            android:text="@string/esp_inventory_x4_text"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/x6"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:gravity="center"
+                            android:text="@string/esp_inventory_x6_text"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+
+                    <!-- Row 3 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/x8"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:gravity="center"
+                            android:text="@string/esp_inventory_x8_text"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/reddot"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:gravity="center"
+                            android:text="@string/esp_inventory_reddot_text"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+
+                    <!-- Row 4 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/hollow"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:gravity="center"
+                            android:text="@string/esp_inventory_hollow_text"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/canted"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:gravity="center"
+                            android:text="@string/esp_inventory_canted_text"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/arweapons"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.8"
+                        android:fontFamily="@font/cof"
+                        android:gravity="left"
+                        android:text="@string/ar_weapons"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:textStyle="normal" />
+
+                    <!-- Row 1 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/m416"
+                            android:text="@string/esp_inventory_m416_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:textSize="14.0sp"
+                            android:textColor="@color/white"
+                            android:layout_weight="1"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12.0dip"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/AKM"
+                            android:text="@string/esp_inventory_AKM_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:textSize="14.0sp"
+                            android:textColor="@color/white"
+                            android:layout_weight="1"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12.0dip"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+
+                    <!-- Row 2 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/M16A4"
+                            android:text="@string/esp_inventory_M16A4_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:textSize="14.0sp"
+                            android:textColor="@color/white"
+                            android:layout_weight="1"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12.0dip"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/M762"
+                            android:text="@string/esp_inventory_M762_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:textSize="14.0sp"
+                            android:textColor="@color/white"
+                            android:layout_weight="1"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12.0dip"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+
+                    <!-- Row 3 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/SCARL"
+                            android:text="@string/esp_inventory_SCARL_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:textSize="14.0sp"
+                            android:textColor="@color/white"
+                            android:layout_weight="1"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12.0dip"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/AC32"
+                            android:text="@string/esp_inventory_AC32_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:textSize="14.0sp"
+                            android:textColor="@color/white"
+                            android:layout_weight="1"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12.0dip"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+
+                    <!-- Row 4 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/AUG"
+                            android:text="@string/esp_inventory_AUG_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:textSize="14.0sp"
+                            android:textColor="@color/white"
+                            android:layout_weight="1"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12.0dip"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/HoneyBadger"
+                            android:text="@string/esp_inventory_HoneyBadger_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:textSize="14.0sp"
+                            android:textColor="@color/white"
+                            android:layout_weight="1"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12.0dip"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+
+                    <!-- Row 5 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/G36C"
+                            android:text="@string/esp_inventory_G36C_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:textSize="14.0sp"
+                            android:textColor="@color/white"
+                            android:layout_weight="1"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12.0dip"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/Groza"
+                            android:text="@string/esp_inventory_Groza_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:textSize="14.0sp"
+                            android:textColor="@color/white"
+                            android:layout_weight="1"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12.0dip"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+
+                    <!-- Row 6 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/QBZ"
+                            android:text="@string/esp_inventory_QBZ_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:textSize="14.0sp"
+                            android:textColor="@color/white"
+                            android:layout_weight="1"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12.0dip"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/FAMAS"
+                            android:text="@string/esp_inventory_FAMAS_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:textSize="14.0sp"
+                            android:textColor="@color/white"
+                            android:layout_weight="1"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12.0dip"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/LMGweapons"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.8"
+                        android:fontFamily="@font/cof"
+                        android:gravity="left"
+                        android:text="@string/others_weapon"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:textStyle="normal" />
+
+                    <!-- Row 1 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/M249"
+                            android:text="@string/esp_inventory_M249_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:layout_weight="1"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/DP28"
+                            android:text="@string/esp_inventory_DP28_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:layout_weight="1"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+
+                    <!-- Row 2 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/MG3"
+                            android:text="@string/esp_inventory_MG3_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:layout_weight="1"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+
+                        <!-- Empty view to balance layout -->
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/SMGweapons"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.8"
+                        android:fontFamily="@font/cof"
+                        android:gravity="left"
+                        android:text="@string/smg_weapons"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:textStyle="normal" />
+
+                    <!-- Row 1 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/UMP"
+                            android:text="@string/esp_inventory_UMP_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/TommyGun"
+                            android:text="@string/esp_inventory_TommyGun_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+
+                    <!-- Row 2 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/vector"
+                            android:text="@string/esp_inventory_vector_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/MP5K"
+                            android:text="@string/esp_inventory_MP5K_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+
+                    <!-- Row 3 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/P90"
+                            android:text="@string/esp_inventory_P90_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/UZI"
+                            android:text="@string/esp_inventory_UZI_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+
+                    <!-- Row 4 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/bizon"
+                            android:text="@string/esp_inventory_bizon_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/SRweapons"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.8"
+                        android:fontFamily="@font/cof"
+                        android:gravity="left"
+                        android:text="@string/sniper_weapons"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:textStyle="normal" />
+
+                    <!-- Row 1 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/AWM"
+                            android:text="@string/esp_inventory_AWM_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/Kar98k"
+                            android:text="@string/esp_inventory_Kar98k_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+
+                    <!-- Row 2 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/M24"
+                            android:text="@string/esp_inventory_M24_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/QBU"
+                            android:text="@string/esp_inventory_QBU_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+
+                    <!-- Row 3 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/Mini14"
+                            android:text="@string/esp_inventory_Mini14_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/SKS"
+                            android:text="@string/esp_inventory_SKS_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+
+                    <!-- Row 4 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/SLR"
+                            android:text="@string/esp_inventory_SLR_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/MK14"
+                            android:text="@string/esp_inventory_MK14_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+
+                    <!-- Row 5 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/Mosin"
+                            android:text="@string/esp_inventory_Mosin_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/Win94"
+                            android:text="@string/esp_inventory_Win94_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+
+                    <!-- Row 6 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/MK12"
+                            android:text="@string/esp_inventory_MK12_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/VSS"
+                            android:text="@string/esp_inventory_VSS_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+
+                    <!-- Row 7 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/AMR"
+                            android:text="@string/esp_inventory_AMR_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/MK47"
+                            android:text="@string/esp_inventory_MK47_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/ShotGuns"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.8"
+                        android:fontFamily="@font/cof"
+                        android:gravity="left"
+                        android:text="@string/shotguns"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:textStyle="normal" />
+
+                    <!-- Row 1 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="5dp">
+
+                        <TextView
+                            android:id="@+id/S12K"
+                            android:text="@string/esp_inventory_S12K_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/S1897"
+                            android:text="@string/esp_inventory_S1897_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+
+                    <!-- Row 2 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/S686"
+                            android:text="@string/esp_inventory_S686_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/M1014"
+                            android:text="@string/esp_inventory_M1014_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+
+                    <!-- Row 3 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/sawed"
+                            android:text="@string/esp_inventory_sawed_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/DBS"
+                            android:text="@string/esp_inventory_DBS_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+
+                    <!-- Row 4 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/NS2000"
+                            android:text="@string/esp_inventory_NS2000_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/Pistols"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.8"
+                        android:fontFamily="@font/cof"
+                        android:gravity="left"
+                        android:text="@string/pistols"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:textStyle="normal" />
+
+                    <!-- Row 1 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/P92"
+                            android:text="@string/esp_inventory_P92_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/R45"
+                            android:text="@string/esp_inventory_R45_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+
+                    <!-- Row 2 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/P18C"
+                            android:text="@string/esp_inventory_P18C_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/P1911"
+                            android:text="@string/esp_inventory_P1911_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+
+                    <!-- Row 3 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/R1895"
+                            android:text="@string/esp_inventory_R1895_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/Scorpion"
+                            android:text="@string/esp_inventory_Scorpion_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+
+                    <!-- Row 4 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/Desert"
+                            android:text="@string/esp_inventory_Desert_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/Milliweapons"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.8"
+                        android:fontFamily="@font/cof"
+                        android:gravity="left"
+                        android:text="@string/handy"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:textStyle="normal" />
+
+                    <!-- Row 1 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/Pan"
+                            android:text="@string/esp_inventory_Pan_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/Machete"
+                            android:text="@string/esp_inventory_Machete_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+
+                    <!-- Row 2 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/Sickle"
+                            android:text="@string/esp_inventory_Sickle_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/Crowbar"
+                            android:text="@string/esp_inventory_Crowbar_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+
+                    <!-- Row 3 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/Crossbow"
+                            android:text="@string/esp_inventory_Crossbow_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/Explosive"
+                            android:text="@string/esp_inventory_Explosive_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/Throwables"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.8"
+                        android:fontFamily="@font/cof"
+                        android:gravity="left"
+                        android:text="@string/throwables"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:textStyle="normal" />
+
+                    <!-- Row 1 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/grenade"
+                            android:text="@string/esp_inventory_grenade_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/molotov"
+                            android:text="@string/esp_inventory_molotov_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+
+                    <!-- Row 2 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/smoke"
+                            android:text="@string/esp_inventory_smoke_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/stun"
+                            android:text="@string/esp_inventory_stun_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/Ammo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.8"
+                        android:fontFamily="@font/cof"
+                        android:gravity="left"
+                        android:text="@string/ammo_bullet"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:textStyle="normal" />
+
+                    <!-- Row 1 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/a9"
+                            android:text="@string/esp_inventory_a9_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/a7"
+                            android:text="@string/esp_inventory_a7_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+
+                    <!-- Row 2 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/a5"
+                            android:text="@string/esp_inventory_a5_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/a12"
+                            android:text="@string/esp_inventory_a12_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+
+                    <!-- Row 3 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/a300"
+                            android:text="@string/esp_inventory_a300_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/a45"
+                            android:text="@string/esp_inventory_a45_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+
+                    <!-- Row 4 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/arrow"
+                            android:text="@string/esp_inventory_arrow_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/BMG50"
+                            android:text="@string/esp_inventory_BMG50_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/HelmetBag"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.8"
+                        android:fontFamily="@font/cof"
+                        android:gravity="left"
+                        android:text="@string/bag__helmet_and_vest"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:textStyle="normal" />
+
+                    <!-- Row 1 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/bag1"
+                            android:text="@string/esp_inventory_bag1_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/helmet1"
+                            android:text="@string/esp_inventory_helmet1_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+
+                    <!-- Row 2 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/bag2"
+                            android:text="@string/esp_inventory_bag2_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/helmet2"
+                            android:text="@string/esp_inventory_helmet2_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+
+                    <!-- Row 3 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/bag3"
+                            android:text="@string/esp_inventory_bag3_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/helmet3"
+                            android:text="@string/esp_inventory_helmet3_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+
+                    <!-- Row 4 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/vest1"
+                            android:text="@string/esp_inventory_vest1_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/vest2"
+                            android:text="@string/esp_inventory_vest2_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+
+                    <!-- Row 5 (only 1 item, vest3) -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/vest3"
+                            android:text="@string/esp_inventory_vest3_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/consumables"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.8"
+                        android:fontFamily="@font/cof"
+                        android:gravity="left"
+                        android:text="@string/medics"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:textStyle="normal" />
+
+                    <!-- Row 1 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/bandage"
+                            android:text="@string/esp_inventory_bandage_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/medkit"
+                            android:text="@string/esp_inventory_medkit_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+
+                    <!-- Row 2 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/firstaid"
+                            android:text="@string/esp_inventory_firstaid_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/injection"
+                            android:text="@string/esp_inventory_injection_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+
+                    <!-- Row 3 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/painkiller"
+                            android:text="@string/esp_inventory_painkiller_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp"
+                            style="@style/MainFont" />
+
+                        <TextView
+                            android:id="@+id/energydrink"
+                            android:text="@string/esp_inventory_energydrink_text"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/float_unselect"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            style="@style/MainFont" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/attachments"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.8"
+                        android:fontFamily="@font/cof"
+                        android:gravity="left"
+                        android:text="@string/suppressor_hider_compe"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:textStyle="normal" />
+
+                    <!-- Row 1 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/SuppressorAr"
+                            android:text="@string/esp_inventory_SuppressorAr_text"
+                            style="@style/MainFont"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:padding="12dp"
+                            android:background="@drawable/float_unselect"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp" />
+
+                        <TextView
+                            android:id="@+id/SuppressorSMG"
+                            android:text="@string/esp_inventory_SuppressorSMG_text"
+                            style="@style/MainFont"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:padding="12dp"
+                            android:background="@drawable/float_unselect"
+                            android:textAlignment="center" />
+                    </LinearLayout>
+
+                    <!-- Row 2 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/FlashHiderAr"
+                            android:text="@string/esp_inventory_FlashHiderAr_text"
+                            style="@style/MainFont"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:padding="12dp"
+                            android:background="@drawable/float_unselect"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp" />
+
+                        <TextView
+                            android:id="@+id/FlashHiderSMG"
+                            android:text="@string/esp_inventory_FlashHiderSMG_text"
+                            style="@style/MainFont"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:padding="12dp"
+                            android:background="@drawable/float_unselect"
+                            android:textAlignment="center" />
+                    </LinearLayout>
+
+                    <!-- Row 3 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/ArCompensator"
+                            android:text="@string/esp_inventory_ArCompensator_text"
+                            style="@style/MainFont"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:padding="12dp"
+                            android:background="@drawable/float_unselect"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp" />
+
+                        <TextView
+                            android:id="@+id/CompensatorSMG"
+                            android:text="@string/esp_inventory_CompensatorSMG_text"
+                            style="@style/MainFont"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:padding="12dp"
+                            android:background="@drawable/float_unselect"
+                            android:textAlignment="center" />
+                    </LinearLayout>
+
+                    <!-- Row 4 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/SuppressorSniper"
+                            android:text="@string/esp_inventory_SuppressorSniper_text"
+                            style="@style/MainFont"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:padding="12dp"
+                            android:background="@drawable/float_unselect"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp" />
+
+                        <TextView
+                            android:id="@+id/FlashHiderSniper"
+                            android:text="@string/esp_inventory_FlashHiderSniper_text"
+                            style="@style/MainFont"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:padding="12dp"
+                            android:background="@drawable/float_unselect"
+                            android:textAlignment="center" />
+                    </LinearLayout>
+
+                    <!-- Row 5 (Single) -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/SniperCompensator"
+                            android:text="@string/esp_inventory_SniperCompensator_text"
+                            style="@style/MainFont"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:padding="12dp"
+                            android:background="@drawable/float_unselect"
+                            android:textAlignment="center" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/magazines"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.8"
+                        android:fontFamily="@font/cof"
+                        android:gravity="left"
+                        android:text="@string/magazine"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:textStyle="normal" />
+
+                    <!-- Row 1 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/ExQdAr"
+                            android:text="@string/esp_inventory_ExQdAr_text"
+                            style="@style/MainFont"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:padding="12dp"
+                            android:background="@drawable/float_unselect"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp" />
+
+                        <TextView
+                            android:id="@+id/ExQdSMG"
+                            android:text="@string/esp_inventory_ExQdSMG_text"
+                            style="@style/MainFont"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:padding="12dp"
+                            android:background="@drawable/float_unselect"
+                            android:textAlignment="center" />
+                    </LinearLayout>
+
+                    <!-- Row 2 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/ExAr"
+                            android:text="@string/esp_inventory_ExAr_text"
+                            style="@style/MainFont"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:padding="12dp"
+                            android:background="@drawable/float_unselect"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp" />
+
+                        <TextView
+                            android:id="@+id/ExSMG"
+                            android:text="@string/esp_inventory_ExSMG_text"
+                            style="@style/MainFont"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:padding="12dp"
+                            android:background="@drawable/float_unselect"
+                            android:textAlignment="center" />
+                    </LinearLayout>
+
+                    <!-- Row 3 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/QdAr"
+                            android:text="@string/esp_inventory_QdAr_text"
+                            style="@style/MainFont"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:padding="12dp"
+                            android:background="@drawable/float_unselect"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp" />
+
+                        <TextView
+                            android:id="@+id/QdSMG"
+                            android:text="@string/esp_inventory_QdSMG_text"
+                            style="@style/MainFont"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:padding="12dp"
+                            android:background="@drawable/float_unselect"
+                            android:textAlignment="center" />
+                    </LinearLayout>
+
+                    <!-- Row 4 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/ExQdSniper"
+                            android:text="@string/esp_inventory_ExQdSniper_text"
+                            style="@style/MainFont"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:padding="12dp"
+                            android:background="@drawable/float_unselect"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp" />
+
+                        <TextView
+                            android:id="@+id/ExSniper"
+                            android:text="@string/esp_inventory_ExSniper_text"
+                            style="@style/MainFont"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:padding="12dp"
+                            android:background="@drawable/float_unselect"
+                            android:textAlignment="center" />
+                    </LinearLayout>
+
+                    <!-- Row 5 (Single) -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/QdSniper"
+                            android:text="@string/esp_inventory_QdSniper_text"
+                            style="@style/MainFont"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:padding="12dp"
+                            android:background="@drawable/float_unselect"
+                            android:textAlignment="center" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/grips"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.8"
+                        android:fontFamily="@font/cof"
+                        android:gravity="left"
+                        android:text="@string/grip"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:textStyle="normal" />
+
+                    <!-- Row 1 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/LaserSight"
+                            android:text="@string/esp_inventory_LaserSight_text"
+                            style="@style/MainFont"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:padding="12dp"
+                            android:background="@drawable/float_unselect"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp" />
+
+                        <TextView
+                            android:id="@+id/LightGrip"
+                            android:text="@string/esp_inventory_LightGrip_text"
+                            style="@style/MainFont"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:padding="12dp"
+                            android:background="@drawable/float_unselect"
+                            android:textAlignment="center" />
+                    </LinearLayout>
+
+                    <!-- Row 2 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/ThumbGrip"
+                            android:text="@string/esp_inventory_ThumbGrip_text"
+                            style="@style/MainFont"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:padding="12dp"
+                            android:background="@drawable/float_unselect"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp" />
+
+                        <TextView
+                            android:id="@+id/VerticalGrip"
+                            android:text="@string/esp_inventory_VerticalGrip_text"
+                            style="@style/MainFont"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:padding="12dp"
+                            android:background="@drawable/float_unselect"
+                            android:textAlignment="center" />
+                    </LinearLayout>
+
+                    <!-- Row 3 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/HalfGrip"
+                            android:text="@string/esp_inventory_HalfGrip_text"
+                            style="@style/MainFont"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:padding="12dp"
+                            android:background="@drawable/float_unselect"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp" />
+
+                        <TextView
+                            android:id="@+id/AngledGrip"
+                            android:text="@string/esp_inventory_AngledGrip_text"
+                            style="@style/MainFont"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:padding="12dp"
+                            android:background="@drawable/float_unselect"
+                            android:textAlignment="center" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/others"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.8"
+                        android:fontFamily="@font/cof"
+                        android:gravity="left"
+                        android:text="@string/others"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:textStyle="normal" />
+
+                    <!-- Row 1 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/TacticalStock"
+                            android:text="@string/esp_inventory_TacticalStock_text"
+                            style="@style/MainFont"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:padding="12dp"
+                            android:background="@drawable/float_unselect"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp" />
+
+                        <TextView
+                            android:id="@+id/Duckbill"
+                            android:text="@string/esp_inventory_Duckbill_text"
+                            style="@style/MainFont"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:padding="12dp"
+                            android:background="@drawable/float_unselect"
+                            android:textAlignment="center" />
+                    </LinearLayout>
+
+                    <!-- Row 2 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/Choke"
+                            android:text="@string/esp_inventory_Choke_text"
+                            style="@style/MainFont"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:padding="12dp"
+                            android:background="@drawable/float_unselect"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp" />
+
+                        <TextView
+                            android:id="@+id/StockMicroUZI"
+                            android:text="@string/esp_inventory_StockMicroUZI_text"
+                            style="@style/MainFont"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:padding="12dp"
+                            android:background="@drawable/float_unselect"
+                            android:textAlignment="center" />
+                    </LinearLayout>
+
+                    <!-- Row 3 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/QuiverCrossBow"
+                            android:text="@string/esp_inventory_QuiverCrossBow_text"
+                            style="@style/MainFont"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:padding="12dp"
+                            android:background="@drawable/float_unselect"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp" />
+
+                        <TextView
+                            android:id="@+id/BulletLoop"
+                            android:text="@string/esp_inventory_BulletLoop_text"
+                            style="@style/MainFont"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:padding="12dp"
+                            android:background="@drawable/float_unselect"
+                            android:textAlignment="center" />
+                    </LinearLayout>
+
+                    <!-- Row 4 -->
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="25dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/GasCan"
+                            android:text="@string/esp_inventory_GasCan_text"
+                            style="@style/MainFont"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:padding="12dp"
+                            android:background="@drawable/float_unselect"
+                            android:textAlignment="center"
+                            android:layout_marginEnd="5dp" />
+
+                        <TextView
+                            android:id="@+id/CheekPad"
+                            android:text="@string/esp_inventory_CheekPad_text"
+                            style="@style/MainFont"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:padding="12dp"
+                            android:background="@drawable/float_unselect"
+                            android:textAlignment="center" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</LinearLayout>

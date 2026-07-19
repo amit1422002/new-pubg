@@ -1,0 +1,1742 @@
+[
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_bg_prog.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/bg_prog.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_unchecked.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/unchecked.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_gear2.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_gear2.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_baseline_settings_24.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/baseline_settings_24.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable-v24/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_profile.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_profile.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_badgefl.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/badgefl.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_root.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_root.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_fightoff.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/fightoff.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_launcher.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/launcher.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_medicine.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/medicine.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_play_arrow.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_play_arrow.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_toast.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_toast.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ve9.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ve9.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_progress_dialog_layout.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/progress_dialog_layout.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_bitfalse2.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/bitfalse2.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_baseline_directions_car_24.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/baseline_directions_car_24.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_memory.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/memory.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_grip.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/grip.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_round_archive_24.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/round_archive_24.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_injector_all_btn_off_bg_red.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/injector_all_btn_off_bg_red.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_eye.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_eye.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_box_background.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/box_background.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_activity_navigation.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/activity_navigation.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_baseline_close_24.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_baseline_close_24.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_custom_cursor.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/custom_cursor.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_arrow_right_thick.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_arrow_right_thick.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_bgfituronfl.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/bgfituronfl.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/font_cof.OTF.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/font/cof.OTF"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_baseline_auto_fix_high_24.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/baseline_auto_fix_high_24.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_bgfituroff.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/bgfituroff.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_drawer_header_bg.jpg.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/drawer_header_bg.jpg"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_modehead.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/modehead.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_cursor.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/cursor.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_s_false.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_s_false.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_b1.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/b1.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_baseline_email_24.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/baseline_email_24.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_copyright.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_copyright.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ve7.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ve7.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_dialogue_download.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/dialogue_download.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_clear_enemy.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_clear_enemy.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_tab_selected_bg.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/tab_selected_bg.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_thumbb.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/thumbb.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_injector_player_btn_off_bg.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/injector_player_btn_off_bg.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_download_2.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_download_2.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_phone.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_phone.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_baseline_directions_car_24.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_baseline_directions_car_24.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_icon_close.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/icon_close.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ve19.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ve19.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_act_main.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/act_main.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_activity_main.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/activity_main.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_bg_tb_selector.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/bg_tb_selector.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_server_true.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_server_true.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_toggle.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_toggle.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_animation_lottie.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/animation_lottie.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_baseline_dashboard_customize_24.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_baseline_dashboard_customize_24.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_baseline_keyboard_arrow_up_24.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/baseline_keyboard_arrow_up_24.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_checkbox_unchecked.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/checkbox_unchecked.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_bg_menuf.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/bg_menuf.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_bg_float.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/bg_float.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_clear_noob.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_clear_noob.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_setting.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_setting.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_d64bit.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/d64bit.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_bittrue2.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/bittrue2.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_items.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/items.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_button_coming.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/button_coming.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_baseline_display_settings_24.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_baseline_display_settings_24.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_backmode.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/backmode.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_injector_all_btn_off_bg_black.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/injector_all_btn_off_bg_black.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_robot.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_robot.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_baseline_fiber_smart_record_24.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/baseline_fiber_smart_record_24.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_launcher_background.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ve10.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ve10.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_download.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_download.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_snipergun.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/snipergun.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_community.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_community.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_icon_view_bg.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/icon_view_bg.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_maincounter.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/maincounter.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_danger_boot.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_danger_boot.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_import.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_import.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_machinegun.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/machinegun.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_pause.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/pause.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_grenade.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_grenade.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_target.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_target.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_button_installfl.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/button_installfl.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_progress_bar.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/progress_bar.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_warning.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_warning.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_background_country.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/background_country.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ve22.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ve22.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_pistol.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/pistol.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_switch_off.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_switch_off.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_shadowfl.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/shadowfl.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_corner_btn_login.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/corner_btn_login.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_misc.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_misc.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_struct.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/struct.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_custom_border_input1.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/custom_border_input1.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_reset.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/reset.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_bg_header.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/bg_header.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_bullettrack.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_bullettrack.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_activity_main_loading.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/activity_main_loading.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_bgfituron.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/bgfituron.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_vision.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_vision.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_aimon.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_aimon.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_red_shadow.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/red_shadow.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ve3.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ve3.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ve15.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ve15.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_vehicles.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_vehicles.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_a2.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/a2.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_email.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_email.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_drawer_footer.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/drawer_footer.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_othershadow.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/othershadow.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_flash_off.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_flash_off.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_thumb_backgrouds.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/thumb_backgrouds.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_baseline_content_copy_24.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/baseline_content_copy_24.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_sunny.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_sunny.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_gear.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_gear.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ve13.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ve13.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_progress_bar_custom.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/progress_bar_custom.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_login.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_login.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_login_socialback.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/login_socialback.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_logout.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/logout.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_cog.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/cog.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_home.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_home.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_knock.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_knock.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_esp_aimbot.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/esp_aimbot.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/menu_nav_items.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/menu/nav_items.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_aim.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_aim.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_predict.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_predict.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_baseline_content_paste_go_24.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/baseline_content_paste_go_24.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_thumb_true.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/thumb_true.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_btn_round.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/btn_round.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_application.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/application.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_dialog_pakgamerz_progress.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/dialog_pakgamerz_progress.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_developer.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_developer.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/xml_backup_rules.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_topradius.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/topradius.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_sidebar.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/sidebar.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_byphead.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/byphead.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_item_color.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/item_color.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_dashboard.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_dashboard.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_password_invisible.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_password_invisible.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_cornertop.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/cornertop.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_loot.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/loot.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_root_false.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_root_false.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ve14.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ve14.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_track_custom.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/track_custom.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_cog.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_cog.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_lootx.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/lootx.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_magazine.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/magazine.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_close_button.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/close_button.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_layout_background.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/layout_background.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_krcircle.jpeg.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/krcircle.jpeg"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_nav3.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/nav3.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ve11.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ve11.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_esp_memory.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/esp_memory.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_compensator.webp.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/compensator.webp"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_ammo.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_ammo.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_settings.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_settings.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_smggun.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/smggun.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_floataimbot.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/floataimbot.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_track_backgrounds.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/track_backgrounds.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_circlenoradius.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/circlenoradius.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_alert.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_alert.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_bot.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_bot.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_baseline_home_on.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/baseline_home_on.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_esp_visual.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/esp_visual.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_bottom_logout.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/bottom_logout.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_float_select.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/float_select.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_pistols.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_pistols.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_dialog_progress.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/dialog_progress.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_background_card.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/background_card.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_person.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_person.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_bot.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/bot.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_injector_btn_off_bg.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/injector_btn_off_bg.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_injector.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_injector.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_logincustom.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/logincustom.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_paste.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_paste.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_recording.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/recording.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_systemmode.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/systemmode.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_eye_off.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_eye_off.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_button_uinstalll.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/button_uinstalll.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ve5.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ve5.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_items.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_items.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_nav2.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/nav2.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/xml_file_path.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/xml/file_path.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_special_items.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_special_items.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_radius_exp.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/radius_exp.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_bitfalse.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/bitfalse.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_clean.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_clean.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_float_unselect.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/float_unselect.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_download_1.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_download_1.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ve6.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ve6.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_bgfiturofffl.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/bgfiturofffl.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_baseline_close_24.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/baseline_close_24.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_user_unselected.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_user_unselected.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_baseline_home_24.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/baseline_home_24.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_layout_material_switch_style.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/layout_material_switch_style.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/xml_file_paths.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/xml/file_paths.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_drawer_header.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/drawer_header.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_dialog_game_select.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/dialog_game_select.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_leftnon.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/leftnon.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_modern_sidebar.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/modern_sidebar.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_bg_pill_gray.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/bg_pill_gray.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_d32bit.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/d32bit.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_bg_toast.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/bg_toast.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_scope.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_scope.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_nav1.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/nav1.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_buttonshape.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/buttonshape.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_cloth.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/cloth.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_close_c.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_close_c.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_sild.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_sild.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/font_google.ttf.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/font/google.ttf"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ve12.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ve12.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_frag.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/frag.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_bg_test.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/bg_test.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_moon.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_moon.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_help.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_help.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_sun.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/sun.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_rifle.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/rifle.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ve8.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ve8.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_thumb_true2.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/thumb_true2.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_kernelmode.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/kernelmode.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_vests.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_vests.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_animation_launch.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/animation_launch.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_esp_inventory.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/esp_inventory.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_close.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_close.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_button_normal.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/button_normal.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_tele.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_tele.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_safe_mode.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/safe_mode.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_play_store.webp.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_play_store.webp"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_btn_gradient.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/btn_gradient.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_grenade.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/grenade.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_injector_all_btn_off_bg.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/injector_all_btn_off_bg.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/xml_network_security.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/xml/network_security.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_security.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/security.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_checkbox_background.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/checkbox_background.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_setting.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_setting.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_play.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/play.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_bullet.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_bullet.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_checkbox.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/checkbox.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_otherback.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/otherback.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_gun.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_gun.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_dialog_lottie_progress.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/dialog_lottie_progress.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_error.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_error.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_play.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_play.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_btn_gradient_rounded.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/btn_gradient_rounded.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_looton.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/looton.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_corner_true.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/corner_true.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_root_true.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_root_true.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_home_outline.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_home_outline.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/font_main.ttf.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/font/main.ttf"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_version_selection_bg.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/version_selection_bg.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_badge.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/badge.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_bluegradient.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/bluegradient.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_modesel.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/modesel.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_neon_circle_blur.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/neon_circle_blur.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_bottom_sheet_dialog_layout.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/bottom_sheet_dialog_layout.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/menu_drawer_items.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/menu/drawer_items.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_icon_toast_alert.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/icon_toast_alert.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_down_arrow.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_down_arrow.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_bittrue3.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/bittrue3.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/font_mfontx.ttf.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/font/mfontx.ttf"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_rounded_corner.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/rounded_corner.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_navback.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/navback.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_sniper.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_sniper.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_left.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/left.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_outline_gpp_good_24.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/outline_gpp_good_24.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_shotgun.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_shotgun.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_spin_item.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/spin_item.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_shadow.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/shadow.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ve4.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ve4.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_thumb_icons.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/thumb_icons.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_bgmenuitem.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/bgmenuitem.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_shadowslider.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/shadowslider.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_ar.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_ar.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_shield.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/shield.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ve16.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ve16.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_no_back.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/no_back.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_injector_player_btn_onnn_bg.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/injector_player_btn_onnn_bg.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ve23.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ve23.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_locks.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_locks.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_cross.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_cross.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_activity_splash.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/activity_splash.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_toggle_aim.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/toggle_aim.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_outline_settings_24.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/outline_settings_24.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/menu_bottom_nav_menu.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/menu/bottom_nav_menu.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_tumn.jpg.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_tumn.jpg"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_health_items.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_health_items.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_esp_skin.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/esp_skin.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_bitfalse3.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/bitfalse3.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_activity_login.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/activity_login.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_esp.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/esp.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_install_button_bg.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/install_button_bg.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_sword.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_sword.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_fragment_data.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/fragment_data.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_line_shape.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/line_shape.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_imo2.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/imo2.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_download.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_download.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_imo.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/imo.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_helpon.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_helpon.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/xml_network_security_config.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/xml/network_security_config.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_touch.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_touch.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_circle.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/circle.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_telegram.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_telegram.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_protection.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/protection.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_paste.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_paste.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_circletw.jpeg.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/circletw.jpeg"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_baseline_play_arrow_24.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_baseline_play_arrow_24.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/color_nav_item_icon.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/color/nav_item_icon.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_progress_blue.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/progress_blue.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_circlegl.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/circlegl.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_prbtn.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/prbtn.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/color_nav_item_text.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/color/nav_item_text.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_btn_background.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/btn_background.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_baseline_keyboard_arrow_right_24.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/baseline_keyboard_arrow_right_24.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_background_trans.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/background_trans.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_airdrop.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/airdrop.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_radius_right.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/radius_right.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_frypan.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/frypan.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_unsafe_mode.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/unsafe_mode.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_download_button.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_download_button.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ve20.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ve20.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_thumb_lang.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/thumb_lang.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_shotgun.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/shotgun.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_navigation.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/navigation.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_pop1.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/pop1.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ve1.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ve1.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_injector_vehicle_btn_onnn_bg.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/injector_vehicle_btn_onnn_bg.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_toggle_touch.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/toggle_touch.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_pause.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_pause.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_circlebgmi.webp.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/circlebgmi.webp"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_gsm.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/gsm.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/menu_esp_tabs.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/menu/esp_tabs.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_esp_layout_bg.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/esp_layout_bg.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_helmet.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/helmet.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ve2.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ve2.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_telegram.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_telegram.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_web.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_web.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_log.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/log.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_clear_boot.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_clear_boot.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_corner_false.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/corner_false.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_injector_btn_onnn_bg.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/injector_btn_onnn_bg.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_logout.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_logout.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_dialog_item_right.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/dialog_item_right.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_gradient_silver.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/gradient_silver.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_switch_on.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_switch_on.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_float_service.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/float_service.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_content_copy.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/content_copy.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_storage.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_storage.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_baseline_lock_24.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/baseline_lock_24.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_thumb_false.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/thumb_false.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_button_playy.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/button_playy.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_room.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_room.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_lin_back.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/lin_back.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_aimc.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_aimc.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_warning.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_warning.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_danger_enemy.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_danger_enemy.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_animation_login.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/animation_login.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_customcheck.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/customcheck.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_tw.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_tw.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ve21.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ve21.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_dialog_rooted_info.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/dialog_rooted_info.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_installbackground.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/installbackground.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_login_custom.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/login_custom.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_exit.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_exit.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_circlevn.jpeg.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/circlevn.jpeg"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_password_unselected.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_password_unselected.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_turn.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_turn.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_attachments.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_attachments.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_checkbox_checked.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/checkbox_checked.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_lock.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_lock.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_leftnon2.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/leftnon2.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_noshadow.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/noshadow.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_moon.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/moon.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_button_uinstall.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/button_uinstall.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_selector_radiobutton.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/selector_radiobutton.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_baseline_double_arrow_24.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/baseline_double_arrow_24.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_round_person_24.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/round_person_24.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_toggle_aimbullet.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/toggle_aimbullet.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_fan.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/fan.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_clear_pro.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_clear_pro.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_bottom_update.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/bottom_update.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_s_true.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_s_true.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_baseline_android_24.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/baseline_android_24.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_home.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_home.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_line.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/line.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_colorpicker.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_colorpicker.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/xml_data_extraction_rules.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_linked.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_linked.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_thumb_false2.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/thumb_false2.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_dialog_item.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/dialog_item.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_bullet.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/bullet.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_loginspinner.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/loginspinner.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_button_play.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/button_play.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_button_install.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/button_install.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_corner1.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/corner1.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vertical_line_shape.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vertical_line_shape.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_tg_bg_pill.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/tg_bg_pill.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_radius_left.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/radius_left.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_b2.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/b2.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_target.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/target.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_export.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/export.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_notife.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/notife.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_dialog_background.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/dialog_background.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_toggle_fight.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/toggle_fight.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_logintextbox.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/logintextbox.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ve18.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ve18.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_bottom_sheet_dialog_obb.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/bottom_sheet_dialog_obb.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_fb.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_fb.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_google_chrome.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_google_chrome.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_tab_selector.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/tab_selector.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_injector_all_btn_off_bg_white.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/injector_all_btn_off_bg_white.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_server_false.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_server_false.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_stop.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_stop.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_boot.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_boot.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_aimback.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_aimback.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_weapon.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_weapon.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_custom_dialog_title.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/custom_dialog_title.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_bittrue.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/bittrue.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_apk_update_version.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/apk_update_version.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_dialog_bg.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/dialog_bg.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_fighton.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/fighton.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_password_visible.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_password_visible.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_float_selected.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/float_selected.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_vertical_tab_bar.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/vertical_tab_bar.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_cicrle.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/cicrle.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_baseline_diamond_24.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/baseline_diamond_24.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_check.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_check.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ic_send.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ic_send.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_vector_play_button.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/vector_play_button.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/layout_activity_other.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/layout/activity_other.xml"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_ve0.png.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/ve0.png"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_profile.jpg.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/profile.jpg"
+    },
+    {
+        "merged": "lauresprojects.com.recorder.app-merged_res-43:/drawable_blue.xml.flat",
+        "source": "lauresprojects.com.recorder.app-main-45:/drawable/blue.xml"
+    }
+]

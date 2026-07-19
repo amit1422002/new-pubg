@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ds">
+        <attr name="colorPrimary" format="color"/>
+        <attr name="colorBackground" format="color"/>
+        <attr name="colorIcon" format="color"/>
+        <attr name="colorCard" format="color"/>
+        <attr name="colorPrimaryDark" format="color"/>
+        <attr name="colorAccent" format="color"/>
+        <attr name="white" format="color"/>
+        <attr name="black" format="color"/>
+        <attr name="gray" format="color"/>
+        <attr name="gray2" format="color"/>
+        <attr name="gray200" format="color"/>
+        <attr name="myblueplus" format="color"/>
+		<attr name="whitepermanent" format="color"/>
+		<attr name="cardcancel" format="color"/>
+		<attr name="textcancel" format="color"/>
+        <attr name="lang" format="color"/>
+        <attr name="ncb_shadowDensity" format="dimension" />
+        <attr name="ncb_CheckBoxDimension" format="dimension" />
+        <attr name="ncb_lightDensity" format="dimension" />
+        <attr name="ncb_JutSize" format="dimension" />
+        <attr name="ncb_textSize" format="dimension" />
+        <attr name="ncb_text" format="string" />
+        <attr name="ncb_CheckMarkColor" format="color" />
+        <attr name="ncb_textColor" format="color" />
+        <attr name="ncb_CheckBoxColor" format="color" />
+    </declare-styleable>
+	
+		
+
+   
+	
+</resources>

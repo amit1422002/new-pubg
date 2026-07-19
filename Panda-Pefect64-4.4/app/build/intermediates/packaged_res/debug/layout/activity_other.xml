@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginEnd="10dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:id="@+id/progiless"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:background="@drawable/installbackground"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <!-- Rotated Vertical Text "Setting" -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/cof"
+                    android:rotation="-90"
+                    android:text="@string/setting"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:paddingHorizontal="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"/>
+
+                <!-- Settings Buttons Container -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:padding="10dp">
+
+                    <!-- Import Button -->
+                    <LinearLayout
+                        android:id="@+id/savesetting"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+                        <ImageView
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:src="@drawable/ic_import"
+                            android:contentDescription="Import" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/import_"
+                            android:fontFamily="@font/cof"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:gravity="center" />
+                    </LinearLayout>
+
+                    <!-- Reset Button -->
+                    <LinearLayout
+                        android:id="@+id/resetsetting"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+                        <ImageView
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:src="@drawable/reset"
+                            android:contentDescription="Reset" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/reset_"
+                            android:fontFamily="@font/cof"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:gravity="center" />
+                    </LinearLayout>
+
+                    <!-- Export Button -->
+                    <LinearLayout
+                        android:id="@+id/exportsetting"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+                        <ImageView
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:src="@drawable/export"
+                            android:contentDescription="Export" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/export"
+                            android:fontFamily="@font/cof"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:gravity="center" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/installbackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:padding="8dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="@dimen/game_icon_size_normal"
+            android:layout_height="@dimen/game_icon_size_normal"
+            android:layout_gravity="center"
+            app:shapeAppearance="@style/Theme.CheatUIDev.ShapeAppearanceOverlay.Square" />
+
+        <Space
+            android:layout_width="10.0dip"
+            android:layout_height="0.0dip"
+            android:layout_gravity="center_vertical" />
+
+        <LinearLayout
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/cof"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@string/fix_obb_problem"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                android:textColor="?attr/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mfontx"
+                android:text="@string/activate_obb"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Caption" />
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+
+            style="@style/Widget.MaterialComponents.Button.InstallButton"
+            android:layout_width="100.0dip"
+            android:layout_height="wrap_content"
+            android:text="@string/fix_obb_"
+            app:icon="@drawable/fan"
+            app:iconTint="@color/main"
+            android:textColor="?attr/black"
+            android:textSize="9.0sp" />
+
+    </LinearLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:paddingVertical="8.0dip"
+            android:text="@string/social_3"
+            android:fontFamily="@font/cof"
+            android:textAppearance="?textAppearanceSubtitle1"
+            android:textColor="?attr/black"
+            android:textSize="20.0sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/installbackground"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="@dimen/game_icon_size_normal"
+                android:layout_height="@dimen/game_icon_size_normal"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_fb"
+                app:shapeAppearance="@style/Theme.CheatUIDev.ShapeAppearanceOverlay.Square" />
+
+            <Space
+                android:layout_width="10.0dip"
+                android:layout_height="0.0dip"
+                android:layout_gravity="center_vertical" />
+
+            <LinearLayout
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cof"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="@string/facebook"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/vrfacebook"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mfontx"
+                    android:textColor="@color/gray"
+                    android:text="@string/com_facebook_katana"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Caption" />
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/InstallFb"
+                style="@style/Widget.MaterialComponents.Button.InstallButton"
+                android:layout_width="100.0dip"
+                android:layout_height="wrap_content"
+                android:text="@string/menu"
+                android:textColor="@color/black"
+                android:textSize="9.0sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/installbackground"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:padding="8dp">
+
+            <!-- Twitter Icon -->
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/socialtw"
+                android:layout_width="@dimen/game_icon_size_normal"
+                android:layout_height="@dimen/game_icon_size_normal"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_tw"
+                app:shapeAppearance="@style/Theme.CheatUIDev.ShapeAppearanceOverlay.Square" />
+
+            <Space
+                android:layout_width="10.0dip"
+                android:layout_height="0.0dip"
+                android:layout_gravity="center_vertical" />
+
+            <!-- Text Container -->
+            <LinearLayout
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:orientation="vertical">
+
+                <!-- App Name -->
+                <TextView
+                    android:id="@+id/social2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cof"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="@string/twitter_"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                    android:textColor="@color/black"/>
+
+                <!-- Package Name -->
+                <TextView
+                    android:id="@+id/vrtwitter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mfontx"
+                    android:textColor="@color/gray"
+                    android:text="@string/com_twitter_android"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Caption" />
+            </LinearLayout>
+
+            <!-- Install Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/InstallTwitter"
+                style="@style/Widget.MaterialComponents.Button.InstallButton"
+                android:layout_width="100.0dip"
+                android:layout_height="wrap_content"
+                android:text="@string/menu"
+                android:textColor="@color/black"
+                android:textSize="9.0sp" />
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/esp_adjustment_settings"
+                android:textSize="20.0sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/cof"
+                android:textColor="?attr/black"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="0.0dip"
+            android:layout_weight="1.0">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10.0dip">
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/esp64"
+                    android:text="@string/_64_bit_game"
+                    android:textColor="@color/main"
+                    android:gravity="center"
+                    app:icon="@drawable/d64bit"
+                    app:iconTint="@color/main"
+                    app:iconGravity="textStart"
+                    app:iconPadding="8dp"
+                    style="@style/Theme.CheatUIDev.MainActivity.ActionButton" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content">
+                <com.google.android.material.button.MaterialButton
+                    android:textColor="?attr/black"
+                    android:id="@+id/esp32"
+                    android:text="@string/_32_bit_game"
+                    android:gravity="center"
+                    app:iconGravity="textStart"
+                    app:iconPadding="8dp"
+                    app:icon="@drawable/d32bit"
+                    app:iconTint="?attr/black"
+                    style="@style/Theme.CheatUIDev.MainActivity.ActionButton" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="0.0dip"
+            android:layout_weight="1.0">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10.0dip">
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/system"
+                    android:text="@string/system_mode"
+                    android:textColor="@color/main"
+                    android:gravity="center"
+                    app:icon="@drawable/systemmode"
+                    app:iconTint="@color/main"
+                    app:iconGravity="textStart"
+                    app:iconPadding="8dp"
+                    style="@style/Theme.CheatUIDev.MainActivity.ActionButton" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content">
+                <com.google.android.material.button.MaterialButton
+                    android:textColor="?attr/black"
+                    android:id="@+id/kernel"
+                    android:text="@string/kernel_mode"
+                    android:gravity="center"
+                    app:iconGravity="textStart"
+                    app:iconPadding="8dp"
+                    app:icon="@drawable/kernelmode"
+                    app:iconTint="?attr/black"
+                    style="@style/Theme.CheatUIDev.MainActivity.ActionButton" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="0.0dip"
+            android:layout_weight="1.0">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10.0dip">
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/espsafe"
+                    android:text="@string/safe_"
+                    android:textColor="@color/main"
+                    android:gravity="center"
+                    app:icon="@drawable/safe_mode"
+                    app:iconTint="@color/main"
+                    app:iconGravity="textStart"
+                    app:iconPadding="8dp"
+                    style="@style/Theme.CheatUIDev.MainActivity.ActionButton" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content">
+                <com.google.android.material.button.MaterialButton
+                    android:textColor="?attr/black"
+                    android:id="@+id/espunsafe"
+                    android:text="@string/unsafe"
+                    android:gravity="center"
+                    app:iconGravity="textStart"
+                    app:iconPadding="8dp"
+                    app:icon="@drawable/unsafe_mode"
+                    app:iconTint="?attr/black"
+                    style="@style/Theme.CheatUIDev.MainActivity.ActionButton" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

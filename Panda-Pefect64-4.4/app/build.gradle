@@ -1,0 +1,124 @@
+plugins {
+    id 'com.android.application'
+  //  id 'top.niunaijun.blackobfuscator'
+    id 'org.lsposed.lsparanoid'
+}
+
+android {
+    namespace rootProject.ext.packageName
+    compileSdk 34
+    buildToolsVersion "34.0.0"
+    ndkVersion "24.0.8215888"
+
+    defaultConfig {
+        applicationId rootProject.ext.packageName
+        minSdk 24
+        targetSdk 28
+        versionCode 1
+        versionName "4.4.0"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+        buildFeatures {
+            buildConfig true
+        }
+        ndk {
+            abiFilters 'arm64-v8a'
+        }
+    }
+
+    buildTypes {
+    debug {
+        minifyEnabled false
+        shrinkResources false
+        proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+    }
+    release {
+        minifyEnabled true
+        shrinkResources true
+        proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+    }
+}
+
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    externalNativeBuild {
+        ndkBuild {
+            path file('src/main/jni/Android.mk')
+        }
+    }
+
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+
+lintOptions {
+        abortOnError false
+        checkReleaseBuilds false
+    }
+    
+        aaptOptions {
+        // Change these to true or just remove them to allow image compression
+        cruncherEnabled = true
+        useNewCruncher = true
+    }
+
+    // Add this to strip debug symbols from your Native (.so) files
+    packagingOptions {
+        doNotStrip "*/armeabi-v7a/*.so" // Keep if needed, but strip arm64
+        exclude 'META-INF/DEPENDENCIES'
+        // ... keep your other excludes
+    }
+/*
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+    }*/
+    configurations.all {
+    resolutionStrategy.eachDependency { details ->
+        if (details.requested.group == 'androidx.lifecycle') {
+            details.useVersion '2.5.1' // or 2.5.0 — just keep one
+            details.because 'Force consistent lifecycle version to prevent duplicate class errors'
+        }
+    }
+}
+
+  }
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar", "*.aar"])
+    implementation "com.google.android.material:material:1.9.0"
+    implementation 'net.lingala.zip4j:zip4j:2.9.0'
+    implementation "com.github.QuadFlask:colorpicker:0.0.13"
+    implementation "nl.joery.animatedbottombar:library:1.1.0"
+    implementation "com.airbnb.android:lottie:3.5.0"
+    implementation "com.github.topjohnwu.libsu:core:3.1.1"
+    implementation 'com.google.android.gms:play-services-auth:21.2.0'
+    implementation platform('com.google.firebase:firebase-bom:33.5.1')
+    implementation 'com.google.firebase:firebase-database'
+    implementation 'androidx.security:security-crypto:1.1.0-alpha06'
+    implementation 'androidx.documentfile:documentfile:1.0.1'
+ /*   implementation "nl.joery.animatedbottombar:library:1.1.0"
+    implementation "com.github.Devlight:NavigationTabBar:1.2.3"
+    implementation "com.github.addisonelliott:SegmentedButton:3.1.2"
+    implementation "com.github.QuadFlask:colorpicker:0.0.13"
+*/
+    implementation("com.github.tiann:FreeReflection:3.1.0") {
+        exclude group: 'me.weishu.reflection'
+    }
+
+    implementation "com.github.CodingGay.BlackReflection:core:1.1.4"
+    annotationProcessor "com.github.CodingGay.BlackReflection:compiler:1.1.4"
+}

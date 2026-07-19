@@ -1,0 +1,82 @@
+
+
+##############################
+# General Android & Project Base
+##############################
+-dontwarn lauresprojects.com.recorder.**
+# Keep all your Activities, Services, and Providers from the Manifest
+-keep class lauresprojects.com.recorder.App { *; }
+-keep class lauresprojects.com.recorder.activity.** { *; }
+-keep class lauresprojects.com.recorder.service.** { *; }
+-keep class lauresprojects.com.recorder.floating.** { *; }
+-keep class lauresprojects.com.recorder.utils.** { *; }
+
+# Keep FileProvider to prevent Manifest merger issues
+-keep class androidx.core.content.FileProvider { *; }
+
+##############################
+# JNI & Native Methods
+##############################
+-keepclasseswithmembers class * {
+    native <methods>;
+}
+# Keep names of classes containing native methods
+-keepclasseswithmembernames class * {
+    native <methods>;
+}
+
+##############################
+# BlackBoxCore & Tooling (Critical)
+##############################
+# These must NOT be obfuscated because they rely on reflection/fixed names
+-keep class top.niunaijun.blackbox.** { *; }
+-dontwarn top.niunaijun.blackbox.**
+
+-keep class com.github.CodingGay.BlackReflection.** { *; }
+-dontwarn com.github.CodingGay.BlackReflection.**
+
+# LSParanoid / Reflection Libs
+-keep class me.weishu.reflection.** { *; }
+-keep class com.github.tiann.** { *; }
+-keep class org.lsposed.lsparanoid.** { *; }
+
+##############################
+# JSON & Third Party Libs
+##############################
+# Required if you use JSONObject/JSONArray parsing
+-keepclassmembers class * {
+    public <init>(org.json.JSONObject);
+}
+-keep class org.json.** { *; }
+
+# Zip4j (used in your imports)
+-keep class net.lingala.zip4j.** { *; }
+-dontwarn net.lingala.zip4j.**
+
+# Lottie (used in your imports)
+-keep class com.airbnb.lottie.** { *; }
+
+##############################
+# Protection against stripping
+##############################
+-keepattributes Signature, InnerClasses, EnclosingMethod, AnnotationDefault, *Annotation*
+
+-keepclassmembers class * {
+    public <init>(...);
+}
+
+# Keep View constructors for XML layouts
+-keepclassmembers class * extends android.view.View {
+   public <init>(android.content.Context);
+   public <init>(android.content.Context, android.util.AttributeSet);
+   public <init>(android.content.Context, android.util.AttributeSet, int);
+}
+
+
+-dontwarn javax.annotation.**
+-keepnames class javax.annotation.** { *; }
+-keepnames class javax.annotation.Nullable
+
+-dontwarn okio.**
+-keep class okio.** { *; }
+

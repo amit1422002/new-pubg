@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:icon="@drawable/vector_vision"
+        android:id="@+id/tab_player"
+        android:title="@string/visual" />
+    <item
+        android:icon="@drawable/vector_items"
+        android:id="@+id/tab_items"
+        android:title="@string/items" />
+    <item
+        android:icon="@drawable/vector_vehicles"
+        android:id="@+id/tab_vehicles"
+        android:title="@string/vehicles" />
+    <item
+        android:icon="@drawable/vector_aim"
+        android:id="@+id/tab_aimbot"
+        android:title="@string/aimboot" />
+    <item
+        android:icon="@drawable/cloth"
+        android:id="@+id/tab_esp_settings"
+        android:title="@string/skin" />
+    <item
+        android:icon="@drawable/vector_injector"
+        android:id="@+id/tab_injector"
+        android:title="@string/sdk" />
+</menu>

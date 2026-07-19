@@ -1,0 +1,185 @@
+package lauresprojects.com.recorder.utils;
+
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Looper;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Toast;
+
+import lauresprojects.com.recorder.R;
+import lauresprojects.com.recorder.floating.FloatService;
+
+import java.io.File;
+import java.io.IOException;
+
+import com.anubis.loader.AnubisCore;
+import com.anubis.loader.entity.pm.InstallResult;
+import com.anubis.loader.utils.FileUtils;
+
+public class InstallActivity {
+    private final Context context;
+    private final String packageName;
+    private final AnubisCore core;
+
+    public InstallActivity(Context context, String packageName) {
+        this.context = context;
+        this.packageName = packageName;
+        this.core = AnubisCore.get();
+        this.core.doCreate();
+    }
+
+    public void handleInstallationProcess() {
+        boolean isAppInstalledOnDevice = isAppInstalled(packageName);
+        boolean isAppInstalledInBlackbox = core.isInstalled(packageName, 0);
+
+        if (isAppInstalledInBlackbox) {
+            sendStatus("installed_available");
+            launchGame();
+        } else if (isAppInstalledOnDevice) {
+            sendStatus("not_installed_available");
+            installGame();
+        } else {
+            sendStatus("not_installed_unavailable");
+        }
+    }
+
+    private boolean isAppInstalled(String packageName) {
+        PackageManager pm = context.getPackageManager();
+        try {
+            pm.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES);
+            return true;
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
+    }
+
+    private void sendStatus(String status) {
+        Intent intent = new Intent();
+        intent.putExtra("STATUS", status);
+        context.sendBroadcast(intent);
+    }
+
+    private void launchGame() {
+        launchApk(packageName);
+        new Handler(Looper.getMainLooper()).postDelayed(() -> 
+            FloatService.enableESP(context), 10000);
+    }
+
+    private void installGame() {
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View viewLoading = inflater.inflate(R.layout.animation_launch, null);
+        AlertDialog dialogLoading = new AlertDialog.Builder(context, android.R.style.Theme_DeviceDefault_Dialog_NoActionBar)
+                .setView(viewLoading)
+                .setCancelable(false)
+                .create();
+        if (dialogLoading.getWindow() != null) {
+            dialogLoading.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
+        dialogLoading.show();
+
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            InstallResult installResult = core.installPackageAsUser(packageName, 0);
+            if (installResult.success) {
+                sendStatus("installed_available");
+            } else {
+                Toast.makeText(context, installResult.msg, Toast.LENGTH_SHORT).show();
+            }
+            checkAndCopyObbFiles();
+
+            if (dialogLoading.isShowing()) dialogLoading.dismiss();
+        }, 2000);
+    }
+
+    private void checkAndCopyObbFiles() {
+        File obbFolder = new File("/storage/emulated/0/blackbox/Android/obb/" + packageName);
+        File[] obbFiles = obbFolder.listFiles((dir, name) -> name.matches("main\\.\\d+\\." + packageName + "\\.obb"));
+
+        if (obbFiles == null || obbFiles.length == 0) {
+            File sourceFolder = new File("/storage/emulated/0/Android/obb/" + packageName);
+            File[] sourceFiles = sourceFolder.listFiles((dir, name) -> name.matches("main\\.\\d+\\." + packageName + "\\.obb"));
+
+            if (sourceFiles != null && sourceFiles.length > 0) {
+                new CopyObbTask().execute(sourceFiles[0].getAbsolutePath(), packageName);
+            }
+        }
+    }
+
+    private class CopyObbTask extends AsyncTask<String, Integer, File> {
+        String errorMessage = null;
+
+        @Override
+        protected File doInBackground(String... params) {
+            String sourcePath = params[0];
+            File source = new File(sourcePath);
+            String filename = sourcePath.substring(sourcePath.lastIndexOf("/") + 1);
+            File destination = new File("/storage/emulated/0/blackbox/Android/obb/" + params[1] + "/" + filename);
+            
+            // ✅ FIX: IOException handled with try-catch
+            try {
+                FileUtils.copyFile(source, destination);
+            } catch (IOException e) {
+                errorMessage = e.getMessage();
+                e.printStackTrace();
+            }
+            return destination;
+        }
+
+        @Override
+        protected void onPostExecute(File result) {
+            if (result != null && result.exists()) {
+                Toast.makeText(context, "OBB Copied Successfully", Toast.LENGTH_SHORT).show();
+            } else {
+                if (errorMessage != null) {
+                    Toast.makeText(context, "Copy failed: " + errorMessage, Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, "OBB Copy Failed", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+    }
+
+    public void launchApk(String packageName) {
+        if (!isPackageInstalled(packageName)) {
+            Toast.makeText(context, "Not installed", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        try {
+            core.launchApk(packageName, 0);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void uninstallApp() {
+        core.uninstallPackageAsUser(packageName, 0);
+        Toast.makeText(context, "Successfully uninstalled", Toast.LENGTH_SHORT).show();
+    }
+
+    public boolean isRunning() {
+        return core.isInstalled(packageName, 0);
+    }
+
+    public void stopRunningApp() {
+        core.stopPackage(packageName, 0);
+    }
+
+    public ApplicationInfo getApplicationInfoContainer() {
+        if (!isPackageInstalled(packageName)) {
+            Toast.makeText(context, R.string.app_not_installed_please_install_first, Toast.LENGTH_LONG).show();
+            return null;
+        }
+        return null;
+    }
+
+    private boolean isPackageInstalled(String packageName) {
+        return core.isInstalled(packageName, 0);
+    }
+}

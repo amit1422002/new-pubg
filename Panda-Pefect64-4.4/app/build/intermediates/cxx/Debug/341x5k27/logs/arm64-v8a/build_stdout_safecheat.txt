@@ -1,0 +1,3 @@
+[arm64-v8a] Compile++      : safecheat <= Main.cpp
+[arm64-v8a] Compile++      : safecheat <= Tools.cpp
+[arm64-v8a] SharedLibrary  : libsafecheat.so

@@ -1,0 +1,168 @@
+package lauresprojects.com.recorder.utils;
+
+import android.Manifest;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.res.Configuration;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.provider.Settings;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
+import java.util.Locale;
+import lauresprojects.com.recorder.R;
+
+public class ActivityCompat extends AppCompatActivity {
+
+    public FPrefs prefs;
+    public boolean isLogin = false; // Added back for MainActivity
+    private BottomSheetDialog bottomSheetDialog; // Added back for dialog logic
+    public static final int REQUEST_OVERLAY_PERMISSION = 5469;
+    public static final int PERMISSION_REQUEST_STORAGE = 100;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        myTools m = new myTools(newBase);
+        String savedLang = m.getSt("myLang", "mapLang", "en");
+        super.attachBaseContext(updateLocale(newBase, savedLang));
+    }
+
+    private Context updateLocale(Context context, String langCode) {
+        Locale locale = new Locale(langCode);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration(context.getResources().getConfiguration());
+        config.setLocale(locale);
+        return context.createConfigurationContext(config);
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setNavBar(R.color.background);
+        prefs = FPrefs.with(this);
+        checkStoragePermission();
+    }
+
+    public void setNavBar(int color) {
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        getWindow().setStatusBarColor(ContextCompat.getColor(this, color));
+    }
+
+    // --- Permissions ---
+    private void checkStoragePermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) 
+                    != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 
+                        PERMISSION_REQUEST_STORAGE);
+            } else {
+                checkOverlayPermission();
+            }
+        }
+    }
+
+    private void checkOverlayPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(this)) {
+            new MaterialAlertDialogBuilder(this)
+                .setTitle("Permission Required")
+                .setMessage("Please allow Overlay permission.")
+                .setPositiveButton("Grant", (d, w) -> {
+                    Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, 
+                            Uri.parse("package:" + getPackageName()));
+                    startActivityForResult(intent, REQUEST_OVERLAY_PERMISSION);
+                })
+                .setCancelable(false).show();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == PERMISSION_REQUEST_STORAGE) checkOverlayPermission();
+    }
+
+    // --- BottomSheet Methods (Needed by MainActivity) ---
+
+    public void showBottomSheetDialogUninstall(Drawable icon, String title, String msg, boolean cancelable, View.OnClickListener confirmListener) {
+        bottomSheetDialog = new BottomSheetDialog(this);
+        bottomSheetDialog.setCancelable(cancelable);
+        bottomSheetDialog.setContentView(R.layout.bottom_sheet_dialog_layout);
+
+        ImageView img = bottomSheetDialog.findViewById(R.id.icon);
+        if (icon != null && img != null) img.setImageDrawable(icon);
+        
+        TextView title_tv = bottomSheetDialog.findViewById(R.id.title);
+        if (title_tv != null) title_tv.setText(title);
+        
+        TextView msg_tv = bottomSheetDialog.findViewById(R.id.msg);
+        if (msg_tv != null) msg_tv.setText(msg);
+
+        MaterialButton confirm = bottomSheetDialog.findViewById(R.id.btn);
+        if (confirm != null && confirmListener != null) confirm.setOnClickListener(confirmListener);
+
+        MaterialButton cancel = bottomSheetDialog.findViewById(R.id.btn_cancle);
+        if (cancel != null) cancel.setOnClickListener(v -> dismissBottomSheetDialog());
+
+        bottomSheetDialog.show();
+    }
+
+    public void showBottomSheetDialog(Drawable icon, String title, String msg, boolean cancelable, View.OnClickListener listener, View.OnClickListener listenerCancle) {
+        bottomSheetDialog = new BottomSheetDialog(this);
+        bottomSheetDialog.setCancelable(cancelable);
+        bottomSheetDialog.setContentView(R.layout.bottom_sheet_dialog_layout);
+        
+        ImageView img = bottomSheetDialog.findViewById(R.id.icon);
+        if (icon != null && img != null) img.setImageDrawable(icon);
+        
+        TextView title_tv = bottomSheetDialog.findViewById(R.id.title);
+        if (title_tv != null) title_tv.setText(title);
+        
+        TextView msg_tv = bottomSheetDialog.findViewById(R.id.msg);
+        if (msg_tv != null) msg_tv.setText(msg);
+        
+        MaterialButton posBtn = bottomSheetDialog.findViewById(R.id.btn);
+        if (posBtn != null && listener != null) posBtn.setOnClickListener(listener);
+        
+        MaterialButton negBtn = bottomSheetDialog.findViewById(R.id.btn_cancle);
+        if (negBtn != null) {
+            if (listenerCancle != null) negBtn.setOnClickListener(listenerCancle);
+            else negBtn.setVisibility(View.GONE);
+        }
+        bottomSheetDialog.show();
+    }
+
+    public void showBottomSheetDialog4(Drawable icon, String title, String msg, boolean cancelable, View.OnClickListener listener, View.OnClickListener listenerCancle) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert);
+        builder.setMessage(msg).setCancelable(cancelable)
+            .setPositiveButton("Allow Permission", (dialog, which) -> { if (listener != null) listener.onClick(null); })
+            .setNegativeButton("Cancel", (dialog, which) -> { if (listenerCancle != null) listenerCancle.onClick(null); });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
+        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+    }
+
+    public void dismissBottomSheetDialog() {
+        if (bottomSheetDialog != null && bottomSheetDialog.isShowing()) {
+            bottomSheetDialog.dismiss();
+        }
+    }
+}

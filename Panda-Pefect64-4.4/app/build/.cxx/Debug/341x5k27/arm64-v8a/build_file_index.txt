@@ -1,0 +1,2 @@
+E:\panda-build\app\src\main\jni\Android.mk
+E:\panda-build\app\src\main\jni\Application.mk

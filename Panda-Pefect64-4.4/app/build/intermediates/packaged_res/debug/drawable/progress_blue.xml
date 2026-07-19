@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- BACKGROUND -->
+    <item android:id="@android:id/background">
+        <shape>
+            <corners android:radius="20dp"/>
+            <solid android:color="#E0E0E0"/>
+        </shape>
+    </item>
+
+    <!-- SECONDARY PROGRESS -->
+    <item android:id="@android:id/secondaryProgress">
+        <clip>
+            <shape>
+                <corners android:radius="20dp"/>
+                <gradient
+                    android:startColor="#FFB74D"
+                    android:endColor="#FB8C00"
+                    android:angle="0"/>
+            </shape>
+        </clip>
+    </item>
+
+    <!-- PRIMARY PROGRESS (MAIN ORANGE) -->
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape>
+                <corners android:radius="20dp"/>
+                <gradient
+                    android:startColor="#FFA726"
+                    android:endColor="#F57C00"
+                    android:angle="0"/>
+            </shape>
+        </clip>
+    </item>
+
+</layer-list>

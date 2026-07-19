@@ -1,0 +1,599 @@
+
+#include <sys/types.h>
+#include <pthread.h>
+#include <jni.h>
+#include <string>
+#include "obfuscate.h"
+#include "ESP.h"
+#include "Hacks.h"
+#include "StrEnc.h"
+#include "Tools.h"
+#include "HackShooter.h"
+#include "json.hpp"
+#include "Includes.h"
+//#include <ctime>
+
+
+
+#define LOG_TAG "JNI_Detect"
+#define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
+
+ESP espOverlay;
+int type = 1, utype = 2;
+
+using json = nlohmann::json;
+
+int expiredDate;
+bool DaddyXerr0r = false;  // define the variable here
+
+
+extern "C"
+JNIEXPORT jstring JNICALL
+Java_lauresprojects_com_recorder_libhelper_DownloadZip_PASSJKPAPA(JNIEnv *env, jobject thiz) {
+    return env->NewStringUTF(OBFUSCATE("1212"));
+}
+
+extern "C"
+JNIEXPORT jstring JNICALL
+Java_lauresprojects_com_recorder_activity_LoginActivity_FixCrash(JNIEnv *env, jobject thiz) {
+    return env->NewStringUTF(OBFUSCATE("https://"));
+}
+
+extern "C" JNIEXPORT void JNICALL
+Java_lauresprojects_com_recorder_floating_Overlay_DrawOn(JNIEnv *env, jclass , jobject espView, jobject canvas) {
+    espOverlay = ESP(env, espView, canvas);
+    if (espOverlay.isValid()){
+        DrawESP(espOverlay, espOverlay.getWidth(), espOverlay.getHeight());
+    }
+}
+
+
+
+
+
+extern "C" JNIEXPORT void JNICALL
+Java_lauresprojects_com_recorder_floating_Overlay_Close(JNIEnv *, jobject) {
+    Close();
+    options.openState = -1;
+    options.aimBullet = -1;
+    options.aimT = -1;
+}
+
+
+extern "C" JNIEXPORT jboolean JNICALL
+Java_lauresprojects_com_recorder_floating_Overlay_getReady(JNIEnv *, jobject thiz) {
+    int sockCheck = 1;
+
+    if (!Create()) {
+        perror("Creation failed");
+        return false;
+    }
+    setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, &sockCheck, sizeof(int));
+    if (!Bind()) {
+        perror("Bind failed");
+        return false;
+    }
+
+    if (!Listen()) {
+        perror("Listen failed");
+        return false;
+    }
+    if (Accept()) {
+        return true;
+    }
+}
+
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_lauresprojects_com_recorder_floating_ToggleAim_ToggleAim(JNIEnv *, jobject thiz, jboolean value) {
+    if (value)
+        options.openState = 0;
+    else
+        options.openState = -1;
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_lauresprojects_com_recorder_floating_ToggleBullet_ToggleBullet(JNIEnv *, jobject thiz, jboolean value) {
+    if (value)
+        options.aimBullet = 0;
+    else
+        options.aimBullet = -1;
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_lauresprojects_com_recorder_floating_ToggleSimulation_ToggleSimulation(JNIEnv *, jobject thiz, jboolean value) {
+    if (value)
+        options.aimT = 0;
+    else
+        options.aimT = -1;
+}
+
+extern "C" JNIEXPORT void JNICALL
+Java_lauresprojects_com_recorder_floating_FloatService_SettingValue(JNIEnv *, jobject, jint code, jboolean jboolean1) {
+
+    switch ((int) code) {
+        case 2:
+            isPlayerLine = jboolean1;
+            break;
+        case 3:
+            isPlayerBox = jboolean1;
+            break;
+        case 4:
+            isSkeleton = jboolean1;
+            break;
+        case 5:
+            isPlayerDistance = jboolean1;
+            break;
+        case 6:
+            isPlayerHealth = jboolean1;
+            break;
+        case 7:
+            isPlayerName = jboolean1;
+            break;
+        case 8:
+            isPlayerHead = jboolean1;
+            break;
+        case 9:
+            is360Alert = jboolean1;
+            break;
+        case 10:
+            isPlayerWeapon = jboolean1;
+            break;
+        case 11:
+            isGrenadeWarning = jboolean1;
+            break;
+        case 12:
+            isVehicles = jboolean1;
+            break;
+        case 13:
+            isItems = jboolean1;
+            break;
+        case 15:
+            options.ignoreAi = jboolean1;
+            break;
+        case 16:
+            isPlayerWeaponIcon = jboolean1;
+            break;
+        case 17:
+            isLootItems = jboolean1;
+            break;
+        case 18:
+            isRadar = jboolean1;
+            break;
+        case 19:
+            isPlayerUID = jboolean1;
+            break;
+        case 20:
+            isPlayerNation = jboolean1;
+            break;
+        case 21:
+            isPlayerTeamID = jboolean1;
+            break;
+        case 22:
+            isFightMode = jboolean1;
+            break;
+    }
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_lauresprojects_com_recorder_floating_FloatService_SettingAim(JNIEnv *env, jobject thiz, jint setting_code, jboolean value) {
+    switch ((int) setting_code) {
+        case 1:
+            options.openState = -1;
+            break;
+        case 2:
+            options.aimBullet = -1;
+            break;
+        case 3:
+            options.pour = value;
+            break;
+        case 4:
+            options.ignoreBot = value;
+            break;
+        case 5:
+            options.InputInversion = value;
+            break;
+        case 6:
+            options.tracingStatus = value;
+            break;
+    }
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_lauresprojects_com_recorder_floating_FloatService_SettingMemory(JNIEnv *env, jobject thiz, jint setting_code, jboolean value) {
+    switch ((int) setting_code) {
+        case 1:
+        //    otherFeature.LessRecoil = value;
+            break;
+        case 2:
+            otherFeature.SmallCrosshair = value;
+            break;
+        case 3:
+            otherFeature.Aimbot = value;
+            break;
+        case 4:
+            otherFeature.WideView = value;
+            break;
+          
+    }
+}
+
+extern "C" JNIEXPORT void JNICALL
+Java_lauresprojects_com_recorder_floating_FloatService_Range(JNIEnv *, jobject, jint range) {
+    options.aimingRange = 1 + range;
+}
+
+extern "C" JNIEXPORT void JNICALL
+Java_lauresprojects_com_recorder_floating_FloatService_distances(JNIEnv *, jobject, jint distances) {
+    options.aimingDist = distances;
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_lauresprojects_com_recorder_floating_FloatService_recoil(JNIEnv *env, jobject thiz, jint recoil) {
+    options.recCompe = recoil;
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_lauresprojects_com_recorder_floating_FloatService_recoil2(JNIEnv *env, jobject thiz, jint recoil) {
+    options.recCompe1 = recoil;
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_lauresprojects_com_recorder_floating_FloatService_recoil3(JNIEnv *env, jobject thiz, jint recoil) {
+    options.recCompe2 = recoil;
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_lauresprojects_com_recorder_floating_FloatService_Bulletspeed(JNIEnv *env, jobject thiz, jint bulletspeed) {
+    options.aimingSpeed = bulletspeed;
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_lauresprojects_com_recorder_floating_FloatService_AimingSpeed(JNIEnv *env, jobject thiz, jint aimingspeed) {
+    options.touchSpeed = aimingspeed;
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_lauresprojects_com_recorder_floating_FloatService_Smoothness(JNIEnv *env, jobject thiz, jint smoothness) {
+    options.Smoothing = smoothness;
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_lauresprojects_com_recorder_floating_FloatService_TouchSize(JNIEnv *env, jobject thiz, jint touchsize) {
+    options.touchSize = touchsize;
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_lauresprojects_com_recorder_floating_FloatService_TouchPosX(JNIEnv *env, jobject thiz, jint touchposx) {
+    options.touchX = touchposx;
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_lauresprojects_com_recorder_floating_FloatService_TouchPosY(JNIEnv *env, jobject thiz, jint touchposy) {
+    options.touchY = touchposy;
+}
+
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_lauresprojects_com_recorder_floating_FloatService_WideView(JNIEnv *env, jobject thiz, jint wideview) {
+    otherFeature.WideView = wideview;
+}
+
+extern "C" JNIEXPORT void JNICALL
+Java_lauresprojects_com_recorder_floating_FloatService_Target(JNIEnv *, jobject, jint target) {
+    options.aimbotmode = target;
+}
+extern "C" JNIEXPORT void JNICALL
+Java_lauresprojects_com_recorder_floating_FloatService_AimWhen(JNIEnv *, jobject, jint state) {
+    options.aimingState = state;
+}
+extern "C" JNIEXPORT void JNICALL
+Java_lauresprojects_com_recorder_floating_FloatService_AimBy(JNIEnv *, jobject, jint aimby) {
+    options.priority = aimby;
+}
+extern "C" JNIEXPORT void JNICALL
+Java_lauresprojects_com_recorder_floating_FloatService_RadarSize(JNIEnv *, jobject, jint size) {
+    request.radarSize = size;
+}
+
+/* ================ ESP FUNCTION =========================*/
+
+extern "C"
+JNIEXPORT jstring JNICALL
+Java_lauresprojects_com_recorder_server_ApiServer_getOwner(JNIEnv *env, jclass clazz) {
+    return env->NewStringUTF(OBFUSCATE("https://t.me/rieooeoeoe"));   // OWNER LINK
+}
+
+extern "C"
+JNIEXPORT jstring JNICALL
+Java_lauresprojects_com_recorder_server_ApiServer_getTelegram(JNIEnv *env, jclass clazz) {  // CHANNEL LINK
+    return env->NewStringUTF(OBFUSCATE("https://t.me/eieoieoeoeie"));
+}
+
+extern "C"
+JNIEXPORT jstring JNICALL
+Java_lauresprojects_com_recorder_server_ApiServer_getGrup(JNIEnv *env, jclass clazz) {  // GROUP LINK
+    return env->NewStringUTF(OBFUSCATE("https://t.me/eieoeooeoeoe"));
+}
+
+
+extern "C"
+JNIEXPORT jstring JNICALL
+Java_lauresprojects_com_recorder_server_ApiServer_mainURL(JNIEnv *env, jclass clazz) {
+    return env->NewStringUTF(
+            OBFUSCATE("https://github.com/rayansyed2295-bit/Sock/releases/download/New/assets.zip"));  //BYPASS LINK
+
+}
+extern "C"
+JNIEXPORT jstring JNICALL
+Java_lauresprojects_com_recorder_Component_DownloadZip_pw(JNIEnv *env, jobject thiz) {
+    return env->NewStringUTF(
+            OBFUSCATE(""));
+}
+
+
+#include <jni.h>
+
+/*
+extern "C"
+JNIEXPORT jstring JNICALL
+Java_lauresprojects_com_recorder_activity_LoginActivity_URLJSON(JNIEnv *env, jclass clazz) {
+    return env->NewStringUTF("https://github.com/rayansyed77/AppLoader/releases/download/Updates/update.json");
+}
+*/
+
+// signature verification
+extern "C"
+JNIEXPORT jstring JNICALL
+Java_lauresprojects_com_recorder_server_ApiServer_fdjhvf(JNIEnv *env, jclass clazz) {
+    return env->NewStringUTF("EB1FFA1BFE713D859CB05326E4CFC462992BC5528C8C7F722CD0A742AC0EE225");
+}
+
+
+// canary detection
+const char *suspiciousPatterns[] = {
+    R"(com\.guoshi\.httpcanary\.premium)",  
+    R"(com\.guoshi\.httpcanary)",          
+    R"(com\.sniffer)",                    
+    R"(com\.httpcanary\.pro)",              
+    R"(com\.httpcanary)",                   
+    R"(com\..+\.httpcanary)",               
+    R"(com\..+\.canary)"                    
+};
+
+extern "C"
+JNIEXPORT jstring JNICALL
+Java_lauresprojects_com_recorder_server_ApiServer_checkSuspiciousAppsNative(JNIEnv *env, jclass clazz) {
+    jclass activityThread = env->FindClass("android/app/ActivityThread");
+    jmethodID currentActivityThread = env->GetStaticMethodID(activityThread, "currentActivityThread", "()Landroid/app/ActivityThread;");
+    jobject at = env->CallStaticObjectMethod(activityThread, currentActivityThread);
+
+    jmethodID getAppContext = env->GetMethodID(activityThread, "getApplication", "()Landroid/app/Application;");
+    jobject context = env->CallObjectMethod(at, getAppContext);
+
+    jclass contextClass = env->GetObjectClass(context);
+    jmethodID getPackageManager = env->GetMethodID(contextClass, "getPackageManager", "()Landroid/content/pm/PackageManager;");
+    jobject packageManager = env->CallObjectMethod(context, getPackageManager);
+
+    jclass pmClass = env->GetObjectClass(packageManager);
+    jmethodID getInstalledPackages = env->GetMethodID(pmClass, "getInstalledPackages", "(I)Ljava/util/List;");
+    jobject packageList = env->CallObjectMethod(packageManager, getInstalledPackages, 0);
+
+    jclass listClass = env->GetObjectClass(packageList);
+    jmethodID sizeMethod = env->GetMethodID(listClass, "size", "()I");
+    jint size = env->CallIntMethod(packageList, sizeMethod);
+
+    jmethodID getMethod = env->GetMethodID(listClass, "get", "(I)Ljava/lang/Object;");
+
+    jclass packageInfoClass = env->FindClass("android/content/pm/PackageInfo");
+    jfieldID packageNameField = env->GetFieldID(packageInfoClass, "packageName", "Ljava/lang/String;");
+
+    
+
+    return env->NewStringUTF("SAFE");
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_lauresprojects_com_recorder_floating_FloatService_SkinHack(JNIEnv *env, jobject thiz, jint setting_code) {
+    switch ((int) setting_code) {
+        case 1:
+            otherFeature.clothes = 1;
+            break;
+        case 2:
+            otherFeature.clothes = 2;
+            break;
+        case 3:
+            otherFeature.clothes = 3;
+            break;
+        case 4:
+            otherFeature.clothes = 4;
+            break;
+        case 5:
+            otherFeature.clothes = 5;
+            break;
+        case 6:
+            otherFeature.clothes = 6;
+            break;
+        case 7:
+            otherFeature.clothes = 7;
+            break;
+    }
+}
+
+std::string credit;
+std::string modname;
+std::string token;
+std::string g_Licence;
+
+
+jstring native_Check(JNIEnv *env, jclass clazz, jobject mContext, jstring mUserKey) {
+
+    const char* userKey = env->GetStringUTFChars(mUserKey, nullptr);
+
+    std::string hwid = userKey;
+    hwid += GetAndroidID(env, mContext);
+    hwid += GetDeviceModel(env);
+    hwid += GetDeviceBrand(env);
+
+    std::string UUID = GetUUID(env, hwid.c_str());
+
+    std::string errMsg;
+
+    struct MemoryStruct chunk{};
+    chunk.memory = (char *) malloc(1);
+    chunk.size = 0;
+
+    CURL *curl;
+    CURLcode res;
+    curl = curl_easy_init();
+
+    if (curl) {
+
+        std::string url = OBFUSCATE("https://phantom-vip-panel.site/public/connect");
+
+        curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST,
+                         StrEnc(",IL=", "\x7C\x06\x1F\x69", 4).c_str());
+        curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+        curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+
+        curl_easy_setopt(curl, CURLOPT_DEFAULT_PROTOCOL,
+                         StrEnc("!mLBO", "\x49\x19\x38\x32\x3C", 5).c_str());
+
+        struct curl_slist *headers = NULL;
+
+        headers = curl_slist_append(headers,
+            StrEnc("@;Ls\\(KP4Qrop`b#d3094/r1cf<c<=H)AiiBG6i|Ta66s2[",
+            "\x03\x54\x22\x07\x39\x46\x3F\x7D\x60\x28\x02\x0A\x4A\x40\x03\x53\x14\x5F\x59\x5A\x55\x5B\x1B\x5E\x0D\x49\x44\x4E\x4B\x4A\x3F\x04\x27\x06\x1B\x2F\x6A\x43\x1B\x10\x31\x0F\x55\x59\x17\x57\x3F",
+            47).c_str());
+
+        curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+
+        char data[4096];
+
+        snprintf(data, sizeof(data),
+                 "game=PHANTOMPRO&user_key=%s&serial=%s",
+                 userKey, UUID.c_str());
+
+        curl_easy_setopt(curl, CURLOPT_POSTFIELDS, data);
+
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteMemoryCallback);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *) &chunk);
+
+        curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
+        curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
+
+        res = curl_easy_perform(curl);
+
+        if (res == CURLE_OK) {
+
+            try {
+
+                json result = json::parse(chunk.memory);
+
+                if (result["status"] == true) {
+
+                    token = result["data"]["token"].get<std::string>();
+                    expiredDate = result["data"]["rng"].get<time_t>();
+
+                    std::string auth = "PHANTOMPRO";
+                    auth += "-";
+                    auth += userKey;
+                    auth += "-";
+                    auth += UUID;
+                    auth += "-";
+                    auth += "Vm8Lk7Uj2JmsjCPVPVjrLa7zgfx3uz9E";
+
+                    std::string outputAuth = Tools::CalcMD5(auth);
+
+                    DaddyXerr0r = true;
+
+                    g_Licence = result["data"]["EXP"].get<std::string>();
+
+                } else {
+
+                    errMsg = result["reason"].get<std::string>();
+
+                }
+
+            } catch (json::exception &e) {
+
+                errMsg = "{";
+                errMsg += e.what();
+                errMsg += "}\n{[invalid response]}";
+
+            }
+
+        } else {
+
+            errMsg = curl_easy_strerror(res);
+
+        }
+    }
+
+    curl_easy_cleanup(curl);
+
+    env->ReleaseStringUTFChars(mUserKey, userKey);  // correct place
+
+    return DaddyXerr0r
+           ? env->NewStringUTF(StrEnc("8q", "\x77\x3A", 2).c_str())
+           : env->NewStringUTF(errMsg.c_str());
+}
+
+int Register1(JNIEnv *env) {
+    JNINativeMethod methods[] = {{"suckmydick", "(Landroid/content/Context;Ljava/lang/String;)Ljava/lang/String;", (void *) native_Check}};
+
+    jclass clazz = env->FindClass("lauresprojects/com/recorder/activity/LoginActivity");
+    if (!clazz)
+        return -1;
+
+    if (env->RegisterNatives(clazz, methods, sizeof(methods) / sizeof(methods[0])) != 0)
+        return -1;
+
+    return 0;
+}
+
+JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
+    JNIEnv *env;
+    vm->GetEnv((void **) &env, JNI_VERSION_1_6);
+    if (Register1(env) != 0)
+        return -1;
+    return JNI_VERSION_1_6;
+}
+
+extern "C"
+JNIEXPORT jstring JNICALL
+Java_lauresprojects_com_recorder_server_ApiServer_EXP(JNIEnv *env, jclass clazz) {
+   // return env->NewStringUTF(g_Licence.c_str());
+   if (g_Licence.empty())
+    return env->NewStringUTF("");
+
+return env->NewStringUTF(g_Licence.c_str());
+}
+/*
+extern "C"
+JNIEXPORT jstring JNICALL
+Java_lauresprojects_com_recorder_floating_FloatService_getHiddenUrl(JNIEnv* env, jclass clazz) {
+   static const char* hiddenUrl = OBFUSCATE("https://raw.githubusercontent.com/rayansyed77/public/main/PaidOnly");
+    return env->NewStringUTF(hiddenUrl);
+}
+
+extern "C" JNIEXPORT jstring JNICALL
+Java_lauresprojects_com_recorder_floating_FloatService_Clone(JNIEnv *env, jobject thiz) {
+    return env->NewStringUTF(OBFUSCATE("https://t.me/Panda_BupG"));
+}*/

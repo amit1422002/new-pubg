@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Left Side Gradient Line -->
+    <item android:left="0dp" android:right="0dp" androidwidth="6dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/main"/>
+            <corners android:topLeftRadius="8dp" android:bottomLeftRadius="8dp"/>
+        </shape>
+    </item>
+
+    <!-- Main Background with Rounded Corners -->
+    <item android:left="2dp">
+    <shape android:shape="rectangle">
+            <solid android:color="@color/background2"/>
+        <corners android:topRightRadius="8dp" android:bottomRightRadius="8dp" android:topLeftRadius="6dp" android:bottomLeftRadius="6dp"/>
+        </shape>
+    </item>
+
+</layer-list>

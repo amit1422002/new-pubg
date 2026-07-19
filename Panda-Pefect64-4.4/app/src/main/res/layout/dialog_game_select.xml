@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:background="@android:color/white"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/game_global"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Global"
+        android:textColor="@android:color/black"
+        android:padding="6dp"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/game_korea"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Korea"
+        android:textColor="@android:color/black"
+        android:padding="6dp"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/game_vietnam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vietnam"
+        android:textColor="@android:color/black"
+        android:padding="6dp"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/game_taiwan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Taiwan"
+        android:textColor="@android:color/black"
+        android:padding="6dp"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/game_bgmi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BGMI"
+        android:textColor="@android:color/black"
+        android:padding="6dp"
+        android:textSize="14sp" />
+
+</LinearLayout>

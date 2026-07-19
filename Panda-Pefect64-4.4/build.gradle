@@ -1,0 +1,77 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    repositories {
+        mavenLocal ()
+        mavenCentral()
+        /*
+        // Do not use mavenCentral()
+        maven {
+            url 'https://repo1.maven.org/maven2'
+        }*/
+        
+        // Do not use google()
+        maven {
+            url 'https://maven.google.com'
+        }
+        
+        maven {
+            url 'https://s01.oss.sonatype.org/content/repositories/snapshots/'
+        }
+        
+        maven {
+            url 'https://jitpack.io'
+        }
+    }
+    
+    dependencies {
+        classpath "com.android.tools.build:gradle:8.1.2"
+
+        classpath 'org.lsposed.lsparanoid:gradle-plugin:0.5.2'
+
+    }
+}
+
+allprojects {
+    buildDir = "C:/Users/Amit/AppData/Local/Temp/panda-out/${project.name}"
+    repositories {
+        //jcenter()
+        mavenLocal ()
+        mavenCentral()
+        /*
+        // Do not use mavenCentral()
+        maven {
+            url 'https://repo1.maven.org/maven2'
+        }*/
+        
+        // Do not use google()
+        maven {
+            url 'https://maven.google.com'
+        }
+        
+        maven {
+            url 'https://s01.oss.sonatype.org/content/repositories/snapshots/'
+        }
+        
+        maven {
+            url 'https://jitpack.io'
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+
+ext {
+    is64Bit = true;
+    packageName = "lauresprojects.com.recorder";
+    ndkVersion = "24.0.8215888";
+    abiFilters = is64Bit ? "arm64-v8a" : "armeabi-v7a";
+    versionCode = 4301;
+    versionName = "9.3.1";
+    blackReflection = '1.1.4'
+    compileSdkVersion = 34
+    compileSdk = 34
+    buildToolsVersion = '34'
+}

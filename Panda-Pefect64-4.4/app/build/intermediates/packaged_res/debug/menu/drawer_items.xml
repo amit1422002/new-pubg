@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Group for Home and Setting -->
+    <group android:id="@+id/main_group">
+        <item
+            android:id="@+id/homei"
+            android:icon="@drawable/ic_home"
+            android:title="@string/home" />
+
+        <item
+            android:id="@+id/setti"
+            android:icon="@drawable/cog"
+            android:title="@string/setting_" />
+    </group>
+
+    <group android:id="@+id/link_group">
+
+
+        <item
+            android:id="@+id/link_tg"
+            android:icon="@drawable/ic_telegram"
+            
+            android:title="@string/telegram_channel_" />
+
+        <item
+            android:id="@+id/link_community"
+            android:icon="@drawable/ic_community"
+            
+            android:title="@string/join_community" />
+
+
+        <item
+            android:id="@+id/link_dev"
+            android:icon="@drawable/ic_developer"
+            
+            android:title="@string/contact_developer" />
+
+    </group>
+
+<group android:id="@+id/gsm_group">
+
+<item
+            android:id="@+id/install_gsm"
+            android:icon="@drawable/gsm"
+            
+            android:title="@string/installgsm" />
+
+</group>
+
+
+    <!-- Separate group for Logout -->
+    <group android:id="@+id/logout_group">
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/ic_logout"
+            
+            android:title="@string/logout_" />
+    </group>
+
+</menu>

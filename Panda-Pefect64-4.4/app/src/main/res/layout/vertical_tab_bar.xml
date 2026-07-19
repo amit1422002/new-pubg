@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/verticalTabBar"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="?@attr/colorCard">
+
+        <ImageView
+            android:id="@+id/tab1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:src="@drawable/badgefl"
+            android:background="@drawable/tab_selector"
+            android:clickable="true"
+            android:tint="@color/gray"
+            android:focusable="true"
+            android:contentDescription="Tab 1" />
+
+        <ImageView
+            android:id="@+id/tab2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:src="@drawable/target"
+            android:background="@drawable/tab_selector"
+            android:clickable="true"
+            android:tint="@color/gray"
+            android:focusable="true"
+            android:contentDescription="Tab 2" />
+
+        <ImageView
+            android:id="@+id/tab3"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:src="@drawable/rifle"
+            android:background="@drawable/tab_selector"
+            android:clickable="true"
+            android:tint="@color/gray"
+            android:focusable="true"
+            android:contentDescription="Tab 3" />
+
+        <ImageView
+            android:id="@+id/tab4"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:src="@drawable/machinegun"
+            android:background="@drawable/tab_selector"
+            android:clickable="true"
+            android:tint="@color/gray"
+            android:focusable="true"
+            android:contentDescription="Tab 4" />
+
+        <ImageView
+            android:id="@+id/tab5"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:src="@drawable/smggun"
+            android:background="@drawable/tab_selector"
+            android:clickable="true"
+            android:tint="@color/gray"
+            android:focusable="true"
+            android:contentDescription="Tab 5" />
+
+        <ImageView
+            android:id="@+id/tab6"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:src="@drawable/snipergun"
+            android:background="@drawable/tab_selector"
+            android:clickable="true"
+            android:tint="@color/gray"
+            android:focusable="true"
+            android:contentDescription="Tab 6" />
+
+        <ImageView
+            android:id="@+id/tab7"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:src="@drawable/shotgun"
+            android:background="@drawable/tab_selector"
+            android:clickable="true"
+            android:tint="@color/gray"
+            android:focusable="true"
+            android:contentDescription="Tab 7" />
+
+        <ImageView
+            android:id="@+id/tab8"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:src="@drawable/pistol"
+            android:background="@drawable/tab_selector"
+            android:clickable="true"
+            android:tint="@color/gray"
+            android:focusable="true"
+            android:contentDescription="Tab 8" />
+
+        <ImageView
+            android:id="@+id/tab9"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:src="@drawable/frypan"
+            android:background="@drawable/tab_selector"
+            android:clickable="true"
+            android:tint="@color/gray"
+            android:focusable="true"
+            android:contentDescription="Tab 9" />
+
+        <ImageView
+            android:id="@+id/tab10"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:src="@drawable/grenade"
+            android:background="@drawable/tab_selector"
+            android:clickable="true"
+            android:tint="@color/gray"
+            android:focusable="true"
+            android:contentDescription="Tab 10" />
+
+        <ImageView
+            android:id="@+id/tab11"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:src="@drawable/bullet"
+            android:background="@drawable/tab_selector"
+            android:clickable="true"
+            android:tint="@color/gray"
+            android:focusable="true"
+            android:contentDescription="Tab 11" />
+
+        <ImageView
+            android:id="@+id/tab12"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:src="@drawable/helmet"
+            android:background="@drawable/tab_selector"
+            android:clickable="true"
+            android:tint="@color/gray"
+            android:focusable="true"
+            android:contentDescription="Tab 12" />
+
+        <ImageView
+            android:id="@+id/tab13"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:src="@drawable/medicine"
+            android:background="@drawable/tab_selector"
+            android:clickable="true"
+            android:tint="@color/gray"
+            android:focusable="true"
+            android:contentDescription="Tab 13" />
+
+        <ImageView
+            android:id="@+id/tab14"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:src="@drawable/compensator"
+            android:background="@drawable/tab_selector"
+            android:clickable="true"
+            android:tint="@color/gray"
+            android:focusable="true"
+            android:contentDescription="Tab 14" />
+
+        <ImageView
+            android:id="@+id/tab15"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:src="@drawable/magazine"
+            android:background="@drawable/tab_selector"
+            android:clickable="true"
+            android:tint="@color/gray"
+            android:focusable="true"
+            android:contentDescription="Tab 15" />
+
+        <ImageView
+            android:id="@+id/tab16"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:src="@drawable/grip"
+            android:background="@drawable/tab_selector"
+            android:clickable="true"
+            android:tint="@color/gray"
+            android:focusable="true"
+            android:contentDescription="Tab 16" />
+
+        <ImageView
+            android:id="@+id/tab17"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:src="@drawable/application"
+            android:background="@drawable/tab_selector"
+            android:clickable="true"
+            android:tint="@color/gray"
+            android:focusable="true"
+            android:contentDescription="Tab 17" />
+
+
+        <!-- Repeat for other tabs -->
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
