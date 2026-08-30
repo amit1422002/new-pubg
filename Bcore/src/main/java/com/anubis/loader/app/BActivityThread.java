@@ -345,7 +345,21 @@ public class BActivityThread extends IBActivityThread.Stub {
             }
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            WebView.setDataDirectorySuffix(getUserId() + ":" + packageName + ":" + processName);
+            // Elite-compatible: safe suffix only (no ':'). Colon suffixes break WebView on
+            // many OEMs and collide across host/proxy processes.
+            try {
+                String suffix = BEnvironment.buildWebViewDataDirectorySuffix(
+                        packageName, BActivityThread.getAppPid());
+                if (suffix != null) {
+                    BEnvironment.ensureWebViewDataDirectory(
+                            packageName, BActivityThread.getUserId(), suffix);
+                    WebView.setDataDirectorySuffix(suffix);
+                }
+            } catch (IllegalStateException already) {
+                // Suffix already set in this process — OK.
+            } catch (Throwable t) {
+                Log.w(TAG, "WebView setDataDirectorySuffix failed", t);
+            }
         }
 
         VirtualRuntime.setupRuntime(processName, applicationInfo);
@@ -397,12 +411,8 @@ public class BActivityThread extends IBActivityThread.Stub {
                 throw new NullPointerException("application空指针异常");
             }
             mInitialApplication = application;
-            try {
-    // Preload WebView to avoid "No WebView installed" crash
-    new WebView(mInitialApplication).destroy();
-} catch (Throwable t) {
-    t.printStackTrace();
-}
+            // Elite does NOT eagerly construct WebView here. Preloading locks the data dir and
+            // crashes Twitter/OAuth login (and some OEM WebView providers) on multi-process clones.
 
             BRActivityThread.get(AnubisCore.mainThread())._set_mInitialApplication(mInitialApplication);
             ContextCompat.fix((Context) BRActivityThread.get(AnubisCore.mainThread()).getSystemContext());
@@ -422,7 +432,13 @@ public class BActivityThread extends IBActivityThread.Stub {
             scheduleAnogsBypassIfNeeded(packageName, processName);
             scheduleDeltaEspReaderIfNeeded(packageName, BActivityThread.getUserId());
             scheduleGuestLoginHookIfNeeded(packageName, BActivityThread.getUserId());
-            NativeCore.init_seccomp();
+            // Seccomp traps every openat via SIGSYS. /proc redirect rules are already
+            // disabled for PUBG/BGMI, so the filter is pure FPS tax — skip it.
+            if (!GamePackages.isPubgMobileFamily(packageName)) {
+                NativeCore.init_seccomp();
+            } else {
+                android.util.Log.i(TAG, "seccomp OFF for smooth PUBG/BGMI clone pkg=" + packageName);
+            }
             HookManager.get().checkEnv(HCallbackProxy.class);
             if (useHostInstrumentation) {
                 HookManager.get().checkEnv(AppInstrumentation.class);
@@ -642,16 +658,12 @@ public class BActivityThread extends IBActivityThread.Stub {
     }
 
     private static void scheduleDeltaEspReaderIfNeeded(String packageName, int userId) {
-        if (!GamePackages.isDeltaForce(packageName) && !GamePackages.isBgmi(packageName)) {
+        // BGMI uses host sock64 ESP — do not start in-guest Delta/Farlight ESP servers.
+        if (!GamePackages.isDeltaForce(packageName)) {
             return;
         }
         try {
             Application app = BActivityThread.getApplication();
-            if (GamePackages.isBgmi(packageName)) {
-                Class<?> bgmi = Class.forName("com.anubis.skin.DeltaForceEspLifecycleCallback");
-                bgmi.getMethod("scheduleReaderLoad", String.class, int.class, Application.class)
-                        .invoke(null, packageName, userId, app);
-            }
             Class<?> cls = Class.forName("com.anubis.skin.DeltaForceEspNative");
             cls.getMethod("ensureReaderLoaded", Context.class).invoke(null, app);
         } catch (Throwable t) {

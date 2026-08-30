@@ -1,0 +1,6 @@
+{
+  global:
+    guest_hook_bootstrap;
+  local:
+    *;
+};

@@ -1,6 +1,6 @@
-./obj/local/arm64-v8a/objs/sock64/Main64.o: jni\Main64.cpp \
-  jni\INCLUDE\struct.h jni\INCLUDE\support.h jni\INCLUDE\socket.h \
-  jni\INCLUDE\includes.h \
+S:/obj/local/arm64-v8a/objs/sock64/Main64.o: S:\jni\Main64.cpp \
+  S:\jni\INCLUDE\struct.h S:\jni\INCLUDE\support.h \
+  S:\jni\INCLUDE\socket.h S:\jni\INCLUDE\includes.h \
   C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\stdio.h \
   C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\__config \
   C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\string.h \
@@ -66,9 +66,10 @@
   C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\__bsd_locale_fallbacks.h \
   C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\bitset \
   C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\__bit_reference \
-  jni\INCLUDE\mem_access.h jni\INCLUDE\obfuscate.h jni\INCLUDE\init.h \
-  jni\INCLUDE\CameraView.h jni\INCLUDE\Offsets.h jni\INCLUDE\Offsets2.h \
-  jni\INCLUDE\AimTouch.hpp \
+  S:\jni\INCLUDE\mem_access.h S:\jni\INCLUDE\obfuscate.h \
+  S:\jni\INCLUDE\init.h S:\jni\INCLUDE\CameraView.h \
+  S:\jni\INCLUDE\Offsets.h S:\jni\INCLUDE\Offsets2.h \
+  S:\jni\INCLUDE\AimTouch.hpp \
   C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\fstream \
   C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\filesystem \
   C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\stack \
@@ -76,20 +77,20 @@
   C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\__split_buffer \
   C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\iomanip \
   C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\cmath \
-  jni\INCLUDE\TouchInput.hpp \
+  S:\jni\INCLUDE\TouchInput.hpp \
   C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\list \
   C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\thread \
-  jni\INCLUDE\TouchSimAim.hpp jni\INCLUDE\TouchSimStealth.hpp \
-  jni\INCLUDE\MemPatchStealth.hpp jni\INCLUDE\BulletTrackShared.h \
-  jni\INCLUDE\Log.h
+  S:\jni\INCLUDE\TouchSimAim.hpp S:\jni\INCLUDE\TouchSimStealth.hpp \
+  S:\jni\INCLUDE\MemPatchStealth.hpp S:\jni\INCLUDE\BulletTrackShared.h \
+  S:\jni\INCLUDE\Log.h
 
-jni\INCLUDE\struct.h:
+S:\jni\INCLUDE\struct.h:
 
-jni\INCLUDE\support.h:
+S:\jni\INCLUDE\support.h:
 
-jni\INCLUDE\socket.h:
+S:\jni\INCLUDE\socket.h:
 
-jni\INCLUDE\includes.h:
+S:\jni\INCLUDE\includes.h:
 
 C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\stdio.h:
 
@@ -221,19 +222,19 @@ C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-s
 
 C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\__bit_reference:
 
-jni\INCLUDE\mem_access.h:
+S:\jni\INCLUDE\mem_access.h:
 
-jni\INCLUDE\obfuscate.h:
+S:\jni\INCLUDE\obfuscate.h:
 
-jni\INCLUDE\init.h:
+S:\jni\INCLUDE\init.h:
 
-jni\INCLUDE\CameraView.h:
+S:\jni\INCLUDE\CameraView.h:
 
-jni\INCLUDE\Offsets.h:
+S:\jni\INCLUDE\Offsets.h:
 
-jni\INCLUDE\Offsets2.h:
+S:\jni\INCLUDE\Offsets2.h:
 
-jni\INCLUDE\AimTouch.hpp:
+S:\jni\INCLUDE\AimTouch.hpp:
 
 C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\fstream:
 
@@ -249,18 +250,18 @@ C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-s
 
 C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\cmath:
 
-jni\INCLUDE\TouchInput.hpp:
+S:\jni\INCLUDE\TouchInput.hpp:
 
 C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\list:
 
 C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\thread:
 
-jni\INCLUDE\TouchSimAim.hpp:
+S:\jni\INCLUDE\TouchSimAim.hpp:
 
-jni\INCLUDE\TouchSimStealth.hpp:
+S:\jni\INCLUDE\TouchSimStealth.hpp:
 
-jni\INCLUDE\MemPatchStealth.hpp:
+S:\jni\INCLUDE\MemPatchStealth.hpp:
 
-jni\INCLUDE\BulletTrackShared.h:
+S:\jni\INCLUDE\BulletTrackShared.h:
 
-jni\INCLUDE\Log.h:
+S:\jni\INCLUDE\Log.h:

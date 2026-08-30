@@ -1,5 +1,7 @@
 
 include ':app'
-
+include ':elite-sdk2'
+project(':elite-sdk2').projectDir = new File(settingsDir, '../elite-sdk2')
 
 rootProject.name = "BLAZEBOXPersonal"
+

@@ -74,6 +74,8 @@ static inline uint32_t touchAimSleepUs() {
         const bool assistOn = aimTouch || memoryAimAssist;
         if (!assistOn) {
             isAim = false;
+            usleep(50000); // ESP-only: don't burn CPU spinning the aim thread
+            continue;
         } else if (ScrWidth > 0 && ScrHeight > 0 && !TouchInput::isTouchReady()) {
             TouchInput::ensureTouchInput((int) ScrWidth, (int) ScrHeight);
         }

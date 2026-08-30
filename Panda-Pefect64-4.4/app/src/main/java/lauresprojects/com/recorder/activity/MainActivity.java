@@ -114,10 +114,11 @@ import java.util.Map;
 import java.util.Set;
 
 // BlackBox Core
-import com.anubis.loader.AnubisCore;
-import com.anubis.loader.core.system.DaemonService;
-import com.anubis.loader.entity.pm.InstallResult;
-import com.anubis.loader.utils.FileUtils;
+import com.elite.EliteInstaller;
+import com.elite.core.env.BEnvironment;
+import com.elite.core.system.DaemonService;
+import com.elite.entity.pm.InstallResult;
+import com.elite.utils.FileUtils;
 import com.anubis.skin.BgmiLogoutHelper;
 
 // Project Specific
@@ -150,7 +151,7 @@ import static lauresprojects.com.recorder.server.ApiServer.getOwner;
 import static lauresprojects.com.recorder.server.ApiServer.mainURL;
 import static lauresprojects.com.recorder.server.ApiServer.getTelegram;
 import static lauresprojects.com.recorder.server.ApiServer.getGrup;
-import static com.anubis.loader.core.env.BEnvironment.getDataFilesDir;
+import static com.elite.core.env.BEnvironment.getDataFilesDir;
 // Fixes 'Shell' errors (libsu or similar root library)
 import com.topjohnwu.superuser.Shell; 
 
@@ -194,7 +195,7 @@ static {
 
     Context ctx;
     InstallResult installResult;
-    AnubisCore core;
+    EliteInstaller core;
 
     private TextView statusText;
 
@@ -287,7 +288,7 @@ vrTW = findViewById(R.id.vrtw);
 
 
 
-        core = AnubisCore.get();
+        core = EliteInstaller.get();
         core.doCreate();
         
     handleAnoTmp(this);
@@ -412,7 +413,7 @@ vrTW = findViewById(R.id.vrtw);
                     startActivity(intent);
                 } else if (id == R.id.install_gsm) {
     drawerLayout.close();
-   // AnubisCore.get().installGms(0);
+   // EliteInstaller.get().installGms(0);
     //TastyToast.makeText(MainActivity.this, "Installed.", TastyToast.LENGTH_LONG, TastyToast.DEFAULT);
 
     
@@ -873,10 +874,13 @@ private void openGame(String game) {
 
 private boolean ensureObb(String packageName, Runnable onReady) {
 
-    File blackboxFolder = new File("/storage/emulated/0/blackbox/Android/obb/" + packageName);
+    BEnvironment.load();
+    File blackboxFolder = BEnvironment.getExternalObbDir(packageName);
 
-    File[] obbFiles = blackboxFolder.listFiles((dir, name) ->
-            name.matches("main\\.\\d+\\." + packageName + "\\.obb"));
+    File[] obbFiles = blackboxFolder != null
+            ? blackboxFolder.listFiles((dir, name) ->
+            name.matches("main\\.\\d+\\." + packageName + "\\.obb"))
+            : null;
 
     // ✅ Already exists
     if (obbFiles != null && obbFiles.length > 0 && obbFiles[0].length() > 1024 * 1024) {
@@ -952,8 +956,9 @@ private void hideObbProgress() {
 private boolean copyObbFile(File src, String packageName) {
     try {
 
-        File destFolder = new File("/storage/emulated/0/blackbox/Android/obb/" + packageName);
-        if (!destFolder.exists()) destFolder.mkdirs();
+        BEnvironment.load();
+        File destFolder = BEnvironment.getExternalObbDir(packageName);
+        if (destFolder != null && !destFolder.exists()) destFolder.mkdirs();
 
         File dest = new File(destFolder, src.getName());
 
@@ -1141,11 +1146,11 @@ private void setupGameButton(
     }
 
     private void copyGuestDataToSdcard(String packageName) {
-        File srcData = new File(getFilesDir(), ".vfs/data/user/0/" + packageName);
-        File srcExt = new File(getFilesDir(),
-                ".vfs/storage/emulated/0/Android/data/" + packageName);
+        BEnvironment.load();
+        File srcData = BEnvironment.getDataDir(packageName, 0);
+        File srcExt = BEnvironment.getExternalDataDir(packageName);
         File destRoot = new File(Environment.getExternalStorageDirectory(),
-                "anubisloader/game_data/" + packageName);
+                "elite/game_data/" + packageName);
 
         if (!srcData.exists() && !srcExt.exists()) {
             Toast.makeText(this, "No game data found for " + packageName, Toast.LENGTH_SHORT).show();
@@ -1318,16 +1323,17 @@ private void setupGameButton(
 
     void Makedir() {
         if (!Shell.rootAccess()) {
-            File GlobalFolder = new File("/storage/emulated/0/blackbox/Android/obb/com.tencent.ig/");
-            File KoreaFolder = new File("/storage/emulated/0/blackbox/Android/obb/com.pubg.krmobile/");
-            File VietnamFolder = new File("/storage/emulated/0/blackbox/Android/obb/com.vng.pubgmobile/");
-            File TaiwanFolder = new File("/storage/emulated/0/blackbox/Android/obb/com.rekoo.pubgm/");
-            File BgmiFolder = new File("/storage/emulated/0/blackbox/Android/obb/com.pubg.imobile/");
-            GlobalFolder.mkdirs();
-            KoreaFolder.mkdirs();
-            VietnamFolder.mkdirs();
-            TaiwanFolder.mkdirs();
-            BgmiFolder.mkdirs();
+            BEnvironment.load();
+            File GlobalFolder = BEnvironment.getExternalObbDir("com.tencent.ig");
+            File KoreaFolder = BEnvironment.getExternalObbDir("com.pubg.krmobile");
+            File VietnamFolder = BEnvironment.getExternalObbDir("com.vng.pubgmobile");
+            File TaiwanFolder = BEnvironment.getExternalObbDir("com.rekoo.pubgm");
+            File BgmiFolder = BEnvironment.getExternalObbDir("com.pubg.imobile");
+            if (GlobalFolder != null) GlobalFolder.mkdirs();
+            if (KoreaFolder != null) KoreaFolder.mkdirs();
+            if (VietnamFolder != null) VietnamFolder.mkdirs();
+            if (TaiwanFolder != null) TaiwanFolder.mkdirs();
+            if (BgmiFolder != null) BgmiFolder.mkdirs();
         }
     }
 
@@ -1349,7 +1355,7 @@ private void setupGameButton(
     }
 
     public void unInstallApp(String packageName) {
-        AnubisCore.get().uninstallPackageAsUser(packageName, 0);
+        EliteInstaller.get().uninstallPackageAsUser(packageName, 0);
 
     }
 
@@ -1361,7 +1367,7 @@ private void setupGameButton(
 
     public void stopRunningApp(String packageName) {
 
-        AnubisCore.get().stopPackage(packageName, 0);
+        EliteInstaller.get().stopPackage(packageName, 0);
     }
 
     public ApplicationInfo getApplicationInfoContainer(String packageName) {
@@ -1948,8 +1954,9 @@ private void deleteRecursive(File file) {
     protected File doInBackground(String... params) {
         File source = new File(params[0]);
         String filename = source.getName();
-        File destFolder = new File("/storage/emulated/0/blackbox/Android/obb/" + params[1]);
-        if (!destFolder.exists()) destFolder.mkdirs();
+        BEnvironment.load();
+        File destFolder = BEnvironment.getExternalObbDir(params[1]);
+        if (destFolder != null && !destFolder.exists()) destFolder.mkdirs();
         
         File destination = new File(destFolder, filename);
 

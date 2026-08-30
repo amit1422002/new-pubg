@@ -684,8 +684,11 @@ public class IActivityManagerProxy extends ClassInvocationStub {
         @Override
         protected Object hook(Object who, Method method, Object[] args) throws Throwable {
             MethodParameterUtils.replaceFirstAppPkg(args);
-            int receiverIndex = getReceiverIndex();
-            if (args[receiverIndex] != null) {
+            int receiverIndex = indexOfReceiver(args);
+            if (receiverIndex < 0) {
+                receiverIndex = getReceiverIndex();
+            }
+            if (receiverIndex >= 0 && receiverIndex < args.length && args[receiverIndex] instanceof IIntentReceiver) {
                 IIntentReceiver intentReceiver = (IIntentReceiver) args[receiverIndex];
                 IIntentReceiver proxy = InnerReceiverDelegate.createProxy(intentReceiver);
 
@@ -696,15 +699,16 @@ public class IActivityManagerProxy extends ClassInvocationStub {
 
                 args[receiverIndex] = proxy;
             }
-            
-            if (args[getPermissionIndex()] != null) {
-                args[getPermissionIndex()] = null;
+
+            int permIndex = getPermissionIndex();
+            if (permIndex < args.length && args[permIndex] instanceof String) {
+                args[permIndex] = null;
             }
 
-            if (BuildCompat.isU()) {
+            if (BuildCompat.isU() && args.length > 0 && args[args.length - 1] instanceof Integer) {
                 int flagsIndex = args.length - 1;
-                int flags = (int)args[flagsIndex];
-                if((flags & RECEIVER_NOT_EXPORTED) == 0 && (flags & RECEIVER_EXPORTED) == 0){
+                int flags = (int) args[flagsIndex];
+                if ((flags & RECEIVER_NOT_EXPORTED) == 0 && (flags & RECEIVER_EXPORTED) == 0) {
                     flags |= RECEIVER_NOT_EXPORTED;
                 }
                 args[flagsIndex] = flags;
@@ -735,8 +739,12 @@ public class IActivityManagerProxy extends ClassInvocationStub {
         @Override
         protected Object hook(Object who, Method method, Object[] args) throws Throwable {
             MethodParameterUtils.replaceFirstAppPkg(args);
-            int receiverIndex = 2;
-            if (args[receiverIndex] != null) {
+            // Elite-style: locate IIntentReceiver by type — Android 14+/16 shifted arg slots.
+            int receiverIndex = indexOfReceiver(args);
+            if (receiverIndex < 0) {
+                receiverIndex = 2;
+            }
+            if (receiverIndex < args.length && args[receiverIndex] instanceof IIntentReceiver) {
                 IIntentReceiver intentReceiver = (IIntentReceiver) args[receiverIndex];
                 IIntentReceiver proxy = InnerReceiverDelegate.createProxy(intentReceiver);
 
@@ -748,12 +756,23 @@ public class IActivityManagerProxy extends ClassInvocationStub {
                 args[receiverIndex] = proxy;
             }
             int permissionIndex = 4;
-            
-            if (args[permissionIndex] != null) {
+            if (permissionIndex < args.length && args[permissionIndex] instanceof String) {
                 args[permissionIndex] = null;
             }
             return method.invoke(who, args);
         }
+    }
+
+    private static int indexOfReceiver(Object[] args) {
+        if (args == null) {
+            return -1;
+        }
+        for (int i = 0; i < args.length; i++) {
+            if (args[i] instanceof IIntentReceiver) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     @ProxyMethod("grantUriPermission")

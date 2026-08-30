@@ -25,9 +25,8 @@ buildscript {
     
     dependencies {
         classpath "com.android.tools.build:gradle:8.1.2"
-
         classpath 'org.lsposed.lsparanoid:gradle-plugin:0.5.2'
-
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.0"
     }
 }
 
@@ -73,5 +72,9 @@ ext {
     blackReflection = '1.1.4'
     compileSdkVersion = 34
     compileSdk = 34
+    minSdk = 24
+    minSdkVersion = 24
+    targetSdkVersion = 28
+    targetSdk = 28
     buildToolsVersion = '34'
 }

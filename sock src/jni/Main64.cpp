@@ -18,6 +18,8 @@
 #include <time.h>
 #include <sys/uio.h>
 #include <sys/syscall.h>
+#include <sys/resource.h>
+#include <unistd.h>
 
 int typeeee = 1;
 int32_t gGMemFD = -1;
@@ -532,17 +534,30 @@ static void refreshCachedPlayerPositionsOnly(const Vec3 &myPos) {
 }
 
 static bool isPlayerKnocked(uintptr_t pBase) {
+    if (!isValid64(pBase)) {
+        return false;
+    }
     float breath = 0.f;
     vm_readv(pBase + OffsetsAll64::NearDeathBreath, &breath, sizeof(breath));
-    return breath > 0.01f;
+    if (breath > 0.01f) {
+        return true;
+    }
+    if (OffsetsAll64::NearDeathComponent != 0) {
+        const uintptr_t ndc = getA(pBase + OffsetsAll64::NearDeathComponent);
+        if (isValid64(ndc)) {
+            return true;
+        }
+    }
+    return false;
 }
 
 static bool isPlayerFullyDead(uintptr_t pBase) {
     if (!isValid64(pBase)) {
         return true;
     }
+    // Knocked pawns can still have bDead set on some builds — keep them if breath/NDC alive.
     if (getI(pBase + OffsetsAll64::bDead) != 0) {
-        return true;
+        return !isPlayerKnocked(pBase);
     }
     float hb[2] = {0.f, 0.f};
     vm_readv(pBase + OffsetsAll64::Health, hb, sizeof(hb));
@@ -565,7 +580,7 @@ static bool isCloseRangeAlive(uintptr_t pBase, float distM) {
         return false;
     }
     if (getI(pBase + OffsetsAll64::bDead) != 0) {
-        return false;
+        return isPlayerKnocked(pBase);
     }
     if (distM < 20.f) {
         return true;
@@ -1546,6 +1561,20 @@ static void refreshCachedPlayerMetadataLight(Response &out, const Vec3 &myPos, b
             data->Health = hb[0];
         }
         vm_readv(pBase + OffsetsAll64::NearDeathBreath, &data->Healthy, sizeof(data->Healthy));
+        // Knocked: Health often 0 — keep ESP visible using breath as HP %.
+        if (data->Healthy > 0.01f && data->Health <= 0.5f) {
+            float knockHp = data->Healthy;
+            if (knockHp <= 1.5f) {
+                knockHp *= 100.f;
+            }
+            if (knockHp > 100.f) {
+                knockHp = 100.f;
+            }
+            if (knockHp < 1.f) {
+                knockHp = 1.f;
+            }
+            data->Health = knockHp;
+        }
 
         Vec3 objPos{};
         if (getPlayerWorldPos(pBase, objPos)) {
@@ -2185,6 +2214,8 @@ static int ResolveLocalChain(uintptr_t world,
 
 int main() {
 	//CheckPackage();
+    // Yield CPU to the game — sock64 is external reader; high priority = game stutter.
+    setpriority(PRIO_PROCESS, 0, 10);
     LOGI("sock64 main() enter");
     if (!Create()) {
         LOGE("sock64 Create failed errno=%d", errno);
@@ -2358,15 +2389,17 @@ int main() {
                     break;
                 }
             }
-            // Root positions do not need display-refresh frequency. Limiting
-            // remote reads to ~30 Hz removes thousands of syscalls/sec on
-            // high-refresh devices while keeping movement visually smooth.
+            // Root positions: ~15–20 Hz is enough for smooth ESP without flooding
+            // process_vm_readv (each read can briefly stall the game process).
             const bool refreshPositionsNow =
                     sLastPositionRefreshMs == 0 ||
-                    nowMs - sLastPositionRefreshMs >= 33u;
-            uint32_t boneIntervalMs = anyClose ? 75u : 140u;
+                    nowMs - sLastPositionRefreshMs >= 55u;
+            uint32_t boneIntervalMs = anyClose ? 110u : 200u;
             if (sBonePlayerCount > 4) {
-                boneIntervalMs += 25u;
+                boneIntervalMs += 40u;
+            }
+            if (sBonePlayerCount > 10) {
+                boneIntervalMs += 40u;
             }
             const bool needBones = sBonePlayerCount > 0 &&
                     (sLastBoneRefreshMs == 0 ||
@@ -2399,7 +2432,8 @@ int main() {
                 applySmallCrosshairCached();
             }
             projectAllPlayerBones(response, cameraView);
-            {
+            // Bullet-track mem writes only when enabled — ESP-only must stay read-light.
+            if (gEnable) {
                 float btNear = -1.f;
                 Vec3 btAim{};
                 bool btAllow = false;
@@ -2433,7 +2467,7 @@ int main() {
                 }
                 projectAllPlayerBones(response, cameraView);
                 response.Success = response.PlayerCount > 0;
-                {
+                if (gEnable) {
                     float btNear = -1.f;
                     Vec3 btAim{};
                     bool btAllow = false;
@@ -2980,7 +3014,7 @@ int main() {
         const bool scanGrenades = false;
         static int sWorldScanOffset = 0;
         static int sEnemyScanOffset = 0;
-        static const int kEnemyScanChunk = 500;
+        static const int kEnemyScanChunk = 280;
         static const int kEnemyScanPasses = discoverOnly ? 2 : 1;
         sBtTargetPawn = 0;
         const bool scanPlayerBonesForPass =
@@ -2998,8 +3032,9 @@ int main() {
             if (localWeapon.isValid()) {
                 localShootEntity = localWeapon.ShootWeaponEntity;
                 sCachedShootEntity = localShootEntity;
-                localWeapon.FixBT();
+                // FixBT writes weapon floats — only when bullet track is on (ESP-only stays read-only).
                 if (gEnable) {
+                    localWeapon.FixBT();
                     localWeapon.bypassBT();
                 }
                 if (fixdamage) {
@@ -3153,6 +3188,20 @@ int main() {
 
                 vm_readv(pBase + OffsetsAll64::NearDeathBreath, &data->Healthy,
                          sizeof(data->Healthy));
+                // Knocked players report Health≈0 — map breath into Health so ESP stays on.
+                if (data->Healthy > 0.01f && data->Health <= 0.5f) {
+                    float knockHp = data->Healthy;
+                    if (knockHp <= 1.5f) {
+                        knockHp *= 100.f;
+                    }
+                    if (knockHp > 100.f) {
+                        knockHp = 100.f;
+                    }
+                    if (knockHp < 1.f) {
+                        knockHp = 1.f;
+                    }
+                    data->Health = knockHp;
+                }
             {
                 int persistSlot = -1;
                 for (int p = 0; p < sPersistCount; p++) {

@@ -20,19 +20,20 @@ import lauresprojects.com.recorder.floating.FloatService;
 import java.io.File;
 import java.io.IOException;
 
-import com.anubis.loader.AnubisCore;
-import com.anubis.loader.entity.pm.InstallResult;
-import com.anubis.loader.utils.FileUtils;
+import com.elite.EliteInstaller;
+import com.elite.core.env.BEnvironment;
+import com.elite.entity.pm.InstallResult;
+import com.elite.utils.FileUtils;
 
 public class InstallActivity {
     private final Context context;
     private final String packageName;
-    private final AnubisCore core;
+    private final EliteInstaller core;
 
     public InstallActivity(Context context, String packageName) {
         this.context = context;
         this.packageName = packageName;
-        this.core = AnubisCore.get();
+        this.core = EliteInstaller.get();
         this.core.doCreate();
     }
 
@@ -99,8 +100,11 @@ public class InstallActivity {
     }
 
     private void checkAndCopyObbFiles() {
-        File obbFolder = new File("/storage/emulated/0/blackbox/Android/obb/" + packageName);
-        File[] obbFiles = obbFolder.listFiles((dir, name) -> name.matches("main\\.\\d+\\." + packageName + "\\.obb"));
+        BEnvironment.load();
+        File obbFolder = BEnvironment.getExternalObbDir(packageName);
+        File[] obbFiles = obbFolder != null
+                ? obbFolder.listFiles((dir, name) -> name.matches("main\\.\\d+\\." + packageName + "\\.obb"))
+                : null;
 
         if (obbFiles == null || obbFiles.length == 0) {
             File sourceFolder = new File("/storage/emulated/0/Android/obb/" + packageName);
@@ -120,7 +124,13 @@ public class InstallActivity {
             String sourcePath = params[0];
             File source = new File(sourcePath);
             String filename = sourcePath.substring(sourcePath.lastIndexOf("/") + 1);
-            File destination = new File("/storage/emulated/0/blackbox/Android/obb/" + params[1] + "/" + filename);
+            BEnvironment.load();
+            File destFolder = BEnvironment.getExternalObbDir(params[1]);
+            if (destFolder != null && !destFolder.exists()) {
+                //noinspection ResultOfMethodCallIgnored
+                destFolder.mkdirs();
+            }
+            File destination = new File(destFolder, filename);
             
             // ✅ FIX: IOException handled with try-catch
             try {

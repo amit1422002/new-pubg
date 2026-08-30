@@ -2,9 +2,8 @@ package com.anubis.skin;
 
 import android.util.Log;
 
-import com.anubis.loader.AnubisCore;
-import com.anubis.loader.core.env.BEnvironment;
-import com.anubis.loader.core.env.GamePackages;
+import com.elite.EliteInstaller;
+import com.elite.core.env.BEnvironment;
 
 import java.io.File;
 
@@ -19,16 +18,16 @@ public final class BgmiLogoutHelper {
     }
 
     public static boolean logoutAccount(int userId) {
-        return logoutAccount(GamePackages.BGMI, userId);
+        return logoutAccount(BgmiSkin.BGMI_PKG, userId);
     }
 
     public static boolean logoutAccount(String packageName, int userId) {
-        if (!GamePackages.isBgmi(packageName)) {
+        if (!BgmiSkin.isBgmi(packageName)) {
             return false;
         }
         try {
             try {
-                AnubisCore.get().stopPackage(packageName, userId);
+                EliteInstaller.get().stopPackage(packageName, userId);
             } catch (Throwable ignored) {
             }
 
@@ -40,7 +39,7 @@ public final class BgmiLogoutHelper {
 
             cleanDataRoot(dataDir);
             cleanFilesTree(BEnvironment.getDataFilesDir(packageName, userId));
-            cleanFilesTree(BEnvironment.getExternalDataFilesDir(packageName, userId));
+            cleanFilesTree(BEnvironment.getExternalDataFilesDir(packageName));
 
             Log.i(TAG, "logout OK virtual base=" + dataDir.getAbsolutePath());
             return true;

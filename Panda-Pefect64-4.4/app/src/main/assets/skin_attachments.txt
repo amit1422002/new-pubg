@@ -1,0 +1,24 @@
+# M416 Glacier attachment skins (1101004046)
+# Format: skinID | name  OR  attachSkinID | 0 | Attachment Name
+1101004046 | M416 Glacier
+1010040470 | 0 | Red Dot Sight
+1010040469 | 0 | Holographic Sight
+1010040468 | 0 | 2x Scope
+1010040467 | 0 | 3x Scope
+1010040466 | 0 | 4x Scope
+1010040481 | 0 | 6x Scope
+1010040462 | 0 | 4x Scope
+1010040474 | 0 | Flash Hider
+1010040475 | 0 | Compensator
+1010040476 | 0 | Suppressor
+1010040477 | 0 | Angled Foregrip
+1010040478 | 0 | Thumb Grip
+1010040479 | 0 | Vertical Foregrip
+1010040482 | 0 | Light Grip
+1010040483 | 0 | Half Grip
+1010040471 | 0 | Extended Mag
+1010040472 | 0 | Quickdraw Mag
+1010040473 | 0 | Extended Quickdraw Mag
+1010040461 | 0 | Extended Mag
+1010040463 | 0 | Stock
+1010040480 | 0 | Tactical Stock

@@ -46,9 +46,15 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    externalNativeBuild {
+    /*externalNativeBuild {
         ndkBuild {
             path file('src/main/jni/Android.mk')
+        }
+    }*/
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['src/main/libs']
         }
     }
 
