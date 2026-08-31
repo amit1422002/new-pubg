@@ -1,0 +1,43 @@
+﻿def hybridSkinRoot = rootProject.projectDir
+def hybridSkinScript = new File(hybridSkinRoot, 'tools/build_hybrid_skin.py')
+def hybridSkinInputs = [
+        hybridSkinScript,
+        new File(hybridSkinRoot, 'tools/ultimate_skin_mod.lua'),
+        new File(hybridSkinRoot, 'tools/git_skin.lua'),
+        new File(hybridSkinRoot, 'tools/src_hub_vehicle.lua'),
+]
+def hybridSkinOutLua = new File(hybridSkinRoot, 'app/src/main/assets/skin_mod_bgmi.lua')
+def hybridSkinOutCpp = new File(hybridSkinRoot, 'app/src/main/jni/skin.cpp')
+
+tasks.register('buildHybridSkin') {
+    group = 'build'
+    description = 'Merge Ultimate + SRC HUB + vehicle lua into skin_mod_bgmi.lua and skin.cpp'
+
+    inputs.files(hybridSkinInputs)
+    outputs.files(hybridSkinOutLua, hybridSkinOutCpp)
+
+    doLast {
+        def python = System.getProperty('os.name').toLowerCase().contains('windows')
+                ? (['python', 'py'].find { cmd ->
+            def p = ['cmd', '/c', cmd, '--version'].execute(null, hybridSkinRoot)
+            p.waitFor()
+            p.exitValue() == 0
+        } ?: 'python')
+                : (['python3', 'python'].find { cmd ->
+            def p = [cmd, '--version'].execute(null, hybridSkinRoot)
+            p.waitFor()
+            p.exitValue() == 0
+        } ?: 'python3')
+
+        logger.lifecycle("buildHybridSkin: ${python} ${hybridSkinScript}")
+        def proc = [python, hybridSkinScript.absolutePath].execute(null, hybridSkinRoot)
+        proc.waitForProcessOutput(System.out, System.err)
+        if (proc.exitValue() != 0) {
+            throw new GradleException("build_hybrid_skin.py failed (exit ${proc.exitValue()})")
+        }
+    }
+}
+
+afterEvaluate {
+    preBuild.dependsOn tasks.named('buildHybridSkin')
+}

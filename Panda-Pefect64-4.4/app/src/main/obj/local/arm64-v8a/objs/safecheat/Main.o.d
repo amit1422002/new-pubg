@@ -1,4 +1,5 @@
-./obj/local/arm64-v8a/objs/safecheat/Main.o: jni\Main.cpp \
+X:/Panda-Pefect64-4.4/app/src/main/obj/local/arm64-v8a/objs/safecheat/Main.o: \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\Main.cpp \
   C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\string \
   C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\__config \
   C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\string_view \
@@ -45,14 +46,23 @@
   C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\cctype \
   C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\ctype.h \
   C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\wctype.h \
-  jni\obfuscate.h jni\ESP.h jni\struct.h jni\class.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\obfuscate.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\ESP.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\struct.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\class.h \
   C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\array \
-  jni\Hacks.h jni\socket.h jni\import.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\Hacks.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\socket.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\import.h \
   C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\cerrno \
   C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\cmath \
   C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\math.h \
-  jni\Color.h jni\items.h jni\Vector3.hpp jni\StrEnc.h jni\Tools.h \
-  jni\Includes.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\Color.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\items.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\Vector3.hpp \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\StrEnc.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\Tools.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\Includes.h \
   C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\iostream \
   C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\ios \
   C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\__locale \
@@ -83,41 +93,43 @@
   C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\deque \
   C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\iomanip \
   C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\thread \
-  jni\curl\openssl-android-arm64-v8a\include\openssl\evp.h \
-  jni\curl\openssl-android-arm64-v8a\include\openssl\opensslconf.h \
-  jni\curl\openssl-android-arm64-v8a\include\openssl\ossl_typ.h \
-  jni\curl\openssl-android-arm64-v8a\include\openssl\e_os2.h \
-  jni\curl\openssl-android-arm64-v8a\include\openssl\symhacks.h \
-  jni\curl\openssl-android-arm64-v8a\include\openssl\bio.h \
-  jni\curl\openssl-android-arm64-v8a\include\openssl\crypto.h \
-  jni\curl\openssl-android-arm64-v8a\include\openssl\stack.h \
-  jni\curl\openssl-android-arm64-v8a\include\openssl\safestack.h \
-  jni\curl\openssl-android-arm64-v8a\include\openssl\opensslv.h \
-  jni\curl\openssl-android-arm64-v8a\include\openssl\objects.h \
-  jni\curl\openssl-android-arm64-v8a\include\openssl\obj_mac.h \
-  jni\curl\openssl-android-arm64-v8a\include\openssl\asn1.h \
-  jni\curl\openssl-android-arm64-v8a\include\openssl\bn.h \
-  jni\curl\openssl-android-arm64-v8a\include\openssl\pem.h \
-  jni\curl\openssl-android-arm64-v8a\include\openssl\x509.h \
-  jni\curl\openssl-android-arm64-v8a\include\openssl\buffer.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\evp.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\opensslconf.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\ossl_typ.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\e_os2.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\symhacks.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\bio.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\crypto.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\stack.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\safestack.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\opensslv.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\objects.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\obj_mac.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\asn1.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\bn.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\pem.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\x509.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\buffer.h \
   C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\stddef.h \
-  jni\curl\openssl-android-arm64-v8a\include\openssl\ec.h \
-  jni\curl\openssl-android-arm64-v8a\include\openssl\rsa.h \
-  jni\curl\openssl-android-arm64-v8a\include\openssl\dsa.h \
-  jni\curl\openssl-android-arm64-v8a\include\openssl\dh.h \
-  jni\curl\openssl-android-arm64-v8a\include\openssl\sha.h \
-  jni\curl\openssl-android-arm64-v8a\include\openssl\x509_vfy.h \
-  jni\curl\openssl-android-arm64-v8a\include\openssl\lhash.h \
-  jni\curl\openssl-android-arm64-v8a\include\openssl\pkcs7.h \
-  jni\curl\openssl-android-arm64-v8a\include\openssl\pem2.h \
-  jni\curl\openssl-android-arm64-v8a\include\openssl\err.h \
-  jni\curl\openssl-android-arm64-v8a\include\openssl\md5.h \
-  jni\HackShooter.h jni\curl\curl-android-arm64-v8a\include\curl\curl.h \
-  jni\curl\curl-android-arm64-v8a\include\curl\curlver.h \
-  jni\curl\curl-android-arm64-v8a\include\curl\curlbuild.h \
-  jni\curl\curl-android-arm64-v8a\include\curl\curlrules.h \
-  jni\curl\curl-android-arm64-v8a\include\curl\easy.h \
-  jni\curl\curl-android-arm64-v8a\include\curl\multi.h jni\json.hpp \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\ec.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\rsa.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\dsa.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\dh.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\sha.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\x509_vfy.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\lhash.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\pkcs7.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\pem2.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\err.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\md5.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\HackShooter.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\curl\curl-android-arm64-v8a\include\curl\curl.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\curl\curl-android-arm64-v8a\include\curl\curlver.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\curl\curl-android-arm64-v8a\include\curl\curlbuild.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\curl\curl-android-arm64-v8a\include\curl\curlrules.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\curl\curl-android-arm64-v8a\include\curl\easy.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\curl\curl-android-arm64-v8a\include\curl\multi.h \
+  X:\Panda-Pefect64-4.4\app\src\main\jni\json.hpp \
   C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\numeric \
   C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\forward_list \
   C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\unordered_map \
@@ -218,21 +230,21 @@ C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-s
 
 C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\wctype.h:
 
-jni\obfuscate.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\obfuscate.h:
 
-jni\ESP.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\ESP.h:
 
-jni\struct.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\struct.h:
 
-jni\class.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\class.h:
 
 C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\array:
 
-jni\Hacks.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\Hacks.h:
 
-jni\socket.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\socket.h:
 
-jni\import.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\import.h:
 
 C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\cerrno:
 
@@ -240,17 +252,17 @@ C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-s
 
 C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\math.h:
 
-jni\Color.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\Color.h:
 
-jni\items.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\items.h:
 
-jni\Vector3.hpp:
+X:\Panda-Pefect64-4.4\app\src\main\jni\Vector3.hpp:
 
-jni\StrEnc.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\StrEnc.h:
 
-jni\Tools.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\Tools.h:
 
-jni\Includes.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\Includes.h:
 
 C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\iostream:
 
@@ -312,79 +324,79 @@ C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-s
 
 C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\thread:
 
-jni\curl\openssl-android-arm64-v8a\include\openssl\evp.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\evp.h:
 
-jni\curl\openssl-android-arm64-v8a\include\openssl\opensslconf.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\opensslconf.h:
 
-jni\curl\openssl-android-arm64-v8a\include\openssl\ossl_typ.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\ossl_typ.h:
 
-jni\curl\openssl-android-arm64-v8a\include\openssl\e_os2.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\e_os2.h:
 
-jni\curl\openssl-android-arm64-v8a\include\openssl\symhacks.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\symhacks.h:
 
-jni\curl\openssl-android-arm64-v8a\include\openssl\bio.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\bio.h:
 
-jni\curl\openssl-android-arm64-v8a\include\openssl\crypto.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\crypto.h:
 
-jni\curl\openssl-android-arm64-v8a\include\openssl\stack.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\stack.h:
 
-jni\curl\openssl-android-arm64-v8a\include\openssl\safestack.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\safestack.h:
 
-jni\curl\openssl-android-arm64-v8a\include\openssl\opensslv.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\opensslv.h:
 
-jni\curl\openssl-android-arm64-v8a\include\openssl\objects.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\objects.h:
 
-jni\curl\openssl-android-arm64-v8a\include\openssl\obj_mac.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\obj_mac.h:
 
-jni\curl\openssl-android-arm64-v8a\include\openssl\asn1.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\asn1.h:
 
-jni\curl\openssl-android-arm64-v8a\include\openssl\bn.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\bn.h:
 
-jni\curl\openssl-android-arm64-v8a\include\openssl\pem.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\pem.h:
 
-jni\curl\openssl-android-arm64-v8a\include\openssl\x509.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\x509.h:
 
-jni\curl\openssl-android-arm64-v8a\include\openssl\buffer.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\buffer.h:
 
 C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\stddef.h:
 
-jni\curl\openssl-android-arm64-v8a\include\openssl\ec.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\ec.h:
 
-jni\curl\openssl-android-arm64-v8a\include\openssl\rsa.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\rsa.h:
 
-jni\curl\openssl-android-arm64-v8a\include\openssl\dsa.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\dsa.h:
 
-jni\curl\openssl-android-arm64-v8a\include\openssl\dh.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\dh.h:
 
-jni\curl\openssl-android-arm64-v8a\include\openssl\sha.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\sha.h:
 
-jni\curl\openssl-android-arm64-v8a\include\openssl\x509_vfy.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\x509_vfy.h:
 
-jni\curl\openssl-android-arm64-v8a\include\openssl\lhash.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\lhash.h:
 
-jni\curl\openssl-android-arm64-v8a\include\openssl\pkcs7.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\pkcs7.h:
 
-jni\curl\openssl-android-arm64-v8a\include\openssl\pem2.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\pem2.h:
 
-jni\curl\openssl-android-arm64-v8a\include\openssl\err.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\err.h:
 
-jni\curl\openssl-android-arm64-v8a\include\openssl\md5.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\curl\openssl-android-arm64-v8a\include\openssl\md5.h:
 
-jni\HackShooter.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\HackShooter.h:
 
-jni\curl\curl-android-arm64-v8a\include\curl\curl.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\curl\curl-android-arm64-v8a\include\curl\curl.h:
 
-jni\curl\curl-android-arm64-v8a\include\curl\curlver.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\curl\curl-android-arm64-v8a\include\curl\curlver.h:
 
-jni\curl\curl-android-arm64-v8a\include\curl\curlbuild.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\curl\curl-android-arm64-v8a\include\curl\curlbuild.h:
 
-jni\curl\curl-android-arm64-v8a\include\curl\curlrules.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\curl\curl-android-arm64-v8a\include\curl\curlrules.h:
 
-jni\curl\curl-android-arm64-v8a\include\curl\easy.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\curl\curl-android-arm64-v8a\include\curl\easy.h:
 
-jni\curl\curl-android-arm64-v8a\include\curl\multi.h:
+X:\Panda-Pefect64-4.4\app\src\main\jni\curl\curl-android-arm64-v8a\include\curl\multi.h:
 
-jni\json.hpp:
+X:\Panda-Pefect64-4.4\app\src\main\jni\json.hpp:
 
 C:\Users\Amit\AppData\Local\Android\Sdk\ndk\24.0.8215888\build\\..\sources\cxx-stl\llvm-libc++\include\numeric:
 

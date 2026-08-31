@@ -1,17 +1,9 @@
 package lauresprojects.com.recorder.floating;
 
-import android.graphics.Color;
-import static lauresprojects.com.recorder.activity.LoginActivity.USERKEY;
-import static lauresprojects.com.recorder.activity.MainActivity.Ischeck;
 import static lauresprojects.com.recorder.activity.MainActivity.bitversi;
 import static lauresprojects.com.recorder.activity.MainActivity.gameint;
-import static lauresprojects.com.recorder.activity.MainActivity.game;
 import static lauresprojects.com.recorder.activity.MainActivity.modestatus;
-//import static lauresprojects.com.recorder.floating.FloatRei.toastImage;
-//import com.sdsmdg.tastytoast.TastyToast;
-import android.widget.Toast;
 
-import android.app.Activity;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -25,10 +17,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
@@ -40,54 +29,21 @@ import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 
 import lauresprojects.com.recorder.R;
 import lauresprojects.com.recorder.activity.MainActivity;
 import lauresprojects.com.recorder.utils.FLog;
-import lauresprojects.com.recorder.utils.myTools;
-import com.flask.colorpicker.ColorPickerView;
-import com.flask.colorpicker.OnColorChangedListener;
+
 import com.topjohnwu.superuser.Shell;
-//import com.topjohnwu.superuser.Shell;
 
-import static lauresprojects.com.recorder.activity.LoginActivity.Sufii;
-import android.view.View;
-import android.view.View.OnClickListener;
 import java.util.Locale;
-
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.AsyncTask;
-import org.json.JSONArray;
-import org.json.JSONObject;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import android.os.Handler;
-import android.os.Looper;
-
-
-import java.io.File;
-
-import java.io.IOException;
-
-import nl.joery.animatedbottombar.AnimatedBottomBar;
-import org.lsposed.lsparanoid.Obfuscate;
-
-@Obfuscate
 
 public class FloatService extends Service {
 
     static {
-        
-            System.loadLibrary("safecheat");
-}
+        System.loadLibrary("safecheat");
+    }
 
     Context ctx;
     private View mainView;
@@ -97,22 +53,6 @@ public class FloatService extends Service {
     private LinearLayout layout_main_view;
     private RelativeLayout layout_icon_control_view;
     public static String typelogin;
-    public native void setLineColor(int a,int r, int g, int b);
-    
-
-    
-    private Switch aimKnocked;
-    
-    private Switch aimignore;
-
-    private Switch drawesp;
-    private RadioGroup aimbotmode;
-    
-    private RadioGroup aimby;
-
-    private TextView islootitems;
-    
-    
 
     private void setLokasi(String lang) {
         Locale locale = new Locale(lang);
@@ -172,14 +112,6 @@ public class FloatService extends Service {
         stopService(new Intent(getApplicationContext(), ToggleBullet.class));
     }
 
-    private void StartFightModeFloat() {
-        startService(new Intent(getApplicationContext(), FightMode.class));
-    }
-
-    private void StopFightModeFloat() {
-        stopService(new Intent(getApplicationContext(), FightMode.class));
-    }
-
     public native void SettingValue(int setting_code, boolean value);
 
     public native void SettingMemory(int setting_code, boolean value);
@@ -187,7 +119,9 @@ public class FloatService extends Service {
     public native void SettingAim(int setting_code, boolean value);
 
     public native void SkinHack(int setting_code);
-
+    public native void Skinbag(int setting_code);
+    public native void Skinhelmet(int setting_code);
+    
     public native void RadarSize(int size);
 
     public native void Range(int range);
@@ -219,25 +153,6 @@ public class FloatService extends Service {
     public native void TouchPosX(int touchposx);
 
     public native void TouchPosY(int touchposy);
-    private AnimatedBottomBar bottomBar;
-    private LinearLayout mainContainer;
-    private LayoutInflater inflater;
-    static myTools m;
-
-    ImageView[] tabs = new ImageView[17];
-    LinearLayout[] sections = new LinearLayout[17];
-
-    int[] tabIds = {
-            R.id.tab1, R.id.tab2, R.id.tab3, R.id.tab4, R.id.tab5, R.id.tab6,
-            R.id.tab7, R.id.tab8, R.id.tab9, R.id.tab10, R.id.tab11, R.id.tab12,
-            R.id.tab13, R.id.tab14, R.id.tab15, R.id.tab16, R.id.tab17
-    };
-
-    int[] sectionIds = {
-            R.id.specialitems, R.id.scope, R.id.arweapons, R.id.LMGweapons, R.id.SMGweapons, R.id.SRweapons,
-            R.id.ShotGuns, R.id.Pistols, R.id.Milliweapons, R.id.Throwables, R.id.Ammo, R.id.HelmetBag,
-            R.id.consumables, R.id.attachments, R.id.magazines, R.id.grips, R.id.others
-    };
 
 
     @Nullable
@@ -246,24 +161,14 @@ public class FloatService extends Service {
         return null;
     }
 
-        @Override
+    @Override
     public void onCreate() {
         super.onCreate();
-        
-        m = new myTools(this);
-        setTheme(m.geInt("myTheme","myTheme",R.style.AppTheme));
         ctx = getApplicationContext();
         InitShowMainView();
         loadbahasa();
-
-        aimKnocked.setChecked(true);
-        aimignore.setChecked(true);
-        aimby.check(R.id.radioButton2);
-        aimby.check(R.id.radioButton9);
         
-    }
-
-
+     }
 
     private void InitShowMainView() {
         mainView = LayoutInflater.from(this).inflate(R.layout.float_service, null);
@@ -272,8 +177,13 @@ public class FloatService extends Service {
         windowManagerMainView.addView(mainView, paramsMainView);
         layout_icon_control_view = mainView.findViewById(R.id.layout_icon_control_view);
         layout_main_view = mainView.findViewById(R.id.layout_main_view);
-
-        ImageView layout_close_main_view = mainView.findViewById(R.id.close_btn);
+        
+        if (MainActivity.Record) {
+            HideRecorder.setFakeRecorderWindowLayoutParams(paramsMainView);
+        }
+        
+        View layout_close_main_view = mainView.findViewById(R.id.layout_close_main_view);
+        layout_close_main_view.setSelected(true);
         layout_close_main_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View p1) {
@@ -282,180 +192,203 @@ public class FloatService extends Service {
             }
         });
 
-        LinearLayout layout_view = mainView.findViewById(R.id.layout_view);
-        layout_view.setOnTouchListener(onTouchListener());
+        LinearLayout drag_area = mainView.findViewById(R.id.drag_area);
+        View.OnTouchListener mTouch = onTouchListener();
+        drag_area.setOnTouchListener(mTouch);
+        layout_icon_control_view.setOnTouchListener(mTouch);
 
         initDesign();
-        visual(mainView);
-        aimbot(mainView);
-        items(mainView);
-        memory(mainView);
-        // car(mainView);
-        
-        
 
+        // Attach drag handles from tabs
+        if (mainView.findViewById(R.id.esp_new_title) != null) mainView.findViewById(R.id.esp_new_title).setOnTouchListener(mTouch);
+        if (mainView.findViewById(R.id.aimbot_title) != null) mainView.findViewById(R.id.aimbot_title).setOnTouchListener(mTouch);
+        if (mainView.findViewById(R.id.visual_title) != null) mainView.findViewById(R.id.visual_title).setOnTouchListener(mTouch);
+        if (mainView.findViewById(R.id.memory_title) != null) mainView.findViewById(R.id.memory_title).setOnTouchListener(mTouch);
+        if (mainView.findViewById(R.id.inventory_title) != null) mainView.findViewById(R.id.inventory_title).setOnTouchListener(mTouch);
+        if (mainView.findViewById(R.id.skin_title) != null) mainView.findViewById(R.id.skin_title).setOnTouchListener(mTouch);
 
     }
-    
-    
 
     public void initDesign() {
-        LinearLayout menu1 = mainView.findViewById(R.id.menuf1);
-        LinearLayout menu2 = mainView.findViewById(R.id.menuf2);
-        LinearLayout menu3 = mainView.findViewById(R.id.menuf3);
-        LinearLayout menu4 = mainView.findViewById(R.id.menuf4);
-        LinearLayout menu5 = mainView.findViewById(R.id.menuf5);
+        // Sidebar Navigation
+        ImageView navMain = mainView.findViewById(R.id.nav_main);
+        ImageView navEsp = mainView.findViewById(R.id.nav_esp_new);
+        ImageView navSettings = mainView.findViewById(R.id.nav_settings_new);
 
-        LinearLayout navi1 = mainView.findViewById(R.id.navitems);
-        LinearLayout navi2 = mainView.findViewById(R.id.navvehicle);
-        LinearLayout menui1 = mainView.findViewById(R.id.items1);
-        LinearLayout menui2 = mainView.findViewById(R.id.lyvehicle);
-        LinearLayout lefttab = mainView.findViewById(R.id.lefttab);
-        View bottomi1 = mainView.findViewById(R.id.bottomi1);
-        View bottomi2 = mainView.findViewById(R.id.bottomi2);
-        for (int i = 0; i < 17; i++) {
-            final int index = i;
-            tabs[i] = mainView.findViewById(tabIds[i]);
-            sections[i] = mainView.findViewById(sectionIds[i]);
+        navMain.setOnClickListener(v -> {
+            mainView.findViewById(R.id.tab_esp_new_container).setVisibility(View.GONE);
+            mainView.findViewById(R.id.tab_original_container).setVisibility(View.VISIBLE);
+            mainView.findViewById(R.id.menuf1).setVisibility(View.GONE);
+            mainView.findViewById(R.id.menuf2).setVisibility(View.GONE);
+            mainView.findViewById(R.id.menuf3).setVisibility(View.GONE);
+            mainView.findViewById(R.id.menuf4).setVisibility(View.VISIBLE);
+            mainView.findViewById(R.id.menuf5).setVisibility(View.GONE);
+            navMain.setSelected(true);
+            navEsp.setSelected(false);
+            navSettings.setSelected(false);
+        });
 
-            tabs[i].setOnClickListener(v -> {
-                // Deselect all tabs
-                for (ImageView tab : tabs) tab.setSelected(false);
-                // Hide all sections
-                for (LinearLayout section : sections) section.setVisibility(View.GONE);
+        navEsp.setOnClickListener(v -> {
+            mainView.findViewById(R.id.tab_esp_new_container).setVisibility(View.GONE);
+            mainView.findViewById(R.id.tab_original_container).setVisibility(View.VISIBLE);
+            mainView.findViewById(R.id.menuf1).setVisibility(View.GONE);
+            mainView.findViewById(R.id.menuf2).setVisibility(View.GONE);
+            mainView.findViewById(R.id.menuf3).setVisibility(View.VISIBLE);
+            mainView.findViewById(R.id.menuf4).setVisibility(View.GONE);
+            mainView.findViewById(R.id.menuf5).setVisibility(View.GONE);
+            navEsp.setSelected(true);
+            navMain.setSelected(false);
+            navSettings.setSelected(false);
+        });
 
-                // Select clicked tab and show corresponding section
-                tabs[index].setSelected(true);
-                sections[index].setVisibility(View.VISIBLE);
-            });
+        navSettings.setOnClickListener(v -> {
+            mainView.findViewById(R.id.tab_esp_new_container).setVisibility(View.GONE);
+            mainView.findViewById(R.id.tab_original_container).setVisibility(View.VISIBLE);
+            mainView.findViewById(R.id.menuf1).setVisibility(View.VISIBLE);
+            mainView.findViewById(R.id.menuf2).setVisibility(View.GONE);
+            mainView.findViewById(R.id.menuf3).setVisibility(View.GONE);
+            mainView.findViewById(R.id.menuf4).setVisibility(View.GONE);
+            mainView.findViewById(R.id.menuf5).setVisibility(View.GONE);
+            navSettings.setSelected(true);
+            navEsp.setSelected(false);
+            navMain.setSelected(false);
+        });
+
+        // Binding new ESP Tab
+        View espTabNew = mainView.findViewById(R.id.tab_esp_new_container);
+        if (espTabNew != null) {
+            CheckBox isenableespNew = espTabNew.findViewById(R.id.isenableesp_new);
+            if (isenableespNew != null) {
+                isenableespNew.setChecked(getConfig("isenableesp"));
+                isenableespNew.setOnCheckedChangeListener((p1, isChecked) -> {
+                    setValue("isenableesp", isChecked);
+                    if (isChecked) {
+                        startService(new Intent(ctx, Overlay.class));
+                    } else {
+                        stopService(new Intent(ctx, Overlay.class));
+                    }
+                });
+            }
+
+            final SeekBar distanceSeekBar = espTabNew.findViewById(R.id.distances_new);
+            final TextView distanceText = espTabNew.findViewById(R.id.lbl_distance_new);
+            if (distanceSeekBar != null && distanceText != null) {
+                setupSeekBar(distanceSeekBar, distanceText, getDistances(), new Runnable() {
+                    @Override
+                    public void run() {
+                        int pos = distanceSeekBar.getProgress();
+                        setDistances(pos);
+                        distances(pos);
+                        distanceText.setText("Distance : " + pos);
+                    }
+                });
+            }
+
+            final SeekBar recoilSeekBar = espTabNew.findViewById(R.id.recoil2_new);
+            final TextView recoilText = espTabNew.findViewById(R.id.lbl_recoil_new);
+            if (recoilSeekBar != null && recoilText != null) {
+                setupSeekBar(recoilSeekBar, recoilText, getrecoilAim2(), new Runnable() {
+                    @Override
+                    public void run() {
+                        int pos = recoilSeekBar.getProgress();
+                        getrecoilAim2(pos);
+                        recoil2(pos);
+                        recoilText.setText("Recoil Control : " + pos);
+                    }
+                });
+            }
+
+            View btnSettingsNew = espTabNew.findViewById(R.id.btn_settings_new);
+            if (btnSettingsNew != null) {
+                btnSettingsNew.setOnClickListener(v -> {
+                    mainView.findViewById(R.id.tab_esp_new_container).setVisibility(View.GONE);
+                    mainView.findViewById(R.id.tab_original_container).setVisibility(View.VISIBLE);
+                    mainView.findViewById(R.id.menuf1).setVisibility(View.VISIBLE);
+                    mainView.findViewById(R.id.menuf2).setVisibility(View.GONE);
+                    mainView.findViewById(R.id.menuf3).setVisibility(View.GONE);
+                    mainView.findViewById(R.id.menuf4).setVisibility(View.GONE);
+                    mainView.findViewById(R.id.menuf5).setVisibility(View.GONE);
+                    navSettings.setSelected(true);
+                    navEsp.setSelected(false);
+                    navMain.setSelected(false);
+                });
+            }
+
+            View btnOtherSettingsNew = espTabNew.findViewById(R.id.btn_other_settings_new);
+            if (btnOtherSettingsNew != null) {
+                btnOtherSettingsNew.setOnClickListener(v -> {
+                    mainView.findViewById(R.id.tab_esp_new_container).setVisibility(View.GONE);
+                    mainView.findViewById(R.id.tab_original_container).setVisibility(View.VISIBLE);
+                    mainView.findViewById(R.id.menuf1).setVisibility(View.GONE);
+                    mainView.findViewById(R.id.menuf2).setVisibility(View.GONE);
+                    mainView.findViewById(R.id.menuf3).setVisibility(View.VISIBLE);
+                    mainView.findViewById(R.id.menuf4).setVisibility(View.GONE);
+                    mainView.findViewById(R.id.menuf5).setVisibility(View.GONE);
+                    navSettings.setSelected(true);
+                    navEsp.setSelected(false);
+                    navMain.setSelected(false);
+                });
+            }
         }
 
-        // Set default selected tab (tab1)
-        tabs[0].setSelected(true);
-        sections[0].setVisibility(View.VISIBLE);
-
-        AnimatedBottomBar bottomBar = mainView.findViewById(R.id.esp_tabbar); // Make sure this is correct ID
-
-        bottomBar.setOnTabSelectListener(new AnimatedBottomBar.OnTabSelectListener() {
-            @Override
-            public void onTabSelected(int lastIndex, @Nullable AnimatedBottomBar.Tab lastTab, int newIndex, @NonNull AnimatedBottomBar.Tab newTab) {
-                // Sab menu GONE karo
-                menu1.setVisibility(View.GONE);
-                menu2.setVisibility(View.GONE);
-                menu3.setVisibility(View.GONE);
-                menu4.setVisibility(View.GONE);
-                menu5.setVisibility(View.GONE);
-
-                // By default hide item sub-layouts too
-                menui1.setVisibility(View.GONE);
-                menui2.setVisibility(View.GONE);
-                bottomi1.setVisibility(View.GONE);
-                bottomi2.setVisibility(View.GONE);
-
-                switch (newTab.getId()) {
-                    case R.id.tab_player:
-                        menu1.setVisibility(View.VISIBLE);
-                        break;
-                    case R.id.tab_items:
-                        menu2.setVisibility(View.VISIBLE);
-                        menui1.setVisibility(View.VISIBLE);
-                        bottomi1.setVisibility(View.VISIBLE);
-                        lefttab.setVisibility(View.VISIBLE);
-                        break;
-                    case R.id.tab_vehicles:
-                        menu2.setVisibility(View.VISIBLE);
-                        menui2.setVisibility(View.VISIBLE);
-                        bottomi2.setVisibility(View.VISIBLE);
-                        lefttab.setVisibility(View.GONE);
-                        break;
-                    case R.id.tab_aimbot:
-                        menu3.setVisibility(View.VISIBLE);
-                        break;
-                    case R.id.tab_injector:
-                        menu4.setVisibility(View.VISIBLE);
-                        break;
-                    case R.id.tab_esp_settings:
-                        menu5.setVisibility(View.VISIBLE);
-                        break;
-                }
-            }
-
-            @Override
-            public void onTabReselected(int index, @NonNull AnimatedBottomBar.Tab tab) {
-                // Optional
-            }
-        });
-
-
-
-        // Inner buttons/items logic (Items tab ke andar nav switch)
-        navi1.setOnClickListener(v -> {
-            menui1.setVisibility(View.VISIBLE);
-            menui2.setVisibility(View.GONE);
-            bottomi1.setVisibility(View.VISIBLE);
-            bottomi2.setVisibility(View.GONE);
-        });
-
-        navi2.setOnClickListener(v -> {
-            menui1.setVisibility(View.GONE);
-            menui2.setVisibility(View.VISIBLE);
-            bottomi1.setVisibility(View.GONE);
-            bottomi2.setVisibility(View.VISIBLE);
-        });
+        // Original initialization for other tabs
+        visual(mainView.findViewById(R.id.menuf1));
+        items(mainView.findViewById(R.id.menuf2));
+        aimbot(mainView.findViewById(R.id.menuf3));
+        memory(mainView.findViewById(R.id.menuf4));
+        skin(mainView.findViewById(R.id.menuf5));
     }
 
+    private void skin(View skin) {
+        if (skin == null) return;
+        skinvisual((CheckBox) skin.findViewById(R.id.bloodraven), 1);
+        skinvisual((CheckBox) skin.findViewById(R.id.goldenpharaoh), 2);
+        skinvisual((CheckBox) skin.findViewById(R.id.avalanche), 3);
+        skinvisual((CheckBox) skin.findViewById(R.id.poseidon), 4);
+        skinvisual((CheckBox) skin.findViewById(R.id.arcanejester), 5);
+        skinvisual((CheckBox) skin.findViewById(R.id.silvanus), 6);
+        skinvisual((CheckBox) skin.findViewById(R.id.marmoris), 7);
+        skinvisual((CheckBox) skin.findViewById(R.id.fiore), 8);
+        skinvisual((CheckBox) skin.findViewById(R.id.ignis), 9);
+        skinvisual((CheckBox) skin.findViewById(R.id.whitemummy), 10);
+        skinvisual((CheckBox) skin.findViewById(R.id.galadria), 11);
+        skinvisual((CheckBox) skin.findViewById(R.id.flamewraith), 12);
+        skinvisual((CheckBox) skin.findViewById(R.id.majestic), 13);
+        skinvisual((CheckBox) skin.findViewById(R.id.bramble), 14);
+        skinvisual((CheckBox) skin.findViewById(R.id.nether), 15);
+        skinvisual((CheckBox) skin.findViewById(R.id.swan), 16);
+        skinvisual((CheckBox) skin.findViewById(R.id.celestial), 17);
+        skinvisual((CheckBox) skin.findViewById(R.id.snowstar), 18);
+        skinvisual((CheckBox) skin.findViewById(R.id.arctic), 19);
+        skinvisual((CheckBox) skin.findViewById(R.id.feral), 20);
+        skinvisual((CheckBox) skin.findViewById(R.id.vampyra), 21);
+        skinvisual((CheckBox) skin.findViewById(R.id.serene), 22);
+        skinvisual((CheckBox) skin.findViewById(R.id.mercury), 23);
+        skinvisual((CheckBox) skin.findViewById(R.id.luminous), 24);
+        skinvisual((CheckBox) skin.findViewById(R.id.origin), 25);
+        skinvisual((CheckBox) skin.findViewById(R.id.serpengleam), 26);
+        skinvisual((CheckBox) skin.findViewById(R.id.shinobi), 27);
+        skinvisual((CheckBox) skin.findViewById(R.id.foxy), 28);
+        skinvisual((CheckBox) skin.findViewById(R.id.glacial), 29);
+        skinvisual((CheckBox) skin.findViewById(R.id.boxerbolt), 30);
+        skinvisual((CheckBox) skin.findViewById(R.id.dandy), 31);
+        skinvisual((CheckBox) skin.findViewById(R.id.neptune), 32);
+        skinvisual((CheckBox) skin.findViewById(R.id.noctum), 33);
+        skinvisual((CheckBox) skin.findViewById(R.id.crimson), 34);
 
+        skinvisualbag((CheckBox) skin.findViewById(R.id.bag_poseidon), 1);
+        skinvisualbag((CheckBox) skin.findViewById(R.id.bag_mystique), 2);
+        skinvisualbag((CheckBox) skin.findViewById(R.id.bag_ancient), 3);
+        skinvisualbag((CheckBox) skin.findViewById(R.id.bag_galadria), 4);
+        skinvisualbag((CheckBox) skin.findViewById(R.id.bag_alfheim), 5);
 
-/*
-    private void AdapterNavigation() {
-        Dapter vpadapter = new Dapter(ctx);
-        ViewPager viewPager = mainView.findViewById(R.id.viewPager);
-        viewPager.setAdapter(vpadapter);
-        viewPager.setOffscreenPageLimit(4);
-
-        View bottom1 = mainView.findViewById(R.id.bottom1);
-        View bottom2 = mainView.findViewById(R.id.bottom2);
-        View bottom3 = mainView.findViewById(R.id.bottom3);
-        View bottom4 = mainView.findViewById(R.id.bottom4);
-        LinearLayout visual = mainView.findViewById(R.id.navf1);
-        LinearLayout items = mainView.findViewById(R.id.navf2);
-        LinearLayout aimbot = mainView.findViewById(R.id.navf3);
-        LinearLayout memory = mainView.findViewById(R.id.navf4);
-
-        View.OnClickListener oc = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int aa = v.getId();
-                viewPager.setCurrentItem(aa == R.id.navf1 ? 0 : aa == R.id.navf2 ? 1 : aa == R.id.navf3 ? 2 : 3);
-
-            }
-        };
-
-        visual.setOnClickListener(oc);
-        items.setOnClickListener(oc);
-        aimbot.setOnClickListener(oc);
-        memory.setOnClickListener(oc);
-
-        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                bottom1.setVisibility(position == 0 ? View.VISIBLE : View.GONE);
-                bottom2.setVisibility(position == 1 ? View.VISIBLE : View.GONE);
-                bottom3.setVisibility(position == 2 ? View.VISIBLE : View.GONE);
-                bottom4.setVisibility(position == 3 ? View.VISIBLE : View.GONE);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-            }
-        });
+        skinvisualhelmet((CheckBox) skin.findViewById(R.id.helmet_inferno), 1);
+        skinvisualhelmet((CheckBox) skin.findViewById(R.id.helmet_auric), 2);
+        skinvisualhelmet((CheckBox) skin.findViewById(R.id.helmet_galadria), 3);
+        skinvisualhelmet((CheckBox) skin.findViewById(R.id.helmet_shining), 4);
+        skinvisualhelmet((CheckBox) skin.findViewById(R.id.helmet_kingdom), 5);
     }
-*/
+
 
 
     private View.OnTouchListener onTouchListener() {
@@ -503,7 +436,7 @@ public class FloatService extends Service {
         return mainView == null || layout_icon_control_view.getVisibility() == View.VISIBLE;
     }
 
-   private WindowManager.LayoutParams getparams() {
+    private WindowManager.LayoutParams getparams() {
         final WindowManager.LayoutParams params = new WindowManager.LayoutParams(
                 WindowManager.LayoutParams.WRAP_CONTENT,
                 WindowManager.LayoutParams.WRAP_CONTENT,
@@ -513,35 +446,37 @@ public class FloatService extends Service {
         params.gravity = Gravity.TOP | Gravity.LEFT;
         params.x = 0;
         params.y = 0;
-        params.preferredRefreshRate = 120f;
 
         return params;
     }
-    
+
     private int getFlagsType() {
         int LAYOUT_FLAG = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
 
         return LAYOUT_FLAG;
     }
 
-    @Override
+       @Override
     public void onDestroy() {
         super.onDestroy();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
+        new Thread(new Runnable(){
+                @Override
+                public void run() {
 
-            }
-        }).start();
+                }
+            }).start();
         if (mWakeLock != null) {
             mWakeLock.release();
             mWakeLock = null;
         }
-
-        if (mainView != null) {
+        
+        if (mainView != null){
             windowManagerMainView.removeView(mainView);
-        }
+		}
+		
+        
     }
+    
 
     boolean getConfig(String key) {
         SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
@@ -749,56 +684,54 @@ public class FloatService extends Service {
     }
 
     public void skinvisual(final CheckBox a, final int b) {
-    a.setChecked(getConfig((String) a.getText()));
-    SkinHack(b);
-
-    a.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-        @Override
-        public void onCheckedChanged(CompoundButton p1, boolean p2) {
-            setValue(String.valueOf(a.getText()), a.isChecked());
-            SkinHack(b);
-        }
-    });
-}
-
-    public void espvisual(final TextView a, final int b) {
-        // Custom toggle flag
-        boolean currentState = getConfig((String) a.getText());
-        a.setSelected(currentState); // you can use selected state for visuals
-        SettingValue(b, currentState);
-
-        // Optional: update UI to reflect current state
-        updateTextViewVisual(a, currentState);
-
-        a.setOnClickListener(new View.OnClickListener() {
-            boolean isChecked = currentState;
-
+        a.setChecked(getConfig((String) a.getText()));
+        SkinHack(b);
+        a.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                isChecked = !isChecked;
-                a.setSelected(isChecked);
-                updateTextViewVisual(a, isChecked); // update UI if needed
-                setValue(String.valueOf(a.getText()), isChecked);
-                SettingValue(b, isChecked);
-                //TastyToast.makeText(FloatService.this, "Installing GSM...", TastyToast.LENGTH_LONG, TastyToast.DEFAULT);
+            public void onCheckedChanged(CompoundButton p1, boolean p2) {
+                setValue(String.valueOf(a.getText()), a.isChecked());
+                SkinHack(b);
+            }
+        });
+    }
+    public void skinvisualbag(final CheckBox a, final int b) {
+        a.setChecked(getConfig((String) a.getText()));
+        Skinbag(b);
+        a.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton p1, boolean p2) {
+                setValue(String.valueOf(a.getText()), a.isChecked());
+                Skinbag(b);
+            }
+        });
+    }
+    public void skinvisualhelmet(final CheckBox a, final int b) {
+        a.setChecked(getConfig((String) a.getText()));
+        Skinhelmet(b);
+        a.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton p1, boolean p2) {
+                setValue(String.valueOf(a.getText()), a.isChecked());
+                Skinhelmet(b);
             }
         });
     }
 
-    // Optional helper to change visuals (like background/text color)
-   private void updateTextViewVisual(TextView view, boolean checked) {
-        if (checked) {
-            view.setBackgroundResource(R.drawable.float_selected); // your drawable
-           // view.setTextColor(Color.GREEN);  // or any color
-        } else {
-            view.setBackgroundResource(R.drawable.float_unselect);
-            //view.setTextColor(Color.RED);
-        }
+    public void espvisual(final CheckBox a, final int b) {
+        a.setChecked(getConfig((String) a.getText()));
+        SettingValue(b, getConfig((String) a.getText()));
+        a.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton p1, boolean p2) {
+                setValue(String.valueOf(a.getText()), a.isChecked());
+                SettingValue(b, a.isChecked());
+            }
+        });
     }
 
-
-
-    public void setaim(final Switch a, final int b) {
+    public void setaim(final CompoundButton a, final int b) {
+        a.setChecked(getConfig((String) a.getText()));
+        SettingAim(b, getConfig((String) a.getText()));
         a.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton p1, boolean isChecked) {
@@ -808,64 +741,25 @@ public class FloatService extends Service {
         });
     }
 
-    public void vehicless(final TextView textView) {
-        // Set initial state based on config
-        boolean isEnabled = getConfig((String) textView.getText());
-        textView.setSelected(isEnabled);
-        updateToggleBackground(textView, isEnabled);
-
-        textView.setOnClickListener(new View.OnClickListener() {
+    public void vehicless(final CheckBox checkBox) {
+        checkBox.setChecked(getConfig((String) checkBox.getText()));
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                boolean newState = !textView.isSelected();
-                textView.setSelected(newState);
-                updateToggleBackground(textView, newState);
-                setValue(String.valueOf(textView.getText()), newState);
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                setValue(String.valueOf(checkBox.getText()), checkBox.isChecked());
             }
         });
     }
 
-    private void updateToggleBackground(TextView textView, boolean selected) {
-        if (selected) {
-            textView.setBackgroundResource(R.drawable.float_selected);   // ON state
-        } else {
-            textView.setBackgroundResource(R.drawable.float_unselect); // OFF state
-        }
-    }
-
-
-
-    public void itemss(final TextView checkBox) {
-        // Set initial selected state based on config
-        boolean selected = getConfig(checkBox.getText().toString());
-        checkBox.setSelected(selected);
-
-        // Update background or text color based on selection (optional)
-        updateTextViewStyle(checkBox, selected);
-
-        // Set click listener to toggle selection
-        checkBox.setOnClickListener(new View.OnClickListener() {
+    public void itemss(final CheckBox checkBox) {
+        checkBox.setChecked(getConfig((String) checkBox.getText()));
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                boolean isSelected = !checkBox.isSelected();
-                checkBox.setSelected(isSelected);
-                setValue(checkBox.getText().toString(), isSelected);
-                updateTextViewStyle(checkBox, isSelected);
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                setValue(String.valueOf(checkBox.getText()), checkBox.isChecked());
             }
         });
     }
-
-    private void updateTextViewStyle(TextView textView, boolean selected) {
-        if (selected) {
-            textView.setBackgroundResource(R.drawable.float_selected); // your drawable
-            // view.setTextColor(Color.GREEN);  // or any color
-        } else {
-            textView.setBackgroundResource(R.drawable.float_unselect);
-            //view.setTextColor(Color.RED);
-        }
-    }
-
-
 
     public void memory(final Switch a, final int b) {
         a.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -898,24 +792,7 @@ public class FloatService extends Service {
         });
     }
 
-    private void DrawESP() {
-
-    
-
-    new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(() -> {
-        if (Shell.rootAccess()) {
-            //MainActivity.socket = "su -c " + MainActivity.daemonPath;
-            startService(new Intent(this, Overlay.class));
-        } else {
-          //  MainActivity.socket = MainActivity.daemonPath;
-            startService(new Intent(MainActivity.get(), Overlay.class));
-        }
-    }, 2000);
-}
-
-
-
-    void runant(final String nf){
+void runant(final String nf){
         excpp("/"+nf);
 		}
 
@@ -937,223 +814,57 @@ public class FloatService extends Service {
 
         }
 			}
+			
+    public void Exec(String path, String toast) {
+        try {
+            ExecuteElf("su -c chmod 777 " + getFilesDir() + path);
+            ExecuteElf("su -c " + getFilesDir() + path);
+            ExecuteElf("chmod 777 " + getFilesDir() + path);
+            ExecuteElf(getFilesDir() + path);
+        } catch (Exception e) {
+        }
+    }
+
     
-    
+
     private void StopESP() {
         stopService(new Intent(this, Overlay.class));
     }
-    
-    
-    private void anomake() {
-
-    File temp = new File(getFilesDir(), "ano_tmp");
-
-    // delete if exists (file or folder)
-    if (temp.exists()) {
-        deleteRecursive(temp);
-    }
-
-    // recreate as folder
-    boolean created = temp.mkdirs();
-
-    if (!created) {
-        //Log.e("anomake", "Failed to create ano_tmp folder");
-    }
-}
-
-private void deleteRecursive(File fileOrDir) {
-    if (fileOrDir.isDirectory()) {
-        File[] files = fileOrDir.listFiles();
-        if (files != null) {
-            for (File child : files) {
-                deleteRecursive(child);
-            }
-        }
-    }
-    fileOrDir.delete();
-}
-
-
-
-
-    public void Skin(View view) {
-    // SKIN CHECKBOXES
-    final CheckBox pharaoh = view.findViewById(R.id.pharaohskin);
-    final CheckBox bloodreven = view.findViewById(R.id.bloodreven);
-    final CheckBox posreidon = view.findViewById(R.id.posreidon);
-    final CheckBox avalache = view.findViewById(R.id.avalache);
-    final CheckBox silvanus = view.findViewById(R.id.silvanus);
-    final CheckBox iridescense = view.findViewById(R.id.iridescense);
-    final CheckBox aracane = view.findViewById(R.id.aracane);
-
-    skinvisual(pharaoh, 1);
-    skinvisual(bloodreven, 2);
-    skinvisual(posreidon, 3);
-    skinvisual(avalache, 4);
-    skinvisual(silvanus, 5);
-    skinvisual(iridescense, 6);
-    skinvisual(aracane, 7);
-
-    // COLOR PICKER VIEWS
-    final LinearLayout btnLinePicker = view.findViewById(R.id.colorLinePicker);
-    final RelativeLayout linepick = view.findViewById(R.id.lay_line_pick);
-    final ColorPickerView linecolorpick = view.findViewById(R.id.color_line_picker);
-
-    // Set initial color
-    int savedColor = getEspValue("clrLine", Color.RED);
-    setLineColor(Color.alpha(savedColor), Color.red(savedColor), Color.green(savedColor), Color.blue(savedColor));
-    linecolorpick.setColor(savedColor, true);
-
-    // Update color on change
-    linecolorpick.addOnColorChangedListener(new OnColorChangedListener() {
-        @Override
-        public void onColorChanged(int newColor) {
-            setEspValue("clrLine", newColor);
-            setLineColor(Color.alpha(newColor), Color.red(newColor), Color.green(newColor), Color.blue(newColor));
-        }
-    });
-
-    // Toggle visibility
-    btnLinePicker.setOnClickListener(new View.OnClickListener() {
-    boolean isVisible = false;
-
-    @Override
-    public void onClick(View v) {
-        Toast.makeText(v.getContext(), "Clicked!", Toast.LENGTH_LONG).show();
-        isVisible = !isVisible;
-        linepick.setVisibility(isVisible ? View.VISIBLE : View.GONE);
-    }
-});
-}
 
     private void visual(View visual) {
-        //final TextView protectiontext = visual.findViewById(R.id.protectiontext);
-        //final Switch iscrash = visual.findViewById(R.id.iscrash);
-       final Switch isisland = visual.findViewById(R.id.isisland);
-        //final Switch isfixed = visual.findViewById(R.id.isfixed);
-        drawesp  = visual.findViewById(R.id.isenableesp);
+
+        final Switch iscrash = visual.findViewById(R.id.iscrash);
+        final Switch isisland = visual.findViewById(R.id.isisland);
+        final Switch drawesp = visual.findViewById(R.id.isenableesp);
         final LinearLayout menuisland = visual.findViewById(R.id.menuisland);
-        //final LinearLayout menuloho = visual.findViewById(R.id.menuloho);
-        //final LinearLayout menucrash = visual.findViewById(R.id.menucrash);
-        //final ImageView imgfixed = visual.findViewById(R.id.imgfixed);
+        final LinearLayout menucrash = visual.findViewById(R.id.menucrash);
         final ImageView imgisland = visual.findViewById(R.id.imgisland);
+
         
-        
-
-
-        drawesp.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-    @Override
-    public void onCheckedChanged(CompoundButton p1, boolean isChecked) {
-
-        if (isChecked) {
-
-            drawesp.setText("Please wait...");
-
-            anomake();
-
-            new android.os.Handler(android.os.Looper.getMainLooper())
-                    .postDelayed(() -> {
-
-                        DrawESP();
-                        drawesp.setText("Activated");
-
-                    }, 3000);
-
-        } else {
-
-            StopESP();
-            drawesp.setText("Stopped");
-        }
-    }
-});
-        //  NONROOT BYPSS
-
-        if (!Sufii) {
-            //imgfixed.setBackgroundResource(R.drawable.baseline_lock_24);
-          // menuloho.setAlpha(0.6f);
-           // isfixed.setEnabled(false);
-           // typelogin = "FREE";
-        } else {
-          //  typelogin = "BLAZEHAX";
-           /* isfixed.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        if (drawesp != null) {
+            drawesp.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                public void onCheckedChanged(CompoundButton p1, boolean isChecked) {
+                    setValue("isenableesp", isChecked);
                     if (isChecked) {
-                        if (bitversi == 64) {
-                            if (gameint == 5) {     // BGMI NONROOT BYPSS
-                                Exec("/TW " + game + " 005");
-                                Exec("/SUFI 200 " + game);
-
-                            } else {                // GLOBAL NONROOT BYPSS
-                                Exec("/TW " + game + " 002");
-                                Exec("/fix " + game);
-                            }
-                        } else if (bitversi == 32) {
-                            if (gameint == 5) {
-                                //  Exec("/TW " + game + " 006", getString(R.string.BYPASS_32_ENABLE));
-                            } else {
-                                //  Exec("/TW " + game + " 33", getString(R.string.BYPASS_32_ENABLE));
-                            }
-                        }
+                        startService(new Intent(ctx, Overlay.class));
+                    } else {
+                        stopService(new Intent(ctx, Overlay.class));
                     }
                 }
             });
+        }
 
-            iscrash.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked) {
-                        if (bitversi == 64) {
-                            if (gameint == 5) {     // BGMI NONROOT BYPSS
-                                Exec("/TW " + game + " 555");
-                                //Exec("/SUFI 200 " + game + "");
-
-                            } else {                // GLOBAL NONROOT BYPSS
-                                Exec("/TW " + game + " 000");
-                                Exec("/sufi 200" + game);
-                            }
-                        } else if (bitversi == 32) {
-                            if (gameint == 5) {
-                                Exec("/TW " + game + " 000");
-                            } else {
-                                Exec("/TW " + game + " 000");
-                            }
-                        }
-                    }
-                }
-            });*/
+        // Show all functions regardless of premium status
+        if (isisland != null) {
+            isisland.setEnabled(true);
+            isisland.setOnCheckedChangeListener((compoundButton, isChecked) -> {
+                runant("BB");
+            });
         }
 
 
-        // ISLAND BYPSS
-
-        if (!Sufii) {
-           // imgisland.setBackgroundResource(R.drawable.baseline_lock_24);
-           // menuisland.setAlpha(0.6f);
-            //isisland.setEnabled(false);
-         //   typelogin = "FREE";
-        } else {
-          //  typelogin = "BLAZEHAX";
-            isisland.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-				public void onCheckedChanged(CompoundButton p1, boolean isChecked) {
-						if (isChecked) {
-						if (!Shell.rootAccess()) {
-						runant("bypass 5");
-					//	logoText.setVisibility(View.GONE);
-						}
-					}
-						else
-						{
-							runant("bypass 6");
-							//logoText.setVisibility(View.VISIBLE);
-						}
-
-					}
-				
-			});
-
-        }
+/*
         final SeekBar radarSizeSeekBar = visual.findViewById(R.id.strokeradar);
         final TextView radarSizeText = visual.findViewById(R.id.radartext);
 
@@ -1167,734 +878,542 @@ private void deleteRecursive(File fileOrDir) {
                 radarSizeText.setText(a);
             }
         });
+*/
 
 
-        final RadioButton fps3 = visual.findViewById(R.id.fps60);
-        final RadioButton fps4 = visual.findViewById(R.id.fps120);
-        final RadioButton fps5 = visual.findViewById(R.id.fps130);
-        final RadioButton fps6 = visual.findViewById(R.id.fps144);
-
-        int CheckFps = getFps();
-        if (CheckFps == 60) {
-            fps3.setChecked(true);
-            ESPView.sleepTime = 1000 / 60;
-        } else if (CheckFps == 90) {
-            fps4.setChecked(true);
-            ESPView.sleepTime = 1000 / 90;
-        } else if (CheckFps == 120) {
-            fps5.setChecked(true);
-            ESPView.sleepTime = 1000 / 120;
-        }  else if (CheckFps == 144) {
-            fps6.setChecked(true);
-            ESPView.sleepTime = 1000 / 144;
-        } else {
-            fps3.setChecked(true);
-            ESPView.sleepTime = 1000 / 60;
-        }
-
-
-        fps3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    fps4.setChecked(false);
-                    fps5.setChecked(false);
-                    setFps(60);
-                    ESPView.ChangeFps(60);
-                }
-            }
-        });
-
-        fps4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    fps3.setChecked(false);
-                    fps5.setChecked(false);
-                    setFps(90);
-                    ESPView.ChangeFps(90);
-                }
-            }
-        });
-
-        fps5.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    fps3.setChecked(false);
-                    fps4.setChecked(false);
-                    setFps(120);
-                    ESPView.ChangeFps(120);
-                }
-            }
-        });
+        // Set default FPS to 90
+        setFps(90);
+        ESPView.ChangeFps(90);
 
         SharedPreferences sharedPreferences = visual.getContext().getSharedPreferences("espValue", Context.MODE_PRIVATE);
         String bypassmode = sharedPreferences.getString("bypassmode", "manual");
 
         if (Shell.rootAccess()) {
-            //visual.findViewById(R.id.protectiontext).setVisibility(View.GONE);
-           // visual.findViewById(R.id.menucrash).setVisibility(View.GONE);
-            //visual.findViewById(R.id.menuloho).setVisibility(View.GONE);
 
+            visual.findViewById(R.id.menucrash).setVisibility(View.GONE);
         } else {
-            if (bypassmode.equals("automatic")) {
-               // visual.findViewById(R.id.protectiontext).setVisibility(View.GONE);
-               // visual.findViewById(R.id.menuloho).setVisibility(View.GONE);
-            } else {
-               // visual.findViewById(R.id.protectiontext).setVisibility(View.VISIBLE);
-                //visual.findViewById(R.id.menuloho).setVisibility(View.VISIBLE);
-            }
-            //visual.findViewById(R.id.menucrash).setVisibility(View.GONE);
+            visual.findViewById(R.id.menucrash).setVisibility(View.GONE);
         }
 
 
-        final TextView isLine = visual.findViewById(R.id.isline);
-        //isLine.setChecked(true);
+        final CheckBox isLine = visual.findViewById(R.id.isline);
         espvisual(isLine, 2);
-
-        final TextView isbox = visual.findViewById(R.id.isBox);
-        //isbox.setChecked(true);
+        final CheckBox isbox = visual.findViewById(R.id.isBox);
         espvisual(isbox, 3);
-
-        final TextView isskeleton = visual.findViewById(R.id.isskeleton);
-        //isskeleton.setChecked(true);
+        final CheckBox isskeleton = visual.findViewById(R.id.isskeleton);
         espvisual(isskeleton, 4);
-
-        final TextView isdistance = visual.findViewById(R.id.isdistance);
-        //isdistance.setChecked(true);
+        final CheckBox isdistance = visual.findViewById(R.id.isdistance);
         espvisual(isdistance, 5);
-
-        final TextView ishealth = visual.findViewById(R.id.ishealth);
-        //ishealth.setChecked(true);
+        final CheckBox ishealth = visual.findViewById(R.id.ishealth);
         espvisual(ishealth, 6);
-
-        final TextView isname = visual.findViewById(R.id.isName);
-        //isname.setChecked(true);
+        final CheckBox isname = visual.findViewById(R.id.isName);
         espvisual(isname, 7);
-
-        final TextView ishead = visual.findViewById(R.id.ishead);
-        //ishead.setChecked(true);
+        final CheckBox ishead = visual.findViewById(R.id.ishead);
         espvisual(ishead, 8);
-
-        final TextView isalert = visual.findViewById(R.id.isalert);
-        //isalert.setChecked(true);
+        final CheckBox isalert = visual.findViewById(R.id.isalert);
         espvisual(isalert, 9);
-
-        final TextView isweapon = visual.findViewById(R.id.isweapon);
-        //isweapon.setChecked(true);
+        final CheckBox isweapon = visual.findViewById(R.id.isweapon);
         espvisual(isweapon, 10);
-
-        final TextView isthrowables = visual.findViewById(R.id.isthrowables);
-        //isthrowables.setChecked(true);
+        final CheckBox isthrowables = visual.findViewById(R.id.isthrowables);
         espvisual(isthrowables, 11);
-
-
-        final TextView isnobot = visual.findViewById(R.id.isnobot);
-        //isnobot.setChecked(false);
+        final CheckBox isnobot = visual.findViewById(R.id.isnobot);
         espvisual(isnobot, 15);
-
-        final TextView isweaponicon = visual.findViewById(R.id.isweaponicon);
-        //isweaponicon.setChecked(true);
+        final CheckBox isweaponicon = visual.findViewById(R.id.isweaponicon);
         espvisual(isweaponicon, 16);
-
-
-        islootitems = visual.findViewById(R.id.islootitems);
-        espvisual(islootitems, 17);
-
-        final TextView isradar = visual.findViewById(R.id.isradar);
-        espvisual(isradar, 18);
-
-        final TextView playerid = visual.findViewById(R.id.playerid);
-        espvisual(playerid, 19);
-
-        final TextView playernation = visual.findViewById(R.id.playernation);
-        espvisual(playernation, 20);
-
-        final TextView isteamid = visual.findViewById(R.id.isteamid);
-        espvisual(isteamid, 21);
-
-        final TextView isFightMode = visual.findViewById(R.id.isfightmode);
-        espvisual(isFightMode, 22);
-        isFightMode.setOnClickListener(new View.OnClickListener() {
-            boolean isSelected = false;
-
-            @Override
-            public void onClick(View v) {
-                if (!isSelected) {
-                    StartFightModeFloat();
-                    isFightMode.setBackgroundResource(R.drawable.float_selected);
-                } else {
-                    StopFightModeFloat();
-                    isFightMode.setBackgroundResource(R.drawable.float_unselect);
-                }
-                isSelected = !isSelected;
-            }
-        });
-
-
-
-
+        final CheckBox isAura = visual.findViewById(R.id.isaura);
+        espvisual(isAura, 17); 
+        final CheckBox isPlayerElectric = visual.findViewById(R.id.isPlayerElectric);
+        espvisual(isPlayerElectric, 18); 
+        final CheckBox islootbox = visual.findViewById(R.id.islootbox);
+        espvisual(islootbox, 14);
 
 
     }
-
-    public static void enableESP(Context context) {
-        Intent intent = new Intent(context, FloatService.class);
-        intent.setAction("ENABLE_ESP");
-        context.startService(intent);
-    }
-
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        if (intent != null) {
-            String action = intent.getAction();
-
-            if ("ENABLE_ESP".equals(action)) {
-                drawesp.setChecked(true);
-            } else if ("UPDATE_LOOT_ITEMS".equals(action)) {
-                boolean isFightModeOn = intent.getBooleanExtra("isFightModeOn", false);
-                if (islootitems != null) {
-                    islootitems.setSelected(!isFightModeOn);
-                }
-            }
-        }
-        return START_STICKY;
-    }
-
-
 
     private void items(View items) {
-        LinearLayout menui1 = items.findViewById(R.id.items1);
-        LinearLayout menui2 = items.findViewById(R.id.lyvehicle);
+        View menui1 = items.findViewById(R.id.items1);
+        View menui2 = items.findViewById(R.id.lyvehicle);
         View bottomi1 = items.findViewById(R.id.bottomi1);
         View bottomi2 = items.findViewById(R.id.bottomi2);
-        // LinearLayout navi1 = items.findViewById(R.id.navitems);
 
-
-     /*   navi1.setOnClickListener(v -> {
-            menui1.setVisibility(View.VISIBLE);
-            menui2.setVisibility(View.GONE);
-            bottomi1.setVisibility(View.VISIBLE);
-            bottomi2.setVisibility(View.GONE);
-        });
-
-        navi2.setOnClickListener(v -> {
-            menui1.setVisibility(View.GONE);
-            menui2.setVisibility(View.VISIBLE);
-            bottomi1.setVisibility(View.GONE);
-            bottomi2.setVisibility(View.VISIBLE);
-        });*/
-
-        final TextView lootbox = items.findViewById(R.id.lootbox);
+        final CheckBox lootbox = items.findViewById(R.id.lootbox);
         espvisual(lootbox, 14);
 
+        final CheckBox Desert = items.findViewById(R.id.Desert);
+        itemss(Desert);
 
-        final TextView M416 = items.findViewById(R.id.m416);
+        final CheckBox M416 = items.findViewById(R.id.m416);
         itemss(M416);
 
-        final TextView QBZ = items.findViewById(R.id.QBZ);
+        final CheckBox QBZ = items.findViewById(R.id.QBZ);
         itemss(QBZ);
 
-        final TextView SCARL = items.findViewById(R.id.SCARL);
+        final CheckBox SCARL = items.findViewById(R.id.SCARL);
         itemss(SCARL);
 
-        final TextView AKM = items.findViewById(R.id.AKM);
+        final CheckBox AKM = items.findViewById(R.id.AKM);
         itemss(AKM);
 
-        final TextView M16A4 = items.findViewById(R.id.M16A4);
+        final CheckBox M16A4 = items.findViewById(R.id.M16A4);
         itemss(M16A4);
 
-        final TextView AUG = items.findViewById(R.id.AUG);
+        final CheckBox AUG = items.findViewById(R.id.AUG);
         itemss(AUG);
 
-
-
-        final TextView Groza = items.findViewById(R.id.Groza);
-        itemss(Groza);
-
-        final TextView MK47 = items.findViewById(R.id.MK47);
-        itemss(MK47);
-
-        final TextView M762 = items.findViewById(R.id.M762);
-        itemss(M762);
-
-        final TextView G36C = items.findViewById(R.id.G36C);
-        itemss(G36C);
-
-        final TextView DP28 = items.findViewById(R.id.DP28);
-        itemss(DP28);
-
-        final TextView MG3 = items.findViewById(R.id.MG3);
-        itemss(MG3);
-
-        final TextView M249 = items.findViewById(R.id.M249);
+        final CheckBox M249 = items.findViewById(R.id.M249);
         itemss(M249);
 
+        final CheckBox Groza = items.findViewById(R.id.Groza);
+        itemss(Groza);
 
+        final CheckBox MK47 = items.findViewById(R.id.MK47);
+        itemss(MK47);
 
-        final TextView FAMAS = items.findViewById(R.id.FAMAS);
+        final CheckBox M762 = items.findViewById(R.id.M762);
+        itemss(M762);
+
+        final CheckBox G36C = items.findViewById(R.id.G36C);
+        itemss(G36C);
+
+        final CheckBox DP28 = items.findViewById(R.id.DP28);
+        itemss(DP28);
+
+        final CheckBox MG3 = items.findViewById(R.id.MG3);
+        itemss(MG3);
+
+        final CheckBox FAMAS = items.findViewById(R.id.FAMAS);
         itemss(FAMAS);
 
 
-        final TextView HoneyBadger = items.findViewById(R.id.HoneyBadger);
+        final CheckBox HoneyBadger = items.findViewById(R.id.HoneyBadger);
         itemss(HoneyBadger);
 
 
-        final TextView AC32 = items.findViewById(R.id.AC32);
+        final CheckBox AC32 = items.findViewById(R.id.AC32);
         itemss(AC32);
+        
 
-
-        //SMG
-
-        final TextView UMP = items.findViewById(R.id.UMP);
+        final CheckBox UMP = items.findViewById(R.id.UMP);
         itemss(UMP);
 
-        final TextView bizon = items.findViewById(R.id.bizon);
+        final CheckBox bizon = items.findViewById(R.id.bizon);
         itemss(bizon);
 
-        final TextView MP5K = items.findViewById(R.id.MP5K);
+        final CheckBox MP5K = items.findViewById(R.id.MP5K);
         itemss(MP5K);
 
-        final TextView TommyGun = items.findViewById(R.id.TommyGun);
+        final CheckBox TommyGun = items.findViewById(R.id.TommyGun);
         itemss(TommyGun);
 
-        final TextView vector = items.findViewById(R.id.vector);
+        final CheckBox vector = items.findViewById(R.id.vector);
         itemss(vector);
 
-        final TextView P90 = items.findViewById(R.id.P90);
+        final CheckBox P90 = items.findViewById(R.id.P90);
         itemss(P90);
 
-        final TextView UZI = items.findViewById(R.id.UZI);
+        final CheckBox UZI = items.findViewById(R.id.UZI);
         itemss(UZI);
 
 
         //Snipers
 
-        final TextView AWM = items.findViewById(R.id.AWM);
+        final CheckBox AWM = items.findViewById(R.id.AWM);
         itemss(AWM);
 
-        final TextView QBU = items.findViewById(R.id.QBU);
+        final CheckBox QBU = items.findViewById(R.id.QBU);
         itemss(QBU);
 
-        final TextView Kar98k = items.findViewById(R.id.Kar98k);
+        final CheckBox Kar98k = items.findViewById(R.id.Kar98k);
         itemss(Kar98k);
 
-        final TextView M24 = items.findViewById(R.id.M24);
+        final CheckBox M24 = items.findViewById(R.id.M24);
         itemss(M24);
 
-        final TextView SLR = items.findViewById(R.id.SLR);
+        final CheckBox SLR = items.findViewById(R.id.SLR);
         itemss(SLR);
 
-        final TextView SKS = items.findViewById(R.id.SKS);
+        final CheckBox SKS = items.findViewById(R.id.SKS);
         itemss(SKS);
 
-        final TextView MK14 = items.findViewById(R.id.MK14);
+        final CheckBox MK14 = items.findViewById(R.id.MK14);
         itemss(MK14);
 
-        final TextView Mini14 = items.findViewById(R.id.Mini14);
+        final CheckBox Mini14 = items.findViewById(R.id.Mini14);
         itemss(Mini14);
 
-        final TextView Mosin = items.findViewById(R.id.Mosin);
+        final CheckBox Mosin = items.findViewById(R.id.Mosin);
         itemss(Mosin);
 
-        final TextView VSS = items.findViewById(R.id.VSS);
+        final CheckBox VSS = items.findViewById(R.id.VSS);
         itemss(VSS);
 
-        final TextView AMR = items.findViewById(R.id.AMR);
+        final CheckBox AMR = items.findViewById(R.id.AMR);
         itemss(AMR);
 
-        final TextView Win94 = items.findViewById(R.id.Win94);
+        final CheckBox Win94 = items.findViewById(R.id.Win94);
         itemss(Win94);
 
-        final TextView MK12 = items.findViewById(R.id.MK12);
+        final CheckBox MK12 = items.findViewById(R.id.MK12);
         itemss(MK12);
 
         //Scopes
 
-        final TextView x2 = items.findViewById(R.id.x2);
+        final CheckBox x2 = items.findViewById(R.id.x2);
         itemss(x2);
 
-        final TextView x3 = items.findViewById(R.id.x3);
+        final CheckBox x3 = items.findViewById(R.id.x3);
         itemss(x3);
 
-        final TextView x4 = items.findViewById(R.id.x4);
+        final CheckBox x4 = items.findViewById(R.id.x4);
         itemss(x4);
 
-        final TextView x6 = items.findViewById(R.id.x6);
+        final CheckBox x6 = items.findViewById(R.id.x6);
         itemss(x6);
 
-        final TextView x8 = items.findViewById(R.id.x8);
+        final CheckBox x8 = items.findViewById(R.id.x8);
         itemss(x8);
 
-        final TextView canted = items.findViewById(R.id.canted);
+        final CheckBox canted = items.findViewById(R.id.canted);
         itemss(canted);
 
-        final TextView hollow = items.findViewById(R.id.hollow);
+        final CheckBox hollow = items.findViewById(R.id.hollow);
         itemss(hollow);
 
-        final TextView reddot = items.findViewById(R.id.reddot);
+        final CheckBox reddot = items.findViewById(R.id.reddot);
         itemss(reddot);
 
         //Armor
 
-        final TextView bag1 = items.findViewById(R.id.bag1);
+        final CheckBox bag1 = items.findViewById(R.id.bag1);
         itemss(bag1);
 
-        final TextView bag2 = items.findViewById(R.id.bag2);
+        final CheckBox bag2 = items.findViewById(R.id.bag2);
         itemss(bag2);
 
-        final TextView bag3 = items.findViewById(R.id.bag3);
+        final CheckBox bag3 = items.findViewById(R.id.bag3);
         itemss(bag3);
 
-        final TextView helmet1 = items.findViewById(R.id.helmet1);
+        final CheckBox helmet1 = items.findViewById(R.id.helmet1);
         itemss(helmet1);
 
-        final TextView helmet2 = items.findViewById(R.id.helmet2);
+        final CheckBox helmet2 = items.findViewById(R.id.helmet2);
         itemss(helmet2);
 
-        final TextView helmet3 = items.findViewById(R.id.helmet3);
+        final CheckBox helmet3 = items.findViewById(R.id.helmet3);
         itemss(helmet3);
 
-        final TextView vest1 = items.findViewById(R.id.vest1);
+        final CheckBox vest1 = items.findViewById(R.id.vest1);
         itemss(vest1);
 
-        final TextView vest2 = items.findViewById(R.id.vest2);
+        final CheckBox vest2 = items.findViewById(R.id.vest2);
         itemss(vest2);
 
-        final TextView vest3 = items.findViewById(R.id.vest3);
+        final CheckBox vest3 = items.findViewById(R.id.vest3);
         itemss(vest3);
 
         //Ammo
-        final TextView a9 = items.findViewById(R.id.a9);
+        final CheckBox a9 = items.findViewById(R.id.a9);
         itemss(a9);
 
-        final TextView a7 = items.findViewById(R.id.a7);
+        final CheckBox a7 = items.findViewById(R.id.a7);
         itemss(a7);
 
-        final TextView a5 = items.findViewById(R.id.a5);
+        final CheckBox a5 = items.findViewById(R.id.a5);
         itemss(a5);
 
-        final TextView a300 = items.findViewById(R.id.a300);
+        final CheckBox a300 = items.findViewById(R.id.a300);
         itemss(a300);
 
-        final TextView a45 = items.findViewById(R.id.a45);
+        final CheckBox a45 = items.findViewById(R.id.a45);
         itemss(a45);
 
-        final TextView Arrow = items.findViewById(R.id.arrow);
+        final CheckBox Arrow = items.findViewById(R.id.arrow);
         itemss(Arrow);
 
-        final TextView BMG50 = items.findViewById(R.id.BMG50);
+        final CheckBox BMG50 = items.findViewById(R.id.BMG50);
         itemss(BMG50);
 
-        final TextView a12 = items.findViewById(R.id.a12);
+        final CheckBox a12 = items.findViewById(R.id.a12);
         itemss(a12);
 
         //Shotgun
-        final TextView DBS = items.findViewById(R.id.DBS);
+        final CheckBox DBS = items.findViewById(R.id.DBS);
         itemss(DBS);
 
-        final TextView NS2000 = items.findViewById(R.id.NS2000);
+        final CheckBox NS2000 = items.findViewById(R.id.NS2000);
         itemss(NS2000);
 
-        final TextView S686 = items.findViewById(R.id.S686);
+        final CheckBox S686 = items.findViewById(R.id.S686);
         itemss(S686);
 
-        final TextView sawed = items.findViewById(R.id.sawed);
+        final CheckBox sawed = items.findViewById(R.id.sawed);
         itemss(sawed);
 
-        final TextView M1014 = items.findViewById(R.id.M1014);
+        final CheckBox M1014 = items.findViewById(R.id.M1014);
         itemss(M1014);
 
-        final TextView S1897 = items.findViewById(R.id.S1897);
+        final CheckBox S1897 = items.findViewById(R.id.S1897);
         itemss(S1897);
 
-        final TextView S12K = items.findViewById(R.id.S12K);
+        final CheckBox S12K = items.findViewById(R.id.S12K);
         itemss(S12K);
 
         //Throwables
-        final TextView grenade = items.findViewById(R.id.grenade);
+        final CheckBox grenade = items.findViewById(R.id.grenade);
         itemss(grenade);
 
-        final TextView molotov = items.findViewById(R.id.molotov);
+        final CheckBox molotov = items.findViewById(R.id.molotov);
         itemss(molotov);
 
-        final TextView stun = items.findViewById(R.id.stun);
+        final CheckBox stun = items.findViewById(R.id.stun);
         itemss(stun);
 
-        final TextView smoke = items.findViewById(R.id.smoke);
+        final CheckBox smoke = items.findViewById(R.id.smoke);
         itemss(smoke);
 
         //Medics
 
-        final TextView painkiller = items.findViewById(R.id.painkiller);
+        final CheckBox painkiller = items.findViewById(R.id.painkiller);
         itemss(painkiller);
 
-        final TextView medkit = items.findViewById(R.id.medkit);
+        final CheckBox medkit = items.findViewById(R.id.medkit);
         itemss(medkit);
 
-        final TextView firstaid = items.findViewById(R.id.firstaid);
+        final CheckBox firstaid = items.findViewById(R.id.firstaid);
         itemss(firstaid);
 
-        final TextView bandage = items.findViewById(R.id.bandage);
+        final CheckBox bandage = items.findViewById(R.id.bandage);
         itemss(bandage);
 
-        final TextView injection = items.findViewById(R.id.injection);
+        final CheckBox injection = items.findViewById(R.id.injection);
         itemss(injection);
 
-        final TextView energydrink = items.findViewById(R.id.energydrink);
+        final CheckBox energydrink = items.findViewById(R.id.energydrink);
         itemss(energydrink);
 
         //Handy
-        final TextView Pan = items.findViewById(R.id.Pan);
+        final CheckBox Pan = items.findViewById(R.id.Pan);
         itemss(Pan);
 
-        final TextView Crowbar = items.findViewById(R.id.Crowbar);
+        final CheckBox Crowbar = items.findViewById(R.id.Crowbar);
         itemss(Crowbar);
 
-        final TextView Sickle = items.findViewById(R.id.Sickle);
+        final CheckBox Sickle = items.findViewById(R.id.Sickle);
         itemss(Sickle);
 
-        final TextView Machete = items.findViewById(R.id.Machete);
+        final CheckBox Machete = items.findViewById(R.id.Machete);
         itemss(Machete);
 
-        final TextView Crossbow = items.findViewById(R.id.Crossbow);
+        final CheckBox Crossbow = items.findViewById(R.id.Crossbow);
         itemss(Crossbow);
 
-        final TextView Explosive = items.findViewById(R.id.Explosive);
+        final CheckBox Explosive = items.findViewById(R.id.Explosive);
         itemss(Explosive);
 
         //Pistols
-
-        final TextView Desert = items.findViewById(R.id.Desert);
-        itemss(Desert);
-
-        final TextView P92 = items.findViewById(R.id.P92);
+        final CheckBox P92 = items.findViewById(R.id.P92);
         itemss(P92);
 
-        final TextView R45 = items.findViewById(R.id.R45);
+        final CheckBox R45 = items.findViewById(R.id.R45);
         itemss(R45);
 
-        final TextView P18C = items.findViewById(R.id.P18C);
+        final CheckBox P18C = items.findViewById(R.id.P18C);
         itemss(P18C);
 
-        final TextView P1911 = items.findViewById(R.id.P1911);
+        final CheckBox P1911 = items.findViewById(R.id.P1911);
         itemss(P1911);
 
-        final TextView R1895 = items.findViewById(R.id.R1895);
+        final CheckBox R1895 = items.findViewById(R.id.R1895);
         itemss(R1895);
 
-        final TextView Scorpion = items.findViewById(R.id.Scorpion);
+        final CheckBox Scorpion = items.findViewById(R.id.Scorpion);
         itemss(Scorpion);
 
         //Other
-        final TextView CheekPad = items.findViewById(R.id.CheekPad);
+        final CheckBox CheekPad = items.findViewById(R.id.CheekPad);
         itemss(CheekPad);
 
-        final TextView Choke = items.findViewById(R.id.Choke);
+        final CheckBox Choke = items.findViewById(R.id.Choke);
         itemss(Choke);
 
-        final TextView CompensatorSMG = items.findViewById(R.id.CompensatorSMG);
+        final CheckBox CompensatorSMG = items.findViewById(R.id.CompensatorSMG);
         itemss(CompensatorSMG);
 
 
-        final TextView FlashHiderSMG = items.findViewById(R.id.FlashHiderSMG);
+        final CheckBox FlashHiderSMG = items.findViewById(R.id.FlashHiderSMG);
         itemss(FlashHiderSMG);
 
 
-        final TextView FlashHiderAr = items.findViewById(R.id.FlashHiderAr);
+        final CheckBox FlashHiderAr = items.findViewById(R.id.FlashHiderAr);
         itemss(FlashHiderAr);
 
-        final TextView ArCompensator = items.findViewById(R.id.ArCompensator);
+        final CheckBox ArCompensator = items.findViewById(R.id.ArCompensator);
         itemss(ArCompensator);
 
-        final TextView TacticalStock = items.findViewById(R.id.TacticalStock);
+        final CheckBox TacticalStock = items.findViewById(R.id.TacticalStock);
         itemss(TacticalStock);
 
-        final TextView Duckbill = items.findViewById(R.id.Duckbill);
+        final CheckBox Duckbill = items.findViewById(R.id.Duckbill);
         itemss(Duckbill);
 
-        final TextView FlashHiderSniper = items.findViewById(R.id.FlashHiderSniper);
+        final CheckBox FlashHiderSniper = items.findViewById(R.id.FlashHiderSniper);
         itemss(FlashHiderSniper);
 
-        final TextView SuppressorSMG = items.findViewById(R.id.SuppressorSMG);
+        final CheckBox SuppressorSMG = items.findViewById(R.id.SuppressorSMG);
         itemss(SuppressorSMG);
 
-        final TextView HalfGrip = items.findViewById(R.id.HalfGrip);
+        final CheckBox HalfGrip = items.findViewById(R.id.HalfGrip);
         itemss(HalfGrip);
 
-        final TextView StockMicroUZI = items.findViewById(R.id.StockMicroUZI);
+        final CheckBox StockMicroUZI = items.findViewById(R.id.StockMicroUZI);
         itemss(StockMicroUZI);
 
-        final TextView SuppressorSniper = items.findViewById(R.id.SuppressorSniper);
+        final CheckBox SuppressorSniper = items.findViewById(R.id.SuppressorSniper);
         itemss(SuppressorSniper);
 
-        final TextView SuppressorAr = items.findViewById(R.id.SuppressorAr);
+        final CheckBox SuppressorAr = items.findViewById(R.id.SuppressorAr);
         itemss(SuppressorAr);
 
-        final TextView SniperCompensator = items.findViewById(R.id.SniperCompensator);
+        final CheckBox SniperCompensator = items.findViewById(R.id.SniperCompensator);
         itemss(SniperCompensator);
 
-        final TextView ExQdSniper = items.findViewById(R.id.ExQdSniper);
+        final CheckBox ExQdSniper = items.findViewById(R.id.ExQdSniper);
         itemss(ExQdSniper);
 
-        final TextView QdSMG = items.findViewById(R.id.QdSMG);
+        final CheckBox QdSMG = items.findViewById(R.id.QdSMG);
         itemss(QdSMG);
 
-        final TextView ExSMG = items.findViewById(R.id.ExSMG);
+        final CheckBox ExSMG = items.findViewById(R.id.ExSMG);
         itemss(ExSMG);
 
-        final TextView QdSniper = items.findViewById(R.id.QdSniper);
+        final CheckBox QdSniper = items.findViewById(R.id.QdSniper);
         itemss(QdSniper);
 
-        final TextView ExSniper = items.findViewById(R.id.ExSniper);
+        final CheckBox ExSniper = items.findViewById(R.id.ExSniper);
         itemss(ExSniper);
 
-        final TextView ExAr = items.findViewById(R.id.ExAr);
+        final CheckBox ExAr = items.findViewById(R.id.ExAr);
         itemss(ExAr);
 
-        final TextView ExQdAr = items.findViewById(R.id.ExQdAr);
+        final CheckBox ExQdAr = items.findViewById(R.id.ExQdAr);
         itemss(ExQdAr);
 
-        final TextView QdAr = items.findViewById(R.id.QdAr);
+        final CheckBox QdAr = items.findViewById(R.id.QdAr);
         itemss(QdAr);
 
-        final TextView ExQdSMG = items.findViewById(R.id.ExQdSMG);
+        final CheckBox ExQdSMG = items.findViewById(R.id.ExQdSMG);
         itemss(ExQdSMG);
 
-        final TextView QuiverCrossBow = items.findViewById(R.id.QuiverCrossBow);
+        final CheckBox QuiverCrossBow = items.findViewById(R.id.QuiverCrossBow);
         itemss(QuiverCrossBow);
 
-        final TextView BulletLoop = items.findViewById(R.id.BulletLoop);
+        final CheckBox BulletLoop = items.findViewById(R.id.BulletLoop);
         itemss(BulletLoop);
 
-        final TextView ThumbGrip = items.findViewById(R.id.ThumbGrip);
+        final CheckBox ThumbGrip = items.findViewById(R.id.ThumbGrip);
         itemss(ThumbGrip);
 
-        final TextView LaserSight = items.findViewById(R.id.LaserSight);
+        final CheckBox LaserSight = items.findViewById(R.id.LaserSight);
         itemss(LaserSight);
 
-        final TextView AngledGrip = items.findViewById(R.id.AngledGrip);
+        final CheckBox AngledGrip = items.findViewById(R.id.AngledGrip);
         itemss(AngledGrip);
 
-        final TextView LightGrip = items.findViewById(R.id.LightGrip);
+        final CheckBox LightGrip = items.findViewById(R.id.LightGrip);
         itemss(LightGrip);
 
-        final TextView VerticalGrip = items.findViewById(R.id.VerticalGrip);
+        final CheckBox VerticalGrip = items.findViewById(R.id.VerticalGrip);
         itemss(VerticalGrip);
 
-        final TextView GasCan = items.findViewById(R.id.GasCan);
+        final CheckBox GasCan = items.findViewById(R.id.GasCan);
         itemss(GasCan);
 
         //Vehicle
-        final TextView UTV = items.findViewById(R.id.UTV);
-        //UTV.setChecked(true);
+        final CheckBox UTV = items.findViewById(R.id.UTV);
         vehicless(UTV);
 
-        final TextView Buggy = items.findViewById(R.id.Buggy);
-        //Buggy.setChecked(true);
+        final CheckBox Buggy = items.findViewById(R.id.Buggy);
         vehicless(Buggy);
 
-        final TextView UAZ = items.findViewById(R.id.UAZ);
-        //UAZ.setChecked(true);
+        final CheckBox UAZ = items.findViewById(R.id.UAZ);
         vehicless(UAZ);
 
-        final TextView Trike = items.findViewById(R.id.Trike);
-        //Trike.setChecked(true);
+        final CheckBox Trike = items.findViewById(R.id.Trike);
         vehicless(Trike);
 
-        final TextView Bike = items.findViewById(R.id.Bike);
-        //Bike.setChecked(true);
+        final CheckBox Bike = items.findViewById(R.id.Bike);
         vehicless(Bike);
 
-        final TextView Dacia = items.findViewById(R.id.Dacia);
-        //Dacia.setChecked(true);
+        final CheckBox Dacia = items.findViewById(R.id.Dacia);
         vehicless(Dacia);
 
-        final TextView Jet = items.findViewById(R.id.Jet);
-        //Jet.setChecked(true);
+        final CheckBox Jet = items.findViewById(R.id.Jet);
         vehicless(Jet);
 
-        final TextView Boat = items.findViewById(R.id.Boat);
-        //Boat.setChecked(true);
+        final CheckBox Boat = items.findViewById(R.id.Boat);
         vehicless(Boat);
 
-        final TextView Scooter = items.findViewById(R.id.Scooter);
-        //Scooter.setChecked(true);
+        final CheckBox Scooter = items.findViewById(R.id.Scooter);
         vehicless(Scooter);
 
-        final TextView Bus = items.findViewById(R.id.Bus);
-        //Bus.setChecked(true);
+        final CheckBox Bus = items.findViewById(R.id.Bus);
         vehicless(Bus);
 
-        final TextView Mirado = items.findViewById(R.id.Mirado);
-        //Mirado.setChecked(true);
+        final CheckBox Mirado = items.findViewById(R.id.Mirado);
         vehicless(Mirado);
 
-        final TextView Rony = items.findViewById(R.id.Rony);
-       // Rony.setChecked(true);
+        final CheckBox Rony = items.findViewById(R.id.Rony);
         vehicless(Rony);
 
-        final TextView Snowbike = items.findViewById(R.id.Snowbike);
-        //Snowbike.setChecked(true);
+        final CheckBox Snowbike = items.findViewById(R.id.Snowbike);
         vehicless(Snowbike);
 
-        final TextView Snowmobile = items.findViewById(R.id.Snowmobile);
-       // Snowmobile.setChecked(true);
+        final CheckBox Snowmobile = items.findViewById(R.id.Snowmobile);
         vehicless(Snowmobile);
 
-        final TextView Tempo = items.findViewById(R.id.Tempo);
-        ///Tempo.setChecked(true);
+        final CheckBox Tempo = items.findViewById(R.id.Tempo);
         vehicless(Tempo);
 
-        final TextView Truck = items.findViewById(R.id.Truck);
-        //Truck.setChecked(true);
+        final CheckBox Truck = items.findViewById(R.id.Truck);
         vehicless(Truck);
 
-        final TextView MonsterTruck = items.findViewById(R.id.MonsterTruck);
-       // MonsterTruck.setChecked(true);
+        final CheckBox MonsterTruck = items.findViewById(R.id.MonsterTruck);
         vehicless(MonsterTruck);
 
-        final TextView BRDM = items.findViewById(R.id.BRDM);
-        //BRDM.setChecked(true);
+        final CheckBox BRDM = items.findViewById(R.id.BRDM);
         vehicless(BRDM);
 
-        final TextView ATV = items.findViewById(R.id.ATV);
-        //ATV.setChecked(true);
+        final CheckBox ATV = items.findViewById(R.id.ATV);
         vehicless(ATV);
 
-        final TextView LadaNiva = items.findViewById(R.id.LadaNiva);
-        //LadaNiva.setChecked(true);
+        final CheckBox LadaNiva = items.findViewById(R.id.LadaNiva);
         vehicless(LadaNiva);
 
-        final TextView Motorglider = items.findViewById(R.id.Motorglider);
-        //Motorglider.setChecked(true);
+        final CheckBox Motorglider = items.findViewById(R.id.Motorglider);
         vehicless(Motorglider);
 
-        final TextView CoupeRB = items.findViewById(R.id.CoupeRB);
-        //CoupeRB.setChecked(true);
+        final CheckBox CoupeRB = items.findViewById(R.id.CoupeRB);
         vehicless(CoupeRB);
 
-
         //Special
-        final TextView Crate = items.findViewById(R.id.Crate);
+        final CheckBox Crate = items.findViewById(R.id.Crate);
         itemss(Crate);
 
-        final TextView Airdrop = items.findViewById(R.id.Airdrop);
+        final CheckBox Airdrop = items.findViewById(R.id.Airdrop);
         itemss(Airdrop);
 
-        final TextView DropPlane = items.findViewById(R.id.DropPlane);
+        final CheckBox DropPlane = items.findViewById(R.id.DropPlane);
         itemss(DropPlane);
 
-        final TextView FlareGun = items.findViewById(R.id.FlareGun);
+        final CheckBox FlareGun = items.findViewById(R.id.FlareGun);
         itemss(FlareGun);
 
- /*       final LinearLayout checkall = mainView.findViewById(R.id.itemscheckall);
-        final LinearLayout noneall = mainView.findViewById(R.id.itemsblockall);
-        final LinearLayout checkallv = mainView.findViewById(R.id.mobilscheckall);
-        final LinearLayout noneallv = mainView.findViewById(R.id.mobilsblockall);
+        final View checkall = items.findViewById(R.id.itemscheckall);
+        final View noneall = items.findViewById(R.id.itemsblockall);
+        final View checkallv = items.findViewById(R.id.mobilscheckall);
+        final View noneallv = items.findViewById(R.id.mobilsblockall);
 
-       checkallv.setOnClickListener(v -> {
+        checkallv.setOnClickListener(v -> {
             Buggy.setChecked(true);
             UAZ.setChecked(true);
             Trike.setChecked(true);
@@ -1946,7 +1465,7 @@ private void deleteRecursive(File fileOrDir) {
 
         checkall.setOnClickListener(v -> {
 
-
+            /* Other */
             Crate.setChecked(true);
             Airdrop.setChecked(true);
             DropPlane.setChecked(true);
@@ -1955,7 +1474,7 @@ private void deleteRecursive(File fileOrDir) {
             Choke.setChecked(true);
 
 
-
+            /* Scope */
             canted.setChecked(true);
             reddot.setChecked(true);
             hollow.setChecked(true);
@@ -1965,7 +1484,7 @@ private void deleteRecursive(File fileOrDir) {
             x6.setChecked(true);
             x8.setChecked(true);
 
-
+            /* Weapon */
             AWM.setChecked(true);
             QBU.setChecked(true);
             SLR.setChecked(true);
@@ -2019,7 +1538,7 @@ private void deleteRecursive(File fileOrDir) {
             HoneyBadger.setChecked(true);
             FAMAS.setChecked(true);
 
-
+            /* Ammo */
             a45.setChecked(true);
             a9.setChecked(true);
             a7.setChecked(true);
@@ -2088,7 +1607,7 @@ private void deleteRecursive(File fileOrDir) {
         });
 
         noneall.setOnClickListener(v -> {
-
+            /* Other */
             Crate.setChecked(false);
             Airdrop.setChecked(false);
             DropPlane.setChecked(false);
@@ -2097,7 +1616,7 @@ private void deleteRecursive(File fileOrDir) {
             Choke.setChecked(false);
 
 
-
+            /* Scope */
             canted.setChecked(false);
             reddot.setChecked(false);
             hollow.setChecked(false);
@@ -2107,7 +1626,7 @@ private void deleteRecursive(File fileOrDir) {
             x6.setChecked(false);
             x8.setChecked(false);
 
-
+            /* Weapon */
             AWM.setChecked(false);
             QBU.setChecked(false);
             SLR.setChecked(false);
@@ -2161,7 +1680,7 @@ private void deleteRecursive(File fileOrDir) {
             HoneyBadger.setChecked(false);
             FAMAS.setChecked(false);
 
-
+            /* Ammo */
             a45.setChecked(false);
             a9.setChecked(false);
             a7.setChecked(false);
@@ -2227,133 +1746,52 @@ private void deleteRecursive(File fileOrDir) {
             vest3.setChecked(false);
             stun.setChecked(false);
             Crowbar.setChecked(false);
-        });*/
+        });
     }
 
     private void aimbot(View aimbot) {
-        TextView menutextaimtouch = aimbot.findViewById(R.id.texttouch);
+        SharedPreferences sp = this.getSharedPreferences("espValue", Context.MODE_PRIVATE);
         TextView aimpre = aimbot.findViewById(R.id.aimpre);
         LinearLayout aimsec = aimbot.findViewById(R.id.aimsec);
-        LinearLayout menurotation = aimbot.findViewById(R.id.rotationmenu);
-        LinearLayout aimspeedmenu = aimbot.findViewById(R.id.aimspeedmenu);
-        LinearLayout recoilmenu = aimbot.findViewById(R.id.recoilmenu);
-        LinearLayout recoilmenus2 = aimbot.findViewById(R.id.recoilmenus2);
-        LinearLayout smoothnessmenu = aimbot.findViewById(R.id.smoothnessmenu);
-        RadioButton touchsimulation = aimbot.findViewById(R.id.touchsimulation);
-        RadioButton bullettrack = aimbot.findViewById(R.id.bullettrack);
-        RadioButton aimbottt = aimbot.findViewById(R.id.aimbot);
-        final LinearLayout touchLocationmenu = aimbot.findViewById(R.id.touchlocationmenu);
-        final LinearLayout touchsizemenu = aimbot.findViewById(R.id.touchsizemenu);
-        final LinearLayout posXmenu = aimbot.findViewById(R.id.posXmenu);
-        final LinearLayout posYmenu = aimbot.findViewById(R.id.posYmenu);
 
-        if (!modestatus) {
-            aimbottt.setVisibility(View.GONE);
-            bullettrack.setVisibility(View.VISIBLE);
-        } else {
-            aimbottt.setVisibility(View.VISIBLE);
-            bullettrack.setVisibility(View.VISIBLE);
-        }
+        // ALWAYS show all functions
+        if (aimpre != null) aimpre.setVisibility(View.GONE);
+        if (aimsec != null) aimsec.setVisibility(View.VISIBLE);
 
 
-            
-            aimpre.setVisibility(View.GONE);
-            aimsec.setVisibility(View.VISIBLE);
-            menurotation.setAlpha(1.0f);
-            aimspeedmenu.setAlpha(1.0f);
-            recoilmenu.setAlpha(1.0f);
-            recoilmenus2.setAlpha(1.0f);
-            smoothnessmenu.setAlpha(1.0f);
-            touchsimulation.setEnabled(true);
-            bullettrack.setEnabled(true);
-            aimbottt.setEnabled(true);
-            touchsimulation.setAlpha(1.0f);
-            bullettrack.setAlpha(1.0f);
-            aimbottt.setAlpha(1.0f);
-            touchLocationmenu.setAlpha(1.0f);
-            touchsizemenu.setAlpha(1.0f);
-            posXmenu.setAlpha(1.0f);
-            posYmenu.setAlpha(1.0f);
-
+        Switch aimSwitch = aimbot.findViewById(R.id.aim_switch);
+        aimSwitch.setText(R.string.aim_bot_3_0);
         
-
-        RadioGroup aimgrup = aimbot.findViewById(R.id.grupaim);
-        aimgrup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        // Initialize from preferences
+        boolean aimStarted = getConfig("aimbot_master");
+        aimSwitch.setChecked(aimStarted);
+        
+        aimSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId) {
-                    case R.id.disableaim:
-                        StopAimBulletFloat();
-                        StopAimFloat();
-                        StopAimTouch();
-                        menutextaimtouch.setVisibility(View.GONE);
-                        menurotation.setVisibility(View.GONE);
-                        aimspeedmenu.setVisibility(View.GONE);
-                        smoothnessmenu.setVisibility(View.GONE);
-                        break;
-
-                    case R.id.aimbot:
-                      StartAimFloat();
-                        StopAimBulletFloat();
-                        StopAimTouch();
-                        menutextaimtouch.setVisibility(View.GONE);
-                        menurotation.setVisibility(View.GONE);
-                        aimspeedmenu.setVisibility(View.GONE);
-                        smoothnessmenu.setVisibility(View.GONE);
-                        touchLocationmenu.setVisibility(View.GONE);
-                        touchsizemenu.setVisibility(View.GONE);
-                        recoilmenu.setVisibility(View.VISIBLE);
-                        posXmenu.setVisibility(View.GONE);
-                        posYmenu.setVisibility(View.GONE);
-                        break;
-
-                    case R.id.touchsimulation:
-                     StartAimTouch();
-                        StopAimBulletFloat();
-                        StopAimFloat();
-                        menutextaimtouch.setVisibility(View.VISIBLE);
-                        menurotation.setVisibility(View.VISIBLE);
-                        aimspeedmenu.setVisibility(View.VISIBLE);
-                        smoothnessmenu.setVisibility(View.VISIBLE);
-                        touchLocationmenu.setVisibility(View.VISIBLE);
-                        touchsizemenu.setVisibility(View.VISIBLE);
-                        recoilmenu.setVisibility(View.VISIBLE);
-                        recoilmenus2.setVisibility(View.VISIBLE);
-                        posXmenu.setVisibility(View.VISIBLE);
-                        posYmenu.setVisibility(View.VISIBLE);
-                        break;
-
-                    case R.id.bullettrack:
-                      StartAimBulletFloat();
-                        StopAimFloat();
-                        StopAimTouch();
-                        menutextaimtouch.setVisibility(View.GONE);
-                        menurotation.setVisibility(View.GONE);
-                        aimspeedmenu.setVisibility(View.GONE);
-                        smoothnessmenu.setVisibility(View.GONE);
-                        touchLocationmenu.setVisibility(View.GONE);
-                        touchsizemenu.setVisibility(View.GONE);
-                        recoilmenu.setVisibility(View.GONE);
-                        recoilmenus2.setVisibility(View.GONE);
-                        posXmenu.setVisibility(View.GONE);
-                        posYmenu.setVisibility(View.GONE);
-                        break;
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                setValue("aimbot_master", isChecked);
+                if (isChecked) {
+                    StartAimFloat();
+                    StopAimBulletFloat();
+                    StopAimTouch();
+                } else {
+                    StopAimBulletFloat();
+                    StopAimFloat();
+                    StopAimTouch();
                 }
             }
         });
 
 
-        aimKnocked = aimbot.findViewById(R.id.aimknocked);
+        final CompoundButton aimKnocked = aimbot.findViewById(R.id.aimknocked);
         setaim(aimKnocked, 3);
 
-        aimignore = aimbot.findViewById(R.id.aimignorebot);
+        final CompoundButton aimignore = aimbot.findViewById(R.id.aimignorebot);
         setaim(aimignore, 4);
 
-        final Switch changerotation = aimbot.findViewById(R.id.rotationscren);
-        setaim(changerotation, 5);
 
-        final Switch touchlocation = aimbot.findViewById(R.id.touchlocation);
-        setaim(touchlocation, 6);
+
+
 
         final SeekBar rangeSeekBar = aimbot.findViewById(R.id.range);
         final TextView rangeText = aimbot.findViewById(R.id.rangetext);
@@ -2416,134 +1854,122 @@ private void deleteRecursive(File fileOrDir) {
             }
         });
 
-        final SeekBar AimSpeedSize = aimbot.findViewById(R.id.aimingspeed);
-        final TextView AimSpeedText = aimbot.findViewById(R.id.aimingspeedtext);
-        setupSeekBar(AimSpeedSize, AimSpeedText, getAimSpeed(), new Runnable() {
-            @Override
-            public void run() {
-                AimingSpeed(AimSpeedSize.getProgress());
-                setAimSpeed(AimSpeedSize.getProgress());
+
+
+
+
+
+
+
+
+
+
+
+        final RadioGroup aimby = aimbot.findViewById(R.id.aimby);
+        // Initialize aimby
+        int savedAimBy = sp.getInt("aimby_val", 0);
+        for (int i = 0; i < aimby.getChildCount(); i++) {
+            RadioButton rb = (RadioButton) aimby.getChildAt(i);
+            if (Integer.parseInt(rb.getTag().toString()) == savedAimBy) {
+                rb.setChecked(true);
+                break;
             }
-        });
-
-        final SeekBar SmoothSize = aimbot.findViewById(R.id.Smoothness);
-        final TextView SmoothText = aimbot.findViewById(R.id.smoothtext);
-        setupSeekBar(SmoothSize, SmoothText, getSmoothness(), new Runnable() {
-            @Override
-            public void run() {
-                Smoothness(SmoothSize.getProgress());
-                setSmoothness(SmoothSize.getProgress());
-            }
-        });
-
-        final SeekBar touchsize = mainView.findViewById(R.id.touchsize);
-        final TextView touchsizetext = mainView.findViewById(R.id.touchsizetext);
-        setupSeekBar(touchsize, touchsizetext, getTouchSize(), new Runnable() {
-            @Override
-            public void run() {
-                TouchSize(touchsize.getProgress());
-                setTouchSize(touchsize.getProgress());
-            }
-        });
-
-        final SeekBar touchPosX = mainView.findViewById(R.id.touchPosX);
-        final TextView touchPosXtext = mainView.findViewById(R.id.touchPosXtext);
-        setupSeekBar(touchPosX, touchPosXtext, getTouchPosX(), new Runnable() {
-            @Override
-            public void run() {
-                TouchPosX(touchPosX.getProgress());
-                setTouchPosX(touchPosX.getProgress());
-            }
-        });
-
-        final SeekBar touchPosY = mainView.findViewById(R.id.touchPosY);
-        final TextView touchPosYtext = mainView.findViewById(R.id.touchPosYtext);
-        setupSeekBar(touchPosY, touchPosYtext, getTouchPosY(), new Runnable() {
-            @Override
-            public void run() {
-                TouchPosY(touchPosY.getProgress());
-                setTouchPosY(touchPosY.getProgress());
-            }
-        });
-
-
-        aimby = aimbot.findViewById(R.id.aimby);
+        }
         aimby.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 int chkdId = aimby.getCheckedRadioButtonId();
-                RadioButton btn = aimbot.findViewById(chkdId);
-                AimBy(Integer.parseInt(btn.getTag().toString()));
+                if (chkdId != -1) {
+                    RadioButton btn = aimbot.findViewById(chkdId);
+                    int val = Integer.parseInt(btn.getTag().toString());
+                    AimBy(val);
+                    SharedPreferences.Editor ed = sp.edit();
+                    ed.putInt("aimby_val", val);
+                    ed.apply();
+                }
             }
         });
 
         final RadioGroup aimwhen = aimbot.findViewById(R.id.aimwhen);
+        // Initialize aimwhen
+        int savedAimWhen = sp.getInt("aimwhen_val", 0);
+        for (int i = 0; i < aimwhen.getChildCount(); i++) {
+            RadioButton rb = (RadioButton) aimwhen.getChildAt(i);
+            if (Integer.parseInt(rb.getTag().toString()) == savedAimWhen) {
+                rb.setChecked(true);
+                break;
+            }
+        }
         aimwhen.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 int chkdId = aimwhen.getCheckedRadioButtonId();
-                RadioButton btn = aimbot.findViewById(chkdId);
-                AimWhen(Integer.parseInt(btn.getTag().toString()));
+                if (chkdId != -1) {
+                    RadioButton btn = aimbot.findViewById(chkdId);
+                    int val = Integer.parseInt(btn.getTag().toString());
+                    AimWhen(val);
+                    SharedPreferences.Editor ed = sp.edit();
+                    ed.putInt("aimwhen_val", val);
+                    ed.apply();
+                }
             }
         });
 
         final RadioGroup aimbotmode = aimbot.findViewById(R.id.aimbotmode);
+        // Initialize aimbotmode
+        int savedTarget = sp.getInt("target_val", 0);
+        for (int i = 0; i < aimbotmode.getChildCount(); i++) {
+            RadioButton rb = (RadioButton) aimbotmode.getChildAt(i);
+            if (Integer.parseInt(rb.getTag().toString()) == savedTarget) {
+                rb.setChecked(true);
+                break;
+            }
+        }
         aimbotmode.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 int chkdId = aimbotmode.getCheckedRadioButtonId();
-                RadioButton btn = aimbot.findViewById(chkdId);
-                Target(Integer.parseInt(btn.getTag().toString()));
+                if (chkdId != -1) {
+                    RadioButton btn = aimbot.findViewById(chkdId);
+                    int val = Integer.parseInt(btn.getTag().toString());
+                    Target(val);
+                    SharedPreferences.Editor ed = sp.edit();
+                    ed.putInt("target_val", val);
+                    ed.apply();
+                }
             }
         });
     }
 
     private void memory(View memory) {
-        final Switch less = memory.findViewById(R.id.isreducerecoil);
-        memory(less, 1);
+       // final Switch less = memory.findViewById(R.id.isreducerecoil);
+    //    memory(less, 1);
         final Switch Cross = memory.findViewById(R.id.issmallcross);
         memory(Cross, 2);
-        final Switch amms = memory.findViewById(R.id.isaimlock);
-        memory(amms, 3);
-        final Switch ismagic = memory.findViewById(R.id.ismagichead);
-        final Switch ishitx = memory.findViewById(R.id.ishitx);
+   //     final Switch amms = memory.findViewById(R.id.isaimlock);
+   //     memory(amms, 3);
+    //    final Switch ismagic = memory.findViewById(R.id.ismagichead);
+    //    final Switch ishitx = memory.findViewById(R.id.ishitx);
         final SeekBar wideviewSeekBar = memory.findViewById(R.id.rangewide);
         final TextView wideviewText = memory.findViewById(R.id.rangetextwide);
-        final TextView aimpresdk = memory.findViewById(R.id.aimpresdk);
-        LinearLayout memsec = memory.findViewById(R.id.memsec);
+      //  final TextView aimpresdk = memory.findViewById(R.id.aimpresdk);
+     //   LinearLayout memsec = memory.findViewById(R.id.memsec);
 
-        if (Sufii) {
-            typelogin = "BLAZEHAX";
-            aimpresdk.setVisibility(View.GONE);
-            memsec.setVisibility(View.VISIBLE);
-        } else {
-            typelogin = "FREE";
-            aimpresdk.setVisibility(View.VISIBLE);
-            memsec.setVisibility(View.GONE);
-            less.setEnabled(false);
-            Cross.setEnabled(false);
-            amms.setEnabled(false);
-            ismagic.setEnabled(false);
-            ishitx.setEnabled(false);
-            wideviewSeekBar.setEnabled(false);
-            less.setAlpha(0.0f);
-            Cross.setAlpha(0.0f);
-            amms.setAlpha(0.0f);
-            ismagic.setAlpha(0.0f);
-            ishitx.setAlpha(0.0f);
-        }
+        // Show all functions
+        typelogin = "PREMIUM";
+        Cross.setEnabled(true);
+        wideviewSeekBar.setEnabled(true);
+        Cross.setAlpha(1.0f);
+        wideviewSeekBar.setAlpha(1.0f);
 
 
-        // MAGIC BULLET
-
-
+/*
         ismagic.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if (isChecked) {
-                  //  Exec("/SUFI 500 " + USERKEY + " " + game + " 44");
+                   
                 } else {
-                    // Exec("/sufi 400 "+USERKEY+" "+game+" 001", getString(R.string.magic_launch_success));
                 }
             }
         });
@@ -2553,13 +1979,11 @@ private void deleteRecursive(File fileOrDir) {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if (isChecked) {
-                //    Exec("/TANHA " + USERKEY + game);
                 } else {
-                    // Exec("/SUFI 400 "+USERKEY+" "+game+" 001", getString(R.string.hitx_launch_success));
                 }
             }
         });
-
+*/
 
         setupSeekBar(wideviewSeekBar, wideviewText, getwideview(), new Runnable() {
             @Override
@@ -2570,43 +1994,12 @@ private void deleteRecursive(File fileOrDir) {
         });
     }
 
-
-  /*  public class Dapter extends PagerAdapter {
-        LayoutInflater inflater;
-        Context context;
-
-        public Dapter(Context context) {
-            this.context = context;
+    public static void enableESP(Context context) {
+        if (context != null) {
+            Intent intent = new Intent(context, FloatService.class);
+            intent.setAction("ENABLE_ESP");
+            context.startService(intent);
         }
+    }
 
-        @Override
-        public int getCount() {
-            return 4;
-        }
-
-        @Override
-        public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
-            return view == object;
-        }
-
-       *//* @NonNull
-        @Override
-        public Object instantiateItem(@NonNull ViewGroup container, int position) {
-            inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View view = null;
-            view = inflater.inflate(position == 0 ? R.layout.esp_visual : position == 1 ? R.layout.esp_inventory : position == 2 ? R.layout.esp_aimbot : R.layout.esp_memory, null);
-            ViewPager viewPager = (ViewPager) container;
-            viewPager.addView(view);
-            if (position == 0) {
-                visual(view);
-            } else if (position == 1) {
-                items(view);
-            } else if (position == 2) {
-                aimbot(view);
-            } else if (position == 3) {
-                memory(view);
-            }
-            return view;
-        }*//*
-    }*/
 }

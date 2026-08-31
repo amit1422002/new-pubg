@@ -40,9 +40,14 @@ public final class GuestLoginLifecycleCallback extends AppLifecycleCallback {
         return suffix.matches(":p\\d+");
     }
 
+    private static final boolean ENABLE_HOOK = true;
+
     @Override
     public void afterApplicationOnCreate(String packageName, String processName,
                                          Application application, int userId) {
+        if (!ENABLE_HOOK) {
+            return;
+        }
         if (!BgmiSkin.isBgmi(packageName) || application == null) {
             return;
         }

@@ -1,8 +1,6 @@
 package lauresprojects.com.recorder.floating;
 
-
 import static lauresprojects.com.recorder.activity.MainActivity.modeselect;
-import static lauresprojects.com.recorder.activity.MainActivity.typelogin;
 import static lauresprojects.com.recorder.floating.Overlay.getConfig;
 
 import android.content.Context;
@@ -21,77 +19,69 @@ import android.view.Surface;
 import android.view.View;
 import android.graphics.Path;
 
-import androidx.appcompat.app.AppCompatDelegate;
-
-import java.util.HashMap;
 import lauresprojects.com.recorder.R;
-import lauresprojects.com.recorder.activity.MainActivity;
+
 import java.util.Random;
+
 
 
 public class ESPView extends View implements Runnable {
     private Paint
             mStrokePaint,
             mFilledPaint,
-            mFilledPaintH,
             mFillPaint,
             mTextPaint,
-            mTextPainti,
+            mNationPaint,
+            mUserIDPaint,
             mTexturePaint,
             mNamePaint,
             mFPSText,
-            mMDText,
             mPaintBitmap,
             mPaintBitmap1,
             mItemsPaint,
             mVehiclesPaint,
-            PaintTextBold,
             mLootBoxPaint;
-
     private Thread mThread;
     String selectmode = modeselect;
-    String loginmode = typelogin;
     private static int itemSize, itemPosition;
 
-    Bitmap bitmap, out, botBitmap, lootBitmap, airdropBitmap, vehicleBitmap, bikeBitmap, kudaBitmap, boatBitmap, buggyBitmap, uazBitmap, trikeBitmap, daciaBitmap, jetBitmap, busBitmap, miradoBitmap, scooterBitmap, ronyBitmap, snowbikeBitmap, snowmobileBitmap, tempoBitmap, monsterBitmap, brdmBitmap, atvBitmap, truckBitmap, gliderBitmap, utvBitmap, coupeBitmap, airplaneBitmap;
-    public static long sleepTime = 16L;
-    private static volatile long targetFrameIntervalNanos = 16_666_667L;
-    private long lastFrameTimeNanos;
-    private boolean frameCallbackPosted;
+    Bitmap bitmap, out, botBitmap, lootBitmap, airdropBitmap, vehicleBitmap, bikeBitmap, kudaBitmap, boatBitmap;
+    public static long sleepTime;
     private float mFPS = 0.0f;
     private float mFPSCounter = 0.0f;
     private long mFPSTime = 0;
     private float mScaleX = 1;
     private float mScaleY = 1;
-
-    private final HashMap<String, Integer> itemColorMap = new HashMap<>();
-
-    private int lastItemColor = Color.WHITE;
+    private static int Pos,itemPositionSek,setStroke,setStrokeSkel,Strokebox,ColorName,ColorHealthF,ColorHead,ColorDistance,ColorIdplayer,ColorWeapons,ColorTeam,ColorSkeleton,ColorSkeletonBone,ColorLine,ColorHealthS;
     private static LruCache<Integer, Bitmap> bitmapCache = new LruCache<>(10 * 1024 * 1024);
     Path path = new Path();
-    private final Path trianglePath = new Path();
-    private final Paint triangleFillPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    private final Paint triangleStrokePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-
-
 
     public static void ChangeFps(int fps) {
-        // ESP does a synchronous native snapshot + full-screen redraw. Above
-        // 60 FPS steals CPU/GPU time from the game without adding useful data.
-        int cappedFps = Math.max(15, Math.min(fps, 60));
-        sleepTime = Math.max(1L, 1000L / cappedFps);
-        targetFrameIntervalNanos = 1_000_000_000L / cappedFps;
+        sleepTime = 1000 / fps;
     }
 
+    public static void ChangePosition(int position){
+        Pos = position;
+    }
+
+    private String[] TeamColors = {
+            "#00ffff",
+            "#ffa3ff",
+            "#b3b9ff",
+            "#ffc96b",
+            "#a4ff73"
+    };
     Paint p, p2;
-    Bitmap[] OTHER = new Bitmap[5];
+    Bitmap[] OTHER = new Bitmap[7]; //dihitung dari 0
 
     private static final int[] OTH_NAME = {
-            R.drawable.ic_clear_enemy,
-            R.drawable.ic_clear_boot,
-            R.drawable.ic_danger_enemy,
-            R.drawable.ic_danger_boot,
-            R.drawable.frag
+            R.drawable.pc2,
+            R.drawable.bc2,
+            R.drawable.pc1,
+            R.drawable.bc1,
+            R.drawable.ic_warning,
+            R.drawable.ic_boot,
+            R.drawable.ic_alert
     };
 
     public ESPView(Context context) {
@@ -99,41 +89,8 @@ public class ESPView extends View implements Runnable {
         InitializePaints();
         setFocusableInTouchMode(false);
         setBackgroundColor(Color.TRANSPARENT);
-    }
-
-    private final android.view.Choreographer.FrameCallback frameCallback =
-        new android.view.Choreographer.FrameCallback() {
-            @Override
-            public void doFrame(long frameTimeNanos) {
-                if (!frameCallbackPosted) {
-                    return;
-                }
-                if (lastFrameTimeNanos == 0L ||
-                        frameTimeNanos - lastFrameTimeNanos >= targetFrameIntervalNanos) {
-                    lastFrameTimeNanos = frameTimeNanos;
-                    invalidate();
-                }
-                android.view.Choreographer.getInstance().postFrameCallback(this);
-            }
-        };
-
-    private volatile boolean mDrawing;
-
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        if (!frameCallbackPosted) {
-            frameCallbackPosted = true;
-            lastFrameTimeNanos = 0L;
-            android.view.Choreographer.getInstance().postFrameCallback(frameCallback);
-        }
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        frameCallbackPosted = false;
-        android.view.Choreographer.getInstance().removeFrameCallback(frameCallback);
-        super.onDetachedFromWindow();
+        mThread = new Thread(this);
+        mThread.start();
     }
 
     @Override
@@ -142,16 +99,8 @@ public class ESPView extends View implements Runnable {
         if (canvas == null || rotation == Surface.ROTATION_0 || rotation == Surface.ROTATION_180) {
             return;
         }
-        if (mDrawing) {
-            return;
-        }
-        mDrawing = true;
-        try {
-            ClearCanvas(canvas);
-            Overlay.DrawOn(this, canvas);
-        } finally {
-            mDrawing = false;
-        }
+        ClearCanvas(canvas);
+        Overlay.DrawOn(this, canvas);
     }
 
     @Override
@@ -160,31 +109,12 @@ public class ESPView extends View implements Runnable {
         mScaleX = getWidth() / (float) 2340;
         mScaleY = getHeight() / (float) 1080;
         botBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ic_bot), (int) (50 * mScaleY), (int) (50 * mScaleY), false);
-        // kudaBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.reindeer), (int) (50 * mScaleY), (int) (50 * mScaleY), false);
+        kudaBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.reindeer), (int) (50 * mScaleY), (int) (50 * mScaleY), false);
         lootBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.lootx), (int) (50 * mScaleY), (int) (50 * mScaleY), false);
         airdropBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.airdrop), (int) (50 * mScaleY), (int) (50 * mScaleY), false);
-        buggyBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve0), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
-        uazBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve1), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
-        trikeBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve2), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
-        bikeBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve3), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
-        daciaBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve4), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
-        jetBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve5), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
-        boatBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve6), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
-        busBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve7), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
-        miradoBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve8), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
-        scooterBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve9), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
-        ronyBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve10), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
-        snowbikeBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve11), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
-        snowmobileBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve12), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
-        tempoBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve13), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
-        monsterBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve14), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
-        brdmBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve15), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
-        atvBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve18), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
-        truckBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve19), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
-        gliderBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve20), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
-        utvBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve21), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
-        coupeBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve22), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
-        airplaneBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve23), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
+        vehicleBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.vehicle), (int) (50 * mScaleY), (int) (50 * mScaleY), false);
+        bikeBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.bike), (int) (50 * mScaleY), (int) (50 * mScaleY), false);
+        boatBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.boat), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
     }
 
     @Override
@@ -207,30 +137,12 @@ public class ESPView extends View implements Runnable {
     public void InitializePaints() {
 
         botBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ic_bot), (int) (50 * mScaleY), (int) (50 * mScaleY), false);
+        kudaBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.reindeer), (int) (50 * mScaleY), (int) (50 * mScaleY), false);
         lootBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.lootx), (int) (50 * mScaleY), (int) (50 * mScaleY), false);
         airdropBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.airdrop), (int) (50 * mScaleY), (int) (50 * mScaleY), false);
-        buggyBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve0), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
-        uazBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve1), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
-        trikeBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve2), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
-        bikeBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve3), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
-        daciaBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve4), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
-        jetBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve5), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
-        boatBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve6), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
-        busBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve7), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
-        miradoBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve8), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
-        scooterBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve9), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
-        ronyBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve10), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
-        snowbikeBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve11), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
-        snowmobileBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve12), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
-        tempoBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve13), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
-        monsterBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve14), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
-        brdmBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve15), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
-        atvBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve18), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
-        truckBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve19), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
-        gliderBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve20), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
-        utvBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve21), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
-        coupeBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve22), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
-        airplaneBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ve23), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
+        vehicleBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.vehicle), (int) (50 * mScaleY), (int) (50 * mScaleY), false);
+        bikeBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.bike), (int) (50 * mScaleY), (int) (50 * mScaleY), false);
+        boatBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.boat), (int) (40 * mScaleY), (int) (40 * mScaleY), false);
 
         mPaintBitmap = new Paint();
         mPaintBitmap.setAlpha(225);
@@ -239,14 +151,20 @@ public class ESPView extends View implements Runnable {
         mPaintBitmap1.setAlpha(255);
 
         mVehiclesPaint = new Paint();
-        mVehiclesPaint.setAntiAlias(true);
+        mVehiclesPaint.setAntiAlias(false);
         mVehiclesPaint.setTextAlign(Paint.Align.CENTER);
-        mVehiclesPaint.setTypeface(getResources().getFont(R.font.mfontx));
+
+        mUserIDPaint = new Paint();
+        mUserIDPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+        mUserIDPaint.setAntiAlias(true);
+        mUserIDPaint.setFakeBoldText(true);
+        mUserIDPaint.setTextAlign(Paint.Align.CENTER);
+        mUserIDPaint.setTypeface(getResources().getFont(R.font.roxmod));
+        mUserIDPaint.setShadowLayer(3, 2, 2, Color.BLACK);
 
         mItemsPaint = new Paint();
-        mItemsPaint.setAntiAlias(true);
+        mItemsPaint.setAntiAlias(false);
         mItemsPaint.setTextAlign(Paint.Align.CENTER);
-        mItemsPaint.setTypeface(getResources().getFont(R.font.mfontx));
 
         mStrokePaint = new Paint();
         mStrokePaint.setStyle(Paint.Style.STROKE);
@@ -254,17 +172,16 @@ public class ESPView extends View implements Runnable {
         mStrokePaint.setColor(Color.rgb(0, 0, 0));
         mStrokePaint.setTextAlign(Paint.Align.CENTER);
 
+        mNationPaint = new Paint();
+        mNationPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+        mNationPaint.setAntiAlias(true);
+        mNationPaint.setTextAlign(Paint.Align.CENTER);
+
         mFilledPaint = new Paint();
         mFilledPaint.setStyle(Paint.Style.FILL);
         mFilledPaint.setAntiAlias(true);
         mFilledPaint.setColor(Color.rgb(0, 0, 0));
         mFilledPaint.setStrokeWidth(3.0f);
-
-        mFilledPaintH = new Paint();
-        mFilledPaintH.setStyle(Paint.Style.FILL);
-        mFilledPaintH.setAntiAlias(true);
-        mFilledPaintH.setColor(Color.rgb(0, 0, 0));
-        mFilledPaint.setStrokeWidth(1.0f);
 
         mFillPaint = new Paint();
         mFillPaint.setStyle(Paint.Style.FILL);
@@ -276,22 +193,12 @@ public class ESPView extends View implements Runnable {
         mTextPaint.setAntiAlias(true);
         mTextPaint.setColor(Color.rgb(0, 0, 0));
         mTextPaint.setTextAlign(Paint.Align.CENTER);
-        mTextPaint.setShadowLayer(3, 2, 2, Color.BLACK);
-        mTextPaint.setTypeface(getResources().getFont(R.font.cof));
-        mTextPaint.setStrokeWidth(1.1f);
-
-        mTextPainti = new Paint();
-        mTextPainti.setStyle(Paint.Style.FILL);
-        mTextPainti.setAntiAlias(true);
-        mTextPainti.setColor(Color.rgb(0, 0, 0));
-        mTextPainti.setTextAlign(Paint.Align.CENTER);
-
 
         mLootBoxPaint = new Paint();
         mLootBoxPaint.setAntiAlias(true);
-        mLootBoxPaint.setTextAlign(Paint.Align.LEFT);
+        mLootBoxPaint.setTextAlign(Paint.Align.CENTER);
         mLootBoxPaint.setColor(Color.rgb(0, 0, 0));
-        mLootBoxPaint.setTypeface(getResources().getFont(R.font.mfontx));
+        mLootBoxPaint.setTypeface(getResources().getFont(R.font.roxmod));
         mLootBoxPaint.setDither(true);
 
         mTexturePaint = new Paint();
@@ -301,7 +208,7 @@ public class ESPView extends View implements Runnable {
         mStrokePaint.setStrokeWidth(0.5f);
         mTexturePaint.setTextAlign(Paint.Align.CENTER);
         mTexturePaint.setShadowLayer(10, 1, 1, Color.rgb(1, 1, 1));
-        mTexturePaint.setTypeface(getResources().getFont(R.font.cof));
+        mTexturePaint.setTypeface(getResources().getFont(R.font.roxmod));
 
 
         mNamePaint = new Paint();
@@ -310,46 +217,28 @@ public class ESPView extends View implements Runnable {
         mNamePaint.setColor(Color.rgb(0, 0, 0));
         mNamePaint.setTextAlign(Paint.Align.CENTER);
         mNamePaint.setTextAlign(Paint.Align.CENTER);
-        // mNamePaint.setShadowLayer(10, 1, 1, Color.rgb(1,1,1));
-        mNamePaint.setTypeface(getResources().getFont(R.font.mfontx));
+        mNamePaint.setShadowLayer(10, 1, 1, Color.rgb(1, 1, 1));
+        mNamePaint.setTypeface(getResources().getFont(R.font.roxmod));
 
         mFPSText = new Paint();
         mFPSText.setStyle(Paint.Style.FILL_AND_STROKE);
         mFPSText.setAntiAlias(true);
-        mFPSText.setColor(Color.rgb(255, 255, 0));
+        mFPSText.setColor(Color.rgb(0, 0, 0));
         mStrokePaint.setStrokeWidth(0.5f);
         mFPSText.setTextAlign(Paint.Align.CENTER);
         mFPSText.setShadowLayer(10, 1, 1, Color.rgb(1, 1, 1));
-        mFPSText.setTypeface(getResources().getFont(R.font.mfontx));
-
-        mMDText = new Paint();
-        mMDText.setStyle(Paint.Style.FILL_AND_STROKE);
-        mMDText.setAntiAlias(true);
-        mMDText.setColor(Color.rgb(0, 0, 0));
-        mMDText.setStrokeWidth(0.5f);
-        mMDText.setTextAlign(Paint.Align.CENTER);
-        mMDText.setShadowLayer(10, 1, 1, Color.rgb(1, 1, 1));
-
-        PaintTextBold = new Paint();
-        PaintTextBold.setStyle(Paint.Style.FILL_AND_STROKE);
-        PaintTextBold.setAntiAlias(true);
-        PaintTextBold.setColor(Color.rgb(0, 0, 0));
-        PaintTextBold.setTextAlign(Paint.Align.CENTER);
-        PaintTextBold.setStrokeWidth(0.2f);
-        PaintTextBold.setShadowLayer(10, 1, 1, Color.BLACK);
-        PaintTextBold.setTypeface(getResources().getFont(R.font.mfontx));
-
+        mFPSText.setTypeface(getResources().getFont(R.font.roxmod));
 
         p2 = new Paint();
         final int bitmap_count_oth = OTHER.length;
         for (int i = 0; i < bitmap_count_oth; i++) {
             OTHER[i] = BitmapFactory.decodeResource(getResources(), OTH_NAME[i]);
             if (i == 4) {
-                OTHER[i] = scale(OTHER[i], 400, 35);
+                OTHER[i] = scale(OTHER[i], 400, 400);
             } else if (i == 5) {
                 OTHER[i] = scale(OTHER[i], 22, 22);
             } else {
-                OTHER[i] = scale(OTHER[i], 80, 80);
+                OTHER[i] = scale(OTHER[i], (int) (150 * mScaleY), (int) (60 * mScaleY));
             }
         }
 
@@ -366,7 +255,12 @@ public class ESPView extends View implements Runnable {
         cvs.drawLine(fromX, fromY, toX, toY, mStrokePaint);
     }
 
-
+    public void DrawRect(Canvas cvs, int a, int r, int g, int b, float stroke, float x, float y, float width, float height) {
+        mStrokePaint.setStrokeWidth(stroke);
+        mStrokePaint.setColor(Color.rgb(r, g, b));
+        mStrokePaint.setAlpha(a);
+        cvs.drawRoundRect(x, y, width, height, 5.0f, 5.0f, this.mStrokePaint);
+    }
 
     public void DrawCurveRect(Canvas cvs, int a, int r, int g, int b, float stroke, float x, float y, float width, float height) {
         mStrokePaint.setStrokeWidth(stroke);
@@ -382,94 +276,102 @@ public class ESPView extends View implements Runnable {
     }
 
 
+    public static String parseEncodedName(String nametxt) {
+        if (nametxt == null || nametxt.isEmpty()) return "";
+        if (nametxt.contains(":")) {
+            try {
+                String[] namesp = nametxt.split(":");
+                char[] nameint = new char[namesp.length];
+                for (int i = 0; i < namesp.length; i++) {
+                    nameint[i] = (char) Integer.parseInt(namesp[i]);
+                }
+                return new String(nameint);
+            } catch (Exception ignored) {
+                return nametxt;
+            }
+        }
+        return nametxt;
+    }
+
+    public void DrawName3(Canvas cvs, String nametxt, int id, float posX, float posY) {
+        String realname = parseEncodedName(nametxt);
+        String teamid = String.valueOf(id);
+        Rect textBounds = new Rect();
+        mNamePaint.getTextBounds(realname, 0, realname.length(), textBounds);
+        float nameTextWidth = textBounds.width() / 2;
+        mNamePaint.getTextBounds(teamid, 0, teamid.length(), textBounds);
+        float teamidTextWidth = textBounds.width() / 2;
+        if (realname.equals("[AI]")) {
+            teamidTextWidth = botBitmap.getWidth() / 2;
+            cvs.drawBitmap(botBitmap, posX - nameTextWidth - (mScaleY * 28), (posY - (mScaleY * 32)) - (28 * mScaleY), mPaintBitmap);
+        } else {
+            mTextPaint.setColor(Color.parseColor(TeamColors[new Random(id).nextInt(5)]));
+            cvs.drawText(teamid, posX - nameTextWidth - 4, posY - (32 * mScaleY), mTextPaint);
+        }
+        cvs.drawText(realname, posX + teamidTextWidth + 4, posY - (32 * mScaleY), mNamePaint);
+    }
+
+    public void DrawDistance(Canvas cvs, float distance, float posX, float posY, float size) {
+        cvs.drawText(String.valueOf((int) distance + "m"), posX, posY, mTextPaint);
+    }
+
     public void DrawFilledRect(Canvas cvs, int a, int r, int g, int b, float x, float y, float width, float height) {
         mFillPaint.setColor(Color.rgb(r, g, b));
         mFillPaint.setAlpha(a);
-        cvs.drawRoundRect(x, y, width, height, 0.0f, 0.0f, mFillPaint);
+        cvs.drawRoundRect(x, y, width, height,5.0f,5.0f, mFillPaint);
     }
 
     public void DrawFilledRoundRect(Canvas cvs, int a, int r, int g, int b, float x, float y, float width, float height) {
         mFillPaint.setColor(Color.rgb(r, g, b));
         mFillPaint.setAlpha(a);
-        cvs.drawRoundRect(x, y, width, height, 10.0f, 10.0f,  mFillPaint);
+        cvs.drawRoundRect(x, y, width, height, 10.0f, 10.0f, mFillPaint);
     }
 
     public void DrawTransRoundRect(Canvas cvs, int a, int r, int g, int b, float x, float y, float width, float height) {
-        mFillPaint.setColor(Color.rgb(r, g, b));
-        mFillPaint.setAlpha(a);
-        cvs.drawRoundRect(x, y, width, height, 1000000.0f, 1000000.0f,  mFillPaint);
-    }
-
-    public void DrawFillCircle(Canvas cvs, int a, int r, int g, int b, float posX, float posY, float radius, float stroke) {
-        mFilledPaint.setARGB(a, r, g, b);
-        mFilledPaint.setStrokeWidth(stroke);
-        cvs.drawCircle(posX, posY, radius, mFilledPaint);
-    }
-
-    public void DrawTransCircle(Canvas cvs, int a, int r, int g, int b,  float x, float y, float radius, float stroke) {
-        mFilledPaint.setARGB(a, r, g, b);
-        mFilledPaint.setStrokeWidth(stroke);
-        cvs.drawCircle(x, y, radius, mFilledPaint);
-    }
-
-    public void DrawTranslucentRoundRect(Canvas cvs, int a, int r, int g, int b,  float x, float y, float radius, float width, float height, float stroke) {
         mFilledPaint.setColor(Color.rgb(r, g, b));
-        mFilledPaint.setAlpha(100);
-        mFilledPaint.setStrokeWidth(stroke);
-        cvs.drawCircle(x, y, radius, mFilledPaint);
+        mFilledPaint.setAlpha(a);
+        cvs.drawRoundRect(x, y, width, height, 10.0f, 10.0f, mFilledPaint);
     }
 
     public void DrawTextName(Canvas cvs, int a, int r, int g, int b, String txt, float posX, float posY, float size) {
-    mFPSText.setARGB(a, r, g, b);
-    mFPSText.setTextSize(size);
-
-    if (SystemClock.uptimeMillis() - mFPSTime > 1000) {
-        mFPSTime = SystemClock.uptimeMillis();
-        mFPS = mFPSCounter;
-        mFPSCounter = 0f;
-    } else {
-        mFPSCounter++;
-    }
-
-    int fpsInt = (int) mFPS;
-
-    if (fpsInt <= 60) {
-        fpsInt += 60;
-    } else if (fpsInt <= 90) {
-        fpsInt += 30;
-    }
-
-    String fpsText = " - FPS : " + fpsInt;
-    cvs.drawText(txt + modeselect + fpsText, posX, posY, mFPSText);
-}
-
-
-    public void DrawTextMode(Canvas cvs, int a, int r, int g, int b, String txt, float posX, float posY, float size) {
-        mMDText.setARGB(a, r, g, b);
-        mMDText.setTextSize(size);
+        mFPSText.setARGB(a, r, g, b);
+        mFPSText.setTextSize(size);
         if (SystemClock.uptimeMillis() - mFPSTime > 1000) {
             mFPSTime = SystemClock.uptimeMillis();
             mFPS = mFPSCounter;
-            mFPSCounter = 0f;
+            mFPSCounter = 0.0f;
         } else {
             mFPSCounter++;
         }
-        String fpsText = txt + " · FPS : " + mFPS;
-        cvs.drawText("" + modeselect + fpsText, posX, posY, mMDText);
+
+        String fpsText = txt + mFPS;
+        cvs.drawText(fpsText, posX, posY, mFPSText);
     }
 
-    public void DrawTextMode2(Canvas cvs, int a, int r, int g, int b, String txt, float posX, float posY, float size) {
-        mFPSText.setARGB(a, r, g, b);
-        mFPSText.setTextSize(size);
-        cvs.drawText("" + typelogin, posX, posY, mFPSText);
+
+    public void DrawText(Canvas cvs, int a, int r, int g, int b, String txt, float posX, float posY, float size) {
+        mNamePaint.setARGB(a, r, g, b);
+        mNamePaint.setTextSize(size);
+        cvs.drawText(txt, posX, posY, mNamePaint);
     }
+
+    public float measureTextWidth(String txt, float size) {
+        mNamePaint.setTextSize(size);
+        return mNamePaint.measureText(txt);
+    }
+
+    public void DrawTextMode(Canvas cvs, int a, int r, int g, int b, String txt, float posX, float posY, float size) {
+        mFPSText.setARGB(a,r, g, b);
+        mFPSText.setTextSize(size);
+        cvs.drawText("" + modeselect, posX, posY, mFPSText);
+    }
+
 
     public void DrawTexture(Canvas cvs, int a, int r, int g, int b, String txt, float posX, float posY, float size) {
-        mMDText.setColor(Color.rgb(r, g, b));
-        mMDText.setAlpha(a);
-        mMDText.setTextSize(size);
-        mMDText.setTypeface(getResources().getFont(R.font.cof));
-        cvs.drawText(txt, posX, posY, mMDText);
+        mTexturePaint.setColor(Color.rgb(r, g, b));
+        mTexturePaint.setAlpha(a);
+        mTexturePaint.setTextSize(size);
+        cvs.drawText(txt, posX, posY, mTexturePaint);
     }
 
     public void DrawCustom(Canvas cvs, int a, int r, int g, int b, String txt, float posX, float posY, float size) {
@@ -478,7 +380,6 @@ public class ESPView extends View implements Runnable {
         mTexturePaint.setTextSize(size);
         cvs.drawText("" + modeselect, posX, posY, mTexturePaint);
     }
-
 
     public void DrawFilledCurve(Canvas cvs, int a, int r, int g, int b, int x, int y, int width, int height) {
         int colors[] = {Color.TRANSPARENT, Color.rgb(r, g, b), Color.TRANSPARENT};
@@ -494,12 +395,12 @@ public class ESPView extends View implements Runnable {
     }
 
     public void DrawFillRect(Canvas cvs, int a, int r, int g, int b, int x, int y, int width, int height) {
-        int colors[] = {Color.argb(a, r, g, b), Color.argb(a, r, g, b), Color.argb(a, r, g, b)};
+        int colors[] = {Color.argb(a,r,g,b), Color.argb(a,r,g,b), Color.argb(a,r,g,b)};
         GradientDrawable mDrawable = new GradientDrawable(GradientDrawable.Orientation.RIGHT_LEFT, colors);
         mDrawable.setShape(GradientDrawable.RECTANGLE);
         mDrawable.setCornerRadius(6);
         mDrawable.setGradientRadius(2.0f * 60);
-        Rect mRect = new Rect(x, y, width, height);
+        Rect mRect = new Rect(x,y,width,height);
         mDrawable.setBounds(mRect);
         cvs.save();
         mDrawable.setGradientType(GradientDrawable.LINEAR_GRADIENT);
@@ -507,60 +408,16 @@ public class ESPView extends View implements Runnable {
         cvs.restore();
     }
 
-    public void DrawFilledName(Canvas cvs, int a, int r, int g, int b, float x, float y, float width, float height) {
-        mFilledPaint.setColor(Color.rgb(r, g, b));
-        mFilledPaint.setAlpha(a);
-        cvs.drawRoundRect(x, y, width, height, 3.0f, 3.0f, this.mStrokePaint);
-    }
-
-    public void DrawFilledRect1(Canvas cvs, int a, int r, int g, int b, float x, float y, float width, float height) {
-        mFilledPaint.setColor(Color.rgb(r, g, b));
-        mFilledPaint.setAlpha(a);
-        cvs.drawRect(x, y, width, height, mFilledPaint);
-    }
-
-    public void DrawRect(Canvas cvs, int a, int r, int g, int b, float stroke, float x, float y, float width, float height) {
-        mStrokePaint.setStrokeWidth(stroke);
-        mStrokePaint.setColor(Color.rgb(r, g, b));
-        mStrokePaint.setAlpha(a);
-        cvs.drawRoundRect(x, y, width, height, 0.0f, 0.0f, this.mStrokePaint);
-    }
-
-    public void DrawTeamID(Canvas cvs, int a, int r, int g, int b, int teamid, float posX, float posY, float size) {
-        mNamePaint.setColor(Color.rgb(r, g, b));
+    public void DrawTeamID(Canvas cvs, int a, int r, int g, int b,int teamid, float posX, float posY, float size) {
+        mNamePaint.setColor(Color.rgb(r,g,b));
         mNamePaint.setTextSize(size);
         cvs.drawText(teamid + "", posX, posY, mNamePaint);
     }
 
-    public void DrawTextBold(Canvas cvs, int a, int r, int g, int b, String txt, float posX, float posY, float size) {
-        PaintTextBold.setARGB(a, r, g, b);
-        PaintTextBold.setTextSize(size);
-        cvs.drawText(txt, posX, posY, PaintTextBold);
-    }
-
-    /** Decode "65:66:67:" style name bytes; trailing/empty tokens must not crash (training bots). */
-    private static String decodeEncodedName(String nametxt) {
-        if (nametxt == null || nametxt.isEmpty()) {
-            return "";
-        }
-        String[] namesp = nametxt.split(":");
-        StringBuilder sb = new StringBuilder(namesp.length);
-        for (String part : namesp) {
-            if (part == null || part.isEmpty()) {
-                continue;
-            }
-            try {
-                sb.append((char) Integer.parseInt(part.trim()));
-            } catch (NumberFormatException ignored) {
-            }
-        }
-        return sb.toString();
-    }
-
     public void DrawPlayerName(Canvas cvs, int a, int r, int g, int b, String nametxt, float posX, float posY, float size) {
-        String realname = decodeEncodedName(nametxt);
-        if (realname.length() > 5) {
-            realname = realname.substring(0, 5);
+        String realname = parseEncodedName(nametxt);
+        if (realname.length() > 16) {
+            realname = realname.substring(0, 16);
         }
         mNamePaint.setARGB(a, r, g, b);
         mNamePaint.setTextSize(size);
@@ -568,8 +425,10 @@ public class ESPView extends View implements Runnable {
     }
 
 
-    public void DrawOTH(Canvas cvs, int image_number, float X, float Y) {
-        cvs.drawBitmap(OTHER[image_number], X, Y, p);
+    public void DrawOTH(Canvas cvs, float posX, float posY) {
+
+        cvs.drawBitmap(botBitmap, posX, posY, mPaintBitmap);
+
     }
 
 	/*public void DrawItems(Canvas cvs, String itemName, float distance, float posX, float posY, float size) {
@@ -603,239 +462,69 @@ public class ESPView extends View implements Runnable {
 
             if (realItemName.equals("LootBox")) {
                 if (distance < 150) {
-                    cvs.drawBitmap(lootBitmap, posX - 25, posY - (30 * mScaleY), mPaintBitmap);
-                    // cvs.drawText(displayText, posX, posY - 8, mItemsPaint);
-                    //mItemsPaint.setStyle(Paint.Style.FILL);
-                    // mItemsPaint.setColor(Color.parseColor("#FF40CC7E")); // Set fill color
-                    // cvs.drawText(displayText, posX, posY - 8, mItemsPaint);
+                    cvs.drawBitmap(lootBitmap, posX - 25, posY - (72 * mScaleY), mPaintBitmap);
+                    cvs.drawText(displayText, posX, posY - 8, mItemsPaint);
+                    mItemsPaint.setStyle(Paint.Style.FILL);
+                    mItemsPaint.setColor(Color.parseColor("#FF40CC7E")); // Set fill color
+                    cvs.drawText(displayText, posX, posY - 8, mItemsPaint);
                 }
             } else if (realItemName.equals("AirDrop")) {
                 cvs.drawBitmap(airdropBitmap, posX - 25, posY - (72 * mScaleY), mPaintBitmap);
                 cvs.drawText(displayText, posX, posY - 8, mItemsPaint);
                 mItemsPaint.setStyle(Paint.Style.FILL);
-                mItemsPaint.setColor(Color.parseColor("#FF0000"));
+                mItemsPaint.setColor(Color.parseColor("#FF40CC7E"));
                 cvs.drawText(displayText, posX, posY - 8, mItemsPaint);
             } else {
-                mTextPainti.setTextSize(size);
-                cvs.drawText(realItemName + " (" + Math.round(distance) + "m)", posX, posY, mTextPainti);
+                mItemsPaint.setShadowLayer(3, 0, 0, Color.TRANSPARENT);
+                cvs.drawText(displayText, posX, posY - 8, mItemsPaint);
+                mItemsPaint.setStyle(Paint.Style.FILL);
+                mItemsPaint.setColor(Color.parseColor("#FF40CC7E"));
+                cvs.drawText(displayText, posX, posY - 8, mItemsPaint);
             }
         }
+    }
+
+
+    public void DrawVehicles(Canvas cvs, String VehicleName, float distance,float health, float fuel, float posX, float posY, float size) {
+        String realVehicleName = VehicleName(VehicleName);
+        mVehiclesPaint.setColor(Color.WHITE);
+        mVehiclesPaint.setTextSize(size);
+        if (realVehicleName != null && !realVehicleName.equals("")) {
+            if (realVehicleName.equals("Trike") || realVehicleName.equals("Bike") || realVehicleName.equals("Scooter") || realVehicleName.equals("Snowbike") || realVehicleName.equals("ATV1")) {
+                cvs.drawBitmap(bikeBitmap, posX - 25, posY - (60 * mScaleY), mPaintBitmap1);
+                cvs.drawText(realVehicleName + " (" + (int) distance + ")", posX, posY + (10 * mScaleY), mVehiclesPaint);
+            }
+            else if (realVehicleName.equals("Reindeer")) {
+                cvs.drawBitmap(kudaBitmap, posX - 25, posY - (60 * mScaleY), mPaintBitmap1);
+                cvs.drawText(realVehicleName + " (" + (int) distance + ")", posX, posY + (10 * mScaleY), mVehiclesPaint);
+            } else {
+                cvs.drawBitmap(vehicleBitmap, posX - 25, posY - (50 * mScaleY), mPaintBitmap1);
+                cvs.drawText(realVehicleName + " (" + (int) distance + ")", posX, posY + (10 * mScaleY), mVehiclesPaint);
+            }
+           // handleFuelHealthText(cvs, posX, posY, fuel, health, size);
+        }
+    }
+
+    private void handleFuelHealthText(Canvas cvs, float posX, float posY, float fuel, float health, float size) {
+        mStrokePaint.setARGB(150, 89, 145, 255); //Stroke
+        cvs.drawRoundRect(posX - 45, posY + 19, posX + 50, posY + 25, 3, 3, mStrokePaint);
+        mFilledPaint.setARGB(100, 77, 255, 222); //Health
+        cvs.drawRoundRect(posX - 45, posY + 19, posX - 40 + (2 * 45) * fuel / 100, posY + 25, 3, 3, mFilledPaint);
+        mStrokePaint.setARGB(150, 89, 145, 255); //Stroke
+        cvs.drawRoundRect(posX - 45, posY + 29, posX + 50 , posY + 35, 3, 3, mStrokePaint);
+        mFilledPaint.setARGB(100, 255, 0, 0); //Health
+        cvs.drawRoundRect(posX - 45, posY + 29, posX - 40 + (2 * 45) * health / 100, posY + 35, 3, 3, mFilledPaint);
     }
 
     public void DrawDeadBoxItems(Canvas cvs, int a, int r, int g, int b, String txt, float posX, float posY, float size) {
         mLootBoxPaint.setTextSize(size);
-
-        int[] colorArray = {
-                Color.parseColor("#FF5733"), Color.parseColor("#33FF57"), Color.parseColor("#3357FF"),
-                Color.parseColor("#FF33A1"), Color.parseColor("#A133FF"), Color.parseColor("#33FFA1"),
-                Color.parseColor("#FFA133"), Color.parseColor("#57FF33"), Color.parseColor("#FF5733"),
-                Color.parseColor("#33A1FF"), Color.parseColor("#A1FF33"), Color.parseColor("#FF3366"),
-                Color.parseColor("#66FF33"), Color.parseColor("#3366FF"), Color.parseColor("#FF9966"),
-                Color.parseColor("#6699FF"), Color.parseColor("#9966FF"), Color.parseColor("#66FF99"),
-                Color.parseColor("#996633"), Color.parseColor("#663399"), Color.parseColor("#FFCC33"),
-                Color.parseColor("#CC33FF"), Color.parseColor("#33CCFF"), Color.parseColor("#FF33CC"),
-                Color.parseColor("#33FFCC"), Color.parseColor("#CCFF33"), Color.parseColor("#CC6633"),
-                Color.parseColor("#3366CC"), Color.parseColor("#CC3366"), Color.parseColor("#33CC66"),
-                Color.parseColor("#FF6633"), Color.parseColor("#6633FF"), Color.parseColor("#3366FF"),
-                Color.parseColor("#FF3366"), Color.parseColor("#66FFCC"), Color.parseColor("#CC66FF"),
-                Color.parseColor("#33FF99"), Color.parseColor("#99FF33"), Color.parseColor("#FF3399"),
-                Color.parseColor("#3399FF"), Color.parseColor("#FF9933"), Color.parseColor("#9933FF"),
-                Color.parseColor("#FF6633"), Color.parseColor("#33FF66"), Color.parseColor("#9933CC"),
-                Color.parseColor("#CC9933"), Color.parseColor("#33CC99"), Color.parseColor("#993366"),
-                Color.parseColor("#669933"), Color.parseColor("#FF6699")
-        };
-
-        if (!itemColorMap.containsKey(txt)) {
-            Random random = new Random();
-            itemColorMap.put(txt, colorArray[random.nextInt(colorArray.length)]);
-        }
-        int itemColor = itemColorMap.get(txt);
-
-        mLootBoxPaint.setStyle(android.graphics.Paint.Style.STROKE);
+        mLootBoxPaint.setStyle(Paint.Style.STROKE);
         mLootBoxPaint.setStrokeWidth(3);
         mLootBoxPaint.setColor(Color.BLACK);
-        cvs.drawText(txt, posX - 60, posY - 10, mLootBoxPaint);
-
-        mLootBoxPaint.setStyle(android.graphics.Paint.Style.FILL);
-        mLootBoxPaint.setColor(itemColor);
-        cvs.drawText(txt, posX - 60, posY - 10, mLootBoxPaint);
-    }
-
-
-    public void DrawVehicles(Canvas cvs, String VehicleName, float distance, float health, float fuel, float posX, float posY, float size) {
-        String realVehicleName = VehicleName(VehicleName);
-        if (realVehicleName != null && !realVehicleName.equals("")) {
-            mVehiclesPaint.setTextSize(size);
-            String displayText = realVehicleName + "[" + (int) distance + "]";
-            mVehiclesPaint.setStyle(Paint.Style.STROKE);
-            mVehiclesPaint.setStrokeWidth(3); // Set stroke width as needed
-            mVehiclesPaint.setColor(Color.BLACK); // Set stroke color
-            if (realVehicleName.equals("Buggy")) {
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-                mVehiclesPaint.setStyle(Paint.Style.FILL);
-                mVehiclesPaint.setColor(Color.parseColor("#FFFFFF"));
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-                cvs.drawBitmap(buggyBitmap, posX - 25, posY - (60 * mScaleY), mPaintBitmap1);
-            } else if (realVehicleName.equals("UAZ")) {
-                cvs.drawBitmap(uazBitmap, posX - 25, posY - (60 * mScaleY), mPaintBitmap1);
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-                mVehiclesPaint.setStyle(Paint.Style.FILL);
-                mVehiclesPaint.setColor(Color.parseColor("#FFFFFF"));
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-            } else if (realVehicleName.equals("Trike")) {
-                cvs.drawBitmap(trikeBitmap, posX - 25, posY - (60 * mScaleY), mPaintBitmap1);
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-                mVehiclesPaint.setStyle(Paint.Style.FILL);
-                mVehiclesPaint.setColor(Color.parseColor("#FFFFFF"));
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-            } else if (realVehicleName.equals("Bike")) {
-                cvs.drawBitmap(bikeBitmap, posX - 25, posY - (60 * mScaleY), mPaintBitmap1);
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-                mVehiclesPaint.setStyle(Paint.Style.FILL);
-                mVehiclesPaint.setColor(Color.parseColor("#FFFFFF"));
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-            } else if (realVehicleName.equals("Dacia")) {
-                cvs.drawBitmap(daciaBitmap, posX - 25, posY - (60 * mScaleY), mPaintBitmap1);
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-                mVehiclesPaint.setStyle(Paint.Style.FILL);
-                mVehiclesPaint.setColor(Color.parseColor("#FFFFFF"));
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-            } else if (realVehicleName.equals("Jet")) {
-                cvs.drawBitmap(jetBitmap, posX - 25, posY - (60 * mScaleY), mPaintBitmap1);
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-                mVehiclesPaint.setStyle(Paint.Style.FILL);
-                mVehiclesPaint.setColor(Color.parseColor("#FFFFFF"));
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-            } else if (realVehicleName.equals("Boat")) {
-                cvs.drawBitmap(boatBitmap, posX - 25, posY - (60 * mScaleY), mPaintBitmap1);
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-                mVehiclesPaint.setStyle(Paint.Style.FILL);
-                mVehiclesPaint.setColor(Color.parseColor("#FFFFFF"));
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-            } else if (realVehicleName.equals("Bus")) {
-                cvs.drawBitmap(busBitmap, posX - 25, posY - (60 * mScaleY), mPaintBitmap1);
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-                mVehiclesPaint.setStyle(Paint.Style.FILL);
-                mVehiclesPaint.setColor(Color.parseColor("#FFFFFF"));
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-            } else if (realVehicleName.equals("Mirado")) {
-                cvs.drawBitmap(miradoBitmap, posX - 25, posY - (60 * mScaleY), mPaintBitmap1);
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-                mVehiclesPaint.setStyle(Paint.Style.FILL);
-                mVehiclesPaint.setColor(Color.parseColor("#FFFFFF"));
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-            } else if (realVehicleName.equals("Scooter")) {
-                cvs.drawBitmap(scooterBitmap, posX - 25, posY - (60 * mScaleY), mPaintBitmap1);
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-                mVehiclesPaint.setStyle(Paint.Style.FILL);
-                mVehiclesPaint.setColor(Color.parseColor("#FFFFFF"));
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-            } else if (realVehicleName.equals("Rony")) {
-                cvs.drawBitmap(ronyBitmap, posX - 25, posY - (60 * mScaleY), mPaintBitmap1);
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-                mVehiclesPaint.setStyle(Paint.Style.FILL);
-                mVehiclesPaint.setColor(Color.parseColor("#FFFFFF"));
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-            } else if (realVehicleName.equals("Snowbike")) {
-                cvs.drawBitmap(snowbikeBitmap, posX - 25, posY - (60 * mScaleY), mPaintBitmap1);
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-                mVehiclesPaint.setStyle(Paint.Style.FILL);
-                mVehiclesPaint.setColor(Color.parseColor("#FFFFFF"));
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-            } else if (realVehicleName.equals("Snowmobile")) {
-                cvs.drawBitmap(snowmobileBitmap, posX - 25, posY - (60 * mScaleY), mPaintBitmap1);
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-                mVehiclesPaint.setStyle(Paint.Style.FILL);
-                mVehiclesPaint.setColor(Color.parseColor("#FFFFFF"));
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-            } else if (realVehicleName.equals("Tempo")) {
-                cvs.drawBitmap(tempoBitmap, posX - 25, posY - (60 * mScaleY), mPaintBitmap1);
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-                mVehiclesPaint.setStyle(Paint.Style.FILL);
-                mVehiclesPaint.setColor(Color.parseColor("#FFFFFF"));
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-            } else if (realVehicleName.equals("Truck")) {
-                cvs.drawBitmap(truckBitmap, posX - 25, posY - (60 * mScaleY), mPaintBitmap1);
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-                mVehiclesPaint.setStyle(Paint.Style.FILL);
-                mVehiclesPaint.setColor(Color.parseColor("#FFFFFF"));
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-            } else if (realVehicleName.equals("BRDM")) {
-                cvs.drawBitmap(brdmBitmap, posX - 25, posY - (60 * mScaleY), mPaintBitmap1);
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-                mVehiclesPaint.setStyle(Paint.Style.FILL);
-                mVehiclesPaint.setColor(Color.parseColor("#FFFFFF"));
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-            } else if (realVehicleName.equals("Monster")) {
-                cvs.drawBitmap(monsterBitmap, posX - 25, posY - (60 * mScaleY), mPaintBitmap1);
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-                mVehiclesPaint.setStyle(Paint.Style.FILL);
-                mVehiclesPaint.setColor(Color.parseColor("#FFFFFF"));
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-            } else if (realVehicleName.equals("CoupeRB")) {
-                cvs.drawBitmap(coupeBitmap, posX - 25, posY - (60 * mScaleY), mPaintBitmap1);
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-                mVehiclesPaint.setStyle(Paint.Style.FILL);
-                mVehiclesPaint.setColor(Color.parseColor("#FFFFFF"));
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-            } else if (realVehicleName.equals("Motor Glider")) {
-                cvs.drawBitmap(gliderBitmap, posX - 25, posY - (60 * mScaleY), mPaintBitmap1);
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-                mVehiclesPaint.setStyle(Paint.Style.FILL);
-                mVehiclesPaint.setColor(Color.parseColor("#FFFFFF"));
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-            } else if (realVehicleName.equals("UTV")) {
-                cvs.drawBitmap(utvBitmap, posX - 25, posY - (60 * mScaleY), mPaintBitmap1);
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-                mVehiclesPaint.setStyle(Paint.Style.FILL);
-                mVehiclesPaint.setColor(Color.parseColor("#FFFFFF"));
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-            } else if (realVehicleName.equals("ATV1")) {
-                cvs.drawBitmap(atvBitmap, posX - 25, posY - (60 * mScaleY), mPaintBitmap1);
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-                mVehiclesPaint.setStyle(Paint.Style.FILL);
-                mVehiclesPaint.setColor(Color.parseColor("#FFFFFF"));
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-            } else if (realVehicleName.equals("Reindeer")) {
-                cvs.drawBitmap(kudaBitmap, posX - 25, posY - (60 * mScaleY), mPaintBitmap1);
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-                mVehiclesPaint.setStyle(Paint.Style.FILL);
-                mVehiclesPaint.setColor(Color.parseColor("#FFFFFF"));
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-
-            } else {
-                cvs.drawBitmap(vehicleBitmap, posX - 25, posY - (50 * mScaleY), mPaintBitmap1);
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-                mVehiclesPaint.setStyle(Paint.Style.FILL);
-                mVehiclesPaint.setColor(Color.parseColor("#FFFFFF"));
-                cvs.drawText(displayText, posX, posY - 0, mVehiclesPaint);
-            }
-            handleFuelHealthText(cvs, posX, posY - 10, fuel, health, size);
-        }
-    }
-
-    public void DrawEnemyCount(Canvas cvs, int a, int r, int g, int b, int x, int y, int width, int height) {
-        int colors[] = {Color.TRANSPARENT, Color.rgb(r, g, b), Color.TRANSPARENT};
-        GradientDrawable mDrawable = new GradientDrawable(GradientDrawable.Orientation.RIGHT_LEFT, colors);
-        mDrawable.setShape(GradientDrawable.RECTANGLE);
-        mDrawable.setGradientRadius(2.0f * 60);
-        Rect mRect = new Rect(x, y, width, height);
-        mDrawable.setBounds(mRect);
-        cvs.save();
-        mDrawable.setGradientType(GradientDrawable.LINEAR_GRADIENT);
-        mDrawable.draw(cvs);
-        cvs.restore();
-    }
-
-    private void handleFuelHealthText(Canvas cvs, float posX, float posY, float fuel, float health, float size) {
-        mStrokePaint.setARGB(50, 0, 0, 0); //Stroke
-        cvs.drawRoundRect(posX - 45, posY + 19, posX + 50, posY + 25, 3, 3, mStrokePaint);
-        mFilledPaint.setARGB(100, 255, 255, 0); //Health
-        cvs.drawRoundRect(posX - 45, posY + 19, posX - 40 + (2 * 45) * fuel / 100, posY + 25, 3, 3, mFilledPaint);
-        mStrokePaint.setARGB(50, 0, 0, 0); //Stroke
-        cvs.drawRoundRect(posX - 45, posY + 29, posX + 50, posY + 35, 3, 3, mStrokePaint);
-        mFilledPaint.setARGB(100, 255, 45, 30); //Health
-        cvs.drawRoundRect(posX - 45, posY + 29, posX - 40 + (2 * 45) * health / 100, posY + 35, 3, 3, mFilledPaint);
+        cvs.drawText(txt, posX, posY, mLootBoxPaint);
+        mLootBoxPaint.setStyle(Paint.Style.FILL);
+        mLootBoxPaint.setColor(Color.parseColor("#FF40CC7E"));
+        cvs.drawText(txt, posX, posY, mLootBoxPaint);
     }
 
 
@@ -876,28 +565,32 @@ public class ESPView extends View implements Runnable {
         cvs.drawCircle(posX, posY, radius, mFilledPaint);
     }
 
-
+    public void DrawFillCircle(Canvas cvs, int a, int r, int g, int b, float posX, float posY, float radius, float stroke) {
+        mFilledPaint.setARGB(a, r, g, b);
+        mFilledPaint.setStrokeWidth(stroke);
+        cvs.drawCircle(posX, posY, radius, mFilledPaint);
+    }
 
     public void DrawWeapon(Canvas cvs, int a, int r, int g, int b, int id, int ammo, int ammo2, float posX, float posY, float size) {
-        mNamePaint.setARGB(a, r, g, b);
-        mNamePaint.setTextSize(size);
+        mTextPaint.setARGB(a, r, g, b);
+        mTextPaint.setTextSize(size);
         //mTextPaint1.setShadowLayer(10, 1, 1, Color.rgb(1,1,1));
         String wname = getWeapon(id);
         if (wname != null) {
             if (wname == "Sickle" || wname == "Machete" || wname == "Crowbar" || wname == "Pan") {
-                cvs.drawText(wname, posX, posY, mNamePaint);
+                cvs.drawText(wname, posX, posY, mTextPaint);
             } else {
-                cvs.drawText(wname + "(" + ammo + "/" + ammo2 + ")", posX, posY, mNamePaint);
+                cvs.drawText(wname + "(" + ammo + "/" + ammo2 + ")", posX, posY, mTextPaint);
             }
         }
     }
 
-    /*public void DrawWeaponIcon(Canvas cvs, int id, float posX, float posY) {
+    public void DrawWeaponIcon(Canvas cvs, int id, float posX, float posY) {
         Bitmap cachedBitmap = bitmapCache.get(id);
         if (cachedBitmap != null) {
             cvs.drawBitmap(cachedBitmap, posX, posY - 43, null);
         } else {
-           // int weapon_icon = getWeaponIcon(id);
+            int weapon_icon = getWeaponIcon(id);
             if (weapon_icon != 0) {
                 mScaleX = getWidth() / (float) 2340;
                 mScaleY = getHeight() / (float) 1080;
@@ -907,15 +600,21 @@ public class ESPView extends View implements Runnable {
                 cvs.drawBitmap(scaledBitmap, posX, posY - 43, null);
             }
         }
-    }*/
-
-
-    public void DrawOTH2(Canvas cvs, int image_number, float X, float Y, float width, float height) {
-        Bitmap scaledBitmap = Bitmap.createScaledBitmap(OTHER[image_number], (int) width, (int) height, true);
-        cvs.drawBitmap(scaledBitmap, X, Y, p);
     }
 
 
+    public void DrawOTH2(Canvas cvs, int image_number, float X, float Y) {
+        if (image_number >= 0 && image_number < OTHER.length && OTHER[image_number] != null) {
+            cvs.drawBitmap(OTHER[image_number], X, Y, p);
+        }
+    }
+
+    public void DrawOTH2(Canvas cvs, int image_number, float X, float Y, float width, float height) {
+        if (image_number >= 0 && image_number < OTHER.length && OTHER[image_number] != null) {
+            Bitmap scaledBitmap = Bitmap.createScaledBitmap(OTHER[image_number], (int) width, (int) height, true);
+            cvs.drawBitmap(scaledBitmap, X, Y, p);
+        }
+    }
 
     public void DrawTextBot(Canvas cvs, int a, int r, int g, int b, String txt, float posX, float posY, float size) {
         mNamePaint.setColor(Color.rgb(r, g, b));
@@ -927,19 +626,18 @@ public class ESPView extends View implements Runnable {
         mNamePaint.setColor(Color.rgb(r, g, b));
         mNamePaint.setTextSize(size);
         mNamePaint.setShadowLayer(8.0f, 1.5f, 1.5f, Color.BLACK);
-        cvs.drawText(teamid + "", posX, posY, mNamePaint);
+        cvs.drawText(String.valueOf(teamid), posX, posY, mNamePaint);
     }
 
     public void DrawName1(Canvas cvs, int a, int r, int g, int b, String nametxt, int teamid, float posX, float posY, float size) {
-        String realname = decodeEncodedName(nametxt);
+        String realname = parseEncodedName(nametxt);
         mNamePaint.setARGB(a, r, g, b);
         mNamePaint.setTextSize(size);
         mNamePaint.setShadowLayer(8.0f, 1.5f, 1.5f, Color.BLACK);
-
         cvs.drawText("   " + realname, posX, posY, mNamePaint);
     }
 
-    /*public void DrawTriangle(Canvas cvs, int a, int r, int g, int b, float posX1, float posY1, float posX2, float posY2, float posX3, float posY3, float stroke) {
+    public void DrawTriangle(Canvas cvs, int a, int r, int g, int b, float posX1, float posY1, float posX2, float posY2, float posX3, float posY3, float stroke) {
         Path path = new Path();
         path.moveTo(posX1, posY1); // Pindahkan ke titik awal segitiga
         path.lineTo(posX2, posY2); // Gambar garis ke titik kedua
@@ -952,128 +650,70 @@ public class ESPView extends View implements Runnable {
         paint.setStrokeWidth(stroke); // Tetapkan ketebalan garis
 
         cvs.drawPath(path, paint); // Gambar segitiga pada objek Canvas
-    }*/
-
-    public void DrawTriangle(Canvas cvs, int a, int r, int g, int b, float centerX, float centerY, float size, float angle) {
-        triangleFillPaint.setColor(Color.rgb(r, g, b));
-        triangleFillPaint.setAlpha(a);
-        triangleFillPaint.setStyle(Paint.Style.FILL);
-        triangleStrokePaint.setColor(Color.WHITE);
-        triangleStrokePaint.setAlpha(255);
-        triangleStrokePaint.setStyle(Paint.Style.STROKE);
-        triangleStrokePaint.setStrokeWidth(2);
-        trianglePath.rewind();
-        float halfSize = size / 2;
-        float tipSize = size * 0.8f;
-
-        float tipX = centerX + (float) (Math.cos(Math.toRadians(angle)) * tipSize);
-        float tipY = centerY + (float) (Math.sin(Math.toRadians(angle)) * tipSize);
-
-        float leftX = centerX + (float) (Math.cos(Math.toRadians(angle + 120)) * halfSize);
-        float leftY = centerY + (float) (Math.sin(Math.toRadians(angle + 120)) * halfSize);
-
-        float rightX = centerX + (float) (Math.cos(Math.toRadians(angle - 120)) * halfSize);
-        float rightY = centerY + (float) (Math.sin(Math.toRadians(angle - 120)) * halfSize);
-
-        trianglePath.moveTo(tipX, tipY);
-        trianglePath.lineTo(leftX, leftY);
-        trianglePath.lineTo(rightX, rightY);
-        trianglePath.close();
-        cvs.drawPath(trianglePath, triangleStrokePaint);
-        cvs.drawPath(trianglePath, triangleFillPaint);
     }
 
-
-
-
     public void DrawTriangleFilled(Canvas cvs, int a, int r, int g, int b, float posX1, float posY1, float posX2, float posY2, float posX3, float posY3) {
-        trianglePath.rewind();
-        trianglePath.moveTo(posX1, posY1);
-        trianglePath.lineTo(posX2, posY2);
-        trianglePath.lineTo(posX3, posY3);
-        trianglePath.close();
-        triangleFillPaint.setARGB(a, r, g, b);
-        triangleFillPaint.setStyle(Paint.Style.FILL);
-        cvs.drawPath(trianglePath, triangleFillPaint);
+        Path path = new Path();
+        path.moveTo(posX1, posY1); // Pindahkan ke titik awal segitiga
+        path.lineTo(posX2, posY2); // Gambar garis ke titik kedua
+        path.lineTo(posX3, posY3); // Gambar garis ke titik ketiga
+        path.close(); // Tutup segitiga dengan menghubungkan titik terakhir dengan titik awal
+
+        Paint paint = new Paint();
+        paint.setARGB(a, r, g, b); // Set warna segitiga
+        paint.setStyle(Paint.Style.FILL); // Tetapkan gaya lukisan ke pengisian (filled)
+
+        cvs.drawPath(path, paint); // Gambar segitiga pada objek Canvas
     }
 
     public void DrawName2(Canvas cvs, int a, int r, int g, int b, String nametxt, int teamid, float posX, float posY, float size) {
-        String str = "";
-        String realname = decodeEncodedName(nametxt);
+        String realname = parseEncodedName(nametxt);
         mTextPaint.setARGB(a, r, g, b);
         mTextPaint.setTextSize(size);
-        cvs.drawText(str + "" + Nation(realname), posX - 80.0f, posY - 30, mTextPaint);
+        cvs.drawText(Nation(realname), posX - 80.0f, posY - 30, mTextPaint);
     }
 
-    public void DrawText(Canvas cvs, int a, int r, int g, int b, String txt, float posX, float posY, float size) {
+    public void DrawName(Canvas cvs, int a, int r, int g, int b, String nametxt, int teamid, float posX, float posY, float size) {
+        String realname = parseEncodedName(nametxt);
         mTextPaint.setARGB(a, r, g, b);
         mTextPaint.setTextSize(size);
-        cvs.drawText(txt, posX, posY, mTextPaint);
-    }
-
-    public void DrawTexti(Canvas cvs, int a, int r, int g, int b, String txt, float posX, float posY, float size) {
-        mTextPainti.setARGB(a, r, g, b);
-        mTextPainti.setTextSize(size);
-        cvs.drawText(txt, posX, posY, mTextPainti);
-    }
-
-
-//    public void DrawName(Canvas cvs, int a, int r, int g, int b, String nametxt, int teamid, float posX, float posY, float size) {
-//        String[] namesp = nametxt.split(":");
-//        char[] nameint = new char[namesp.length];
-//        for (int i = 0; i < namesp.length; i++)
-//            nameint[i] = (char) Integer.parseInt(namesp[i]);
-//        String realname = new String(nameint);
-//        mTextPaint.setARGB(a, r, g, b);
-//        mTextPaint.setTextSize(size);
-//        mTextPaint.setShadowLayer(3, 2, 2, Color.BLACK);
-//        cvs.drawText("(" + teamid + ")" + realname, posX, posY, mTextPaint);
-//    }
-
-    public void DrawName(Canvas cvs, int a, int r, int g, int b, String nametxt, float posX, float posY, float size) {
-        String realname = decodeEncodedName(nametxt);
-        mTextPaint.setARGB(a, r, g, b);
-        mTextPaint.setTextSize(size);
-        cvs.drawText(realname, posX, posY, mTextPaint);
-    }
-
-    public void DrawUserID(Canvas cvs, int a, int r, int g, int b, String nametxt, float posX, float posY, float size) {
-        String realname = decodeEncodedName(nametxt);
-
-        // Check if realname has exactly 4 characters
-        if (realname.length() == 4 && realname.matches("\\d{4}")) {
-            realname = "Smart AI";
+        if (teamid > 0) {
+            cvs.drawText("(" + teamid + ")" + realname, posX, posY, mTextPaint);
+        } else {
+            cvs.drawText(realname, posX, posY, mTextPaint);
         }
-
-        mTextPaint.setARGB(a, r, g, b);
-        mTextPaint.setTextSize(size);
-        mTextPaint.setColor(Color.parseColor("#FFFFFF"));
-        cvs.drawText("ID: " + realname, posX, posY, mTextPaint);
     }
 
     public void DrawNation(Canvas cvs, int a, int r, int g, int b, String nametxt, int flag, float posX, float posY, float size) {
-        String realname = decodeEncodedName(nametxt);
-        mTextPaint.setARGB(a, r, g, b);
-        mTextPaint.setTextSize(size);
-        cvs.drawText("", posX + 85, posY - 0, mTextPaint);
-        cvs.drawText(Nation(realname), posX + 73, posY - 49, mTextPaint);
+        String realname = parseEncodedName(nametxt);
+        mNationPaint.setARGB(a, r, g, b);
+        mNationPaint.setTextSize(size);
+        cvs.drawText("", posX + 85, posY - 0, mNationPaint);
+        cvs.drawText(Nation(realname), posX + 73, posY - 49 - Pos, mNationPaint);
     }
 
-
     private String Nation(String code) {
-        if (code == null || code.length() < 2) {
-            return "";
+        if (code == null || code.length() < 2) return code != null ? code : "";
+        if ("G1".equals(code)) {
+            return "🌍️";
         }
-        if (code.equals("G1")) {
-            code = "🌍️";
-        } else {
-            try {
-                code = new String(Character.toChars((Character.codePointAt(code, 0) - 65) + 127462)) + new String(Character.toChars((Character.codePointAt(code, 1) - 65) + 127462));
-            } catch (Exception ignored) {
-                return "";
+        try {
+            int c0 = Character.codePointAt(code, 0);
+            int c1 = Character.codePointAt(code, 1);
+            if (c0 >= 65 && c0 <= 90 && c1 >= 65 && c1 <= 90) {
+                return new String(Character.toChars((c0 - 65) + 127462)) + new String(Character.toChars((c1 - 65) + 127462));
             }
+        } catch (Exception ignored) {
         }
         return code;
+    }
+
+    public void DrawUserID(Canvas cvs, int a, int r, int g, int b, String nametxt, float posX, float posY, float size) {
+        String realname = parseEncodedName(nametxt);
+        mUserIDPaint.setARGB(a, r, g, b);
+        mUserIDPaint.setTextSize(size);
+        mUserIDPaint.setColor(Color.WHITE);
+        cvs.drawText("ID: " + realname, posX, posY - Pos, mUserIDPaint);
     }
 
 
@@ -1492,11 +1132,13 @@ public class ESPView extends View implements Runnable {
             case 1060104:
             case 1060105:
                 return "Desert Angle";
+            case 11223344:
+                return "First";
         }
         return "";
     }
 
-    /*private int getWeaponIcon(int id) {
+    private int getWeaponIcon(int id) {
         //AR and SMG
         if (id == 101006)
             return R.drawable.c101006;
@@ -1594,610 +1236,552 @@ public class ESPView extends View implements Runnable {
             return R.drawable.c106002;
         if (id == 106010)
             return R.drawable.c106010;
+        if (id == 11223344)
+            return R.drawable.fuckc;
 
         return 0;
-    }*/
+    }
 
     private String getItemName(String s) {
         //Scopes
         if (s.contains("MZJ_8X") && getConfig("8x")) {
-            mTextPainti.setARGB(255, 247, 99, 245);
+            mItemsPaint.setARGB(255, 247, 99, 245);
             return "8x";
         }
         if (s.contains("MZJ_2X") && getConfig("2x")) {
-            mTextPainti.setARGB(255, 230, 172, 226);
+            mItemsPaint.setARGB(255, 230, 172, 226);
             return "2x";
         }
         if (s.contains("MZJ_HD") && getConfig("Red Dot")) {
-            mTextPainti.setARGB(255, 230, 172, 226);
+            mItemsPaint.setARGB(255, 230, 172, 226);
             return "Red Dot";
         }
         if (s.contains("MZJ_3X") && getConfig("3x")) {
-            mTextPainti.setARGB(255, 247, 99, 245);
+            mItemsPaint.setARGB(255, 247, 99, 245);
             return "3X";
         }
         if (s.contains("MZJ_QX") && getConfig("Hollow")) {
-            mTextPainti.setARGB(255, 153, 75, 152);
+            mItemsPaint.setARGB(255, 153, 75, 152);
             return "Hollow Sight";
         }
         if (s.contains("MZJ_6X") && getConfig("6x")) {
-            mTextPainti.setARGB(255, 247, 99, 245);
+            mItemsPaint.setARGB(255, 247, 99, 245);
             return "6x";
         }
         if (s.contains("MZJ_4X") && getConfig("4x")) {
-            mTextPainti.setARGB(255, 247, 99, 245);
+            mItemsPaint.setARGB(255, 247, 99, 245);
             return "4x";
         }
         if (s.contains("MZJ_SideRMR") && getConfig("Canted")) {
-            mTextPainti.setARGB(255, 153, 75, 152);
+            mItemsPaint.setARGB(255, 153, 75, 152);
             return "Canted Sight";
         }
 
         //Assault Rifle
         if (s.contains("Rifle_AUG") && getConfig("AUG")) {
-            mTextPainti.setARGB(255, 52, 224, 63);
+            mItemsPaint.setARGB(255, 52, 224, 63);
             return "AUG";
         }
         if (s.contains("Rifle_M762") && getConfig("M762")) {
-            mTextPainti.setARGB(255, 43, 26, 28);
+            mItemsPaint.setARGB(255, 43, 26, 28);
             return "M762";
         }
         if (s.contains("Rifle_SCAR") && getConfig("SCAR-L")) {
-            mTextPainti.setARGB(255, 52, 224, 63);
+            mItemsPaint.setARGB(255, 52, 224, 63);
             return "SCAR-L";
         }
         if (s.contains("Rifle_FAMAS") && getConfig("FAMAS")) {
-            mTextPainti.setARGB(255, 0, 255, 0);
+            mItemsPaint.setARGB(255, 0, 255, 0);
             return "FAMAS";
         }
         if (s.contains("Rifle_M416") && getConfig("M416")) {
-            mTextPainti.setARGB(255, 115, 235, 223);
+            mItemsPaint.setARGB(255, 115, 235, 223);
             return "M416";
         }
         if (s.contains("Rifle_M16A4") && getConfig("M16A4")) {
-            mTextPainti.setARGB(255, 116, 227, 123);
+            mItemsPaint.setARGB(255, 116, 227, 123);
             return "M16A-4";
         }
         if (s.contains("Rifle_G36") && getConfig("G36C")) {
-            mTextPainti.setARGB(255, 116, 227, 123);
+            mItemsPaint.setARGB(255, 116, 227, 123);
             return "G36C";
         }
         if (s.contains("Rifle_QBZ") && getConfig("QBZ")) {
-            mTextPainti.setARGB(255, 52, 224, 63);
+            mItemsPaint.setARGB(255, 52, 224, 63);
             return "QBZ";
         }
         if (s.contains("Rifle_AKM") && getConfig("AKM")) {
-            mTextPainti.setARGB(255, 214, 99, 99);
+            mItemsPaint.setARGB(255, 214, 99, 99);
             return "AKM";
         }
         if (s.contains("Rifle_HoneyBadger") && getConfig("Honey Badger")) {
-            mTextPainti.setARGB(255, 214, 99, 99);
+            mItemsPaint.setARGB(255, 214, 99, 99);
             return "Honey Badger";
         }
         if (s.contains("Rifle_Groza") && getConfig("Groza")) {
-            mTextPainti.setARGB(255, 214, 99, 99);
+            mItemsPaint.setARGB(255, 214, 99, 99);
             return "Groza";
         }
         if (s.contains("Rifle_ACE32") && getConfig("ACE32")) {
-            mTextPainti.setARGB(255, 214, 99, 99);
+            mItemsPaint.setARGB(255, 214, 99, 99);
             return "ACE32";
         }
 
         //Contra
 
         if (s.contains("SubmachineGun_UMP45") && getConfig("UMP")) {
-            mTextPainti.setARGB(255, 207, 207, 207);
+            mItemsPaint.setARGB(255, 207, 207, 207);
             return "UMP";
         }
         //Sub Machine Gun
         if (s.contains("MachineGun_PP19") && getConfig("Bizon")) {
-            mTextPainti.setARGB(255, 255, 246, 0);
+            mItemsPaint.setARGB(255, 255, 246, 0);
             return "Bizon";
         }
         if (s.contains("MachineGun_TommyGun") && getConfig("TommyGun")) {
-            mTextPainti.setARGB(255, 207, 207, 207);
+            mItemsPaint.setARGB(255, 207, 207, 207);
             return "TommyGun";
         }
         if (s.contains("MachineGun_MP5K") && getConfig("MP5K")) {
-            mTextPainti.setARGB(255, 207, 207, 207);
+            mItemsPaint.setARGB(255, 207, 207, 207);
             return "MP5K";
         }
         if (s.contains("MachineGun_UMP9") && getConfig("UMP")) {
-            mTextPainti.setARGB(255, 207, 207, 207);
+            mItemsPaint.setARGB(255, 207, 207, 207);
             return "UMP";
         }
         if (s.contains("MachineGun_Vector") && getConfig("Vector")) {
-            mTextPainti.setARGB(255, 255, 246, 0);
+            mItemsPaint.setARGB(255, 255, 246, 0);
             return "Vector";
         }
         if (s.contains("MachineGun_Uzi") && getConfig("UZI")) {
-            mTextPainti.setARGB(255, 255, 246, 0);
+            mItemsPaint.setARGB(255, 255, 246, 0);
             return "UZI";
         }
         if (s.contains("MachineGun_P90") && getConfig("P90")) {
-            mTextPainti.setARGB(255, 233, 0, 207);
+            mItemsPaint.setARGB(255, 233, 0, 207);
             return "P90";
         }
 
         //Other Gun
         if (s.contains("Other_DP28") && getConfig("DP28")) {
-            mTextPainti.setARGB(255, 43, 26, 28);
+            mItemsPaint.setARGB(255, 43, 26, 28);
             return "DP28";
         }
         if (s.contains("Other_M249") && getConfig("M249")) {
-            mTextPainti.setARGB(255, 247, 99, 245);
+            mItemsPaint.setARGB(255, 247, 99, 245);
             return "M249";
         }
         if (s.contains("Other_MG3") && getConfig("MG3")) {
-            mTextPainti.setARGB(255, 0, 255, 0);
+            mItemsPaint.setARGB(255, 0, 255, 0);
             return "MG3";
         }
 
         //Snipers
         if (s.contains("Sniper_AWM") && getConfig("AWM")) {
-            mTextPainti.setColor(Color.BLACK);
+            mItemsPaint.setColor(Color.BLACK);
             return "AWM";
         }
         if (s.contains("Sniper_AMR") && getConfig("AMR")) {
-            mTextPainti.setARGB(255, 247, 99, 245);
+            mItemsPaint.setARGB(255, 247, 99, 245);
             return "AMR";
         }
         if (s.contains("Sniper_QBU") && getConfig("QBU")) {
-            mTextPainti.setARGB(255, 207, 207, 207);
+            mItemsPaint.setARGB(255, 207, 207, 207);
             return "QBU";
         }
         if (s.contains("Sniper_SLR") && getConfig("SLR")) {
-            this.mTextPainti.setARGB(255, 214, 99, 99);
+            this.mItemsPaint.setARGB(255, 214, 99, 99);
             return "SLR";
         }
         if (s.contains("Sniper_SKS") && getConfig("SKS")) {
-            this.mTextPainti.setARGB(255, 214, 99, 99);
+            this.mItemsPaint.setARGB(255, 214, 99, 99);
             return "SKS";
         }
         if (s.contains("Sniper_Mini14") && getConfig("Mini14")) {
-            mTextPainti.setARGB(255, 247, 99, 245);
+            mItemsPaint.setARGB(255, 247, 99, 245);
             return "Mini14";
         }
         if (s.contains("Sniper_M24") && getConfig("M24")) {
-            this.mTextPainti.setARGB(255, 214, 99, 99);
+            this.mItemsPaint.setARGB(255, 214, 99, 99);
             return "M24";
         }
         if (s.contains("Sniper_Kar98k") && getConfig("Kar98k")) {
-            this.mTextPainti.setARGB(255, 214, 99, 99);
+            this.mItemsPaint.setARGB(255, 214, 99, 99);
             return "Kar98k";
         }
         if (s.contains("Sniper_VSS") && getConfig("VSS")) {
-            mTextPainti.setARGB(255, 255, 246, 0);
+            mItemsPaint.setARGB(255, 255, 246, 0);
             return "VSS";
         }
         if (s.contains("Sniper_Win94") && getConfig("Win94")) {
-            mTextPainti.setARGB(255, 207, 207, 207);
+            mItemsPaint.setARGB(255, 207, 207, 207);
             return "Win94";
         }
         if (s.contains("Sniper_Mk14") && getConfig("MK14")) {
-            this.mTextPainti.setARGB(255, 214, 99, 99);
+            this.mItemsPaint.setARGB(255, 214, 99, 99);
             return "MK14";
         }
         if (s.contains("Sniper_Mosin") && getConfig("Mosin")) {
-            mTextPainti.setARGB(255, 153, 0, 0);
+            mItemsPaint.setARGB(255, 153, 0, 0);
             return "Mosin";
         }
         if (s.contains("Sniper_MK12") && getConfig("MK12")) {
-            this.mTextPainti.setARGB(255, 214, 99, 99);
+            this.mItemsPaint.setARGB(255, 214, 99, 99);
             return "MK12";
         }
         if (s.contains("Sniper_Mk47") && getConfig("MK47")) {
-            mTextPainti.setARGB(255, 247, 99, 245);
+            mItemsPaint.setARGB(255, 247, 99, 245);
             return "Mk47 Mutant";
         }
 
         //Shotguns
         if (s.contains("ShotGun_S12K") && getConfig("S12K")) {
-            mTextPainti.setARGB(255, 153, 109, 109);
+            mItemsPaint.setARGB(255, 153, 109, 109);
             return "S12K";
         }
         if (s.contains("ShotGun_DP12") && getConfig("DBS")) {
-            mTextPainti.setARGB(255, 153, 109, 109);
+            mItemsPaint.setARGB(255, 153, 109, 109);
             return "DBS";
         }
         if (s.contains("ShotGun_M1014") && getConfig("M1014")) {
-            mTextPainti.setARGB(255, 153, 109, 109);
+            mItemsPaint.setARGB(255, 153, 109, 109);
             return "M1014";
         }
         if (s.contains("ShotGun_Neostead2000") && getConfig("NS2000")) {
-            mTextPainti.setARGB(255, 153, 109, 109);
+            mItemsPaint.setARGB(255, 153, 109, 109);
             return "NS2000";
         }
         if (s.contains("ShotGun_S686") && getConfig("S686")) {
-            mTextPainti.setARGB(255, 153, 109, 109);
+            mItemsPaint.setARGB(255, 153, 109, 109);
             return "S686";
         }
         if (s.contains("ShotGun_S1897") && getConfig("S1897")) {
-            mTextPainti.setARGB(255, 153, 109, 109);
+            mItemsPaint.setARGB(255, 153, 109, 109);
             return "S1897";
         }
 
         //
         if (s.contains("Sickle") && getConfig("Sickle")) {
-            mTextPainti.setARGB(255, 102, 74, 74);
+            mItemsPaint.setARGB(255, 102, 74, 74);
             return "Sickle";
         }
         if (s.contains("Machete") && getConfig("Machete")) {
-            mTextPainti.setARGB(255, 102, 74, 74);
+            mItemsPaint.setARGB(255, 102, 74, 74);
             return "Machete";
         }
         if (s.contains("Cowbar") && getConfig("Crowbar")) {
-            mTextPainti.setARGB(255, 102, 74, 74);
+            mItemsPaint.setARGB(255, 102, 74, 74);
             return "Crowbar";
         }
         if (s.contains("CrossBow") && getConfig("CrossBow")) {
-            mTextPainti.setARGB(255, 102, 74, 74);
+            mItemsPaint.setARGB(255, 102, 74, 74);
             return "CrossBow";
         }
         if (s.contains("Pan") && getConfig("Pan")) {
-            mTextPainti.setARGB(255, 102, 74, 74);
+            mItemsPaint.setARGB(255, 102, 74, 74);
             return "Pan";
         }
 
         //Pistols
         if (s.contains("SawedOff") && getConfig("Sawed-Off")) {
-            mTextPainti.setARGB(255, 153, 109, 109);
+            mItemsPaint.setARGB(255, 153, 109, 109);
             return "SawedOff";
         }
         if (s.contains("R1895") && getConfig("R1895")) {
-            mTextPainti.setARGB(255, 156, 113, 81);
+            mItemsPaint.setARGB(255, 156, 113, 81);
             return "R1895";
         }
         if (s.contains("Vz61") && getConfig("Scorpion")) {
-            mTextPainti.setARGB(255, 156, 113, 81);
+            mItemsPaint.setARGB(255, 156, 113, 81);
             return "Scorpion";
         }
         if (s.contains("P92") && getConfig("P92")) {
-            mTextPainti.setARGB(255, 156, 113, 81);
+            mItemsPaint.setARGB(255, 156, 113, 81);
             return "P92";
         }
         if (s.contains("P18C") && getConfig("P18C")) {
-            mTextPainti.setARGB(255, 156, 113, 81);
+            mItemsPaint.setARGB(255, 156, 113, 81);
             return "P18C";
         }
         if (s.contains("R45") && getConfig("R45")) {
-            mTextPainti.setARGB(255, 156, 113, 81);
+            mItemsPaint.setARGB(255, 156, 113, 81);
             return "R45";
         }
         if (s.contains("P1911") && getConfig("P1911")) {
-            mTextPainti.setARGB(255, 156, 113, 81);
+            mItemsPaint.setARGB(255, 156, 113, 81);
             return "P1911";
         }
         if (s.contains("DesertEagle") && getConfig("Dessert Eagle")) {
-            mTextPainti.setARGB(255, 156, 113, 81);
+            mItemsPaint.setARGB(255, 156, 113, 81);
             return "DesertEagle";
         }
 
         //Ammo
         if (s.contains("Ammo_762mm") && getConfig("7.62mm")) {
-            lastItemColor = Color.argb(255, 92, 36, 28);
-            mTextPainti.setARGB(255, 92, 36, 28);
+            mItemsPaint.setARGB(255, 92, 36, 28);
             return "7.62";
         }
         if (s.contains("Ammo_45AC") && getConfig("45ACP")) {
-            lastItemColor = Color.argb(255, 92, 36, 28);
-            mTextPainti.setColor(Color.LTGRAY);
+            mItemsPaint.setColor(Color.LTGRAY);
             return "45ACP";
         }
         if (s.contains("Ammo_556mm") && getConfig("5.56mm")) {
-            lastItemColor = (Color.GREEN);
-            mTextPainti.setColor(Color.GREEN);
+            mItemsPaint.setColor(Color.GREEN);
             return "5.56";
         }
         if (s.contains("Ammo_9mm") && getConfig("9mm")) {
-            mTextPainti.setColor(Color.YELLOW);
+            mItemsPaint.setColor(Color.YELLOW);
             return "9mm";
         }
         if (s.contains("Ammo_300Magnum") && getConfig("300Magnum")) {
-            mTextPainti.setColor(Color.BLACK);
+            mItemsPaint.setColor(Color.BLACK);
             return "300Magnum";
         }
         if (s.contains("Ammo_50BMG") && getConfig("50BMG")) {
-            mTextPainti.setColor(Color.BLACK);
+            mItemsPaint.setColor(Color.BLACK);
             return "50BMG";
         }
         if (s.contains("Ammo_12Guage") && getConfig("12Guage")) {
-            mTextPainti.setARGB(255, 156, 91, 81);
+            mItemsPaint.setARGB(255, 156, 91, 81);
             return "12Guage";
         }
         if (s.contains("Ammo_Bolt") && getConfig("Arrow")) {
-            mTextPainti.setARGB(255, 156, 113, 81);
+            mItemsPaint.setARGB(255, 156, 113, 81);
             return "Arrow";
         }
 
         //bag helmet vest
-        if (s.contains("Bag_Lv3") && getConfig("Bag L3")) {
-            mTextPainti.setARGB(255, 36, 83, 255);
+        if (s.contains("Bag_Lv3") && getConfig("Bag L3")) { mItemsPaint.setARGB(255, 36, 83, 255);
             return "Bag lvl 3";
         }
 
-        if (s.contains("Bag_Lv1") && getConfig("Bag L1")) {
-            mTextPainti.setARGB(255, 127, 154, 250);
+        if (s.contains("Bag_Lv1")  && getConfig("Bag L1")) { mItemsPaint.setARGB(255, 127, 154, 250);
             return "Bag lvl 1";
         }
 
-        if (s.contains("Bag_Lv2") && getConfig("Bag L2")) {
-            mTextPainti.setARGB(255, 77, 115, 255);
+        if (s.contains("Bag_Lv2") && getConfig("Bag L2")) { mItemsPaint.setARGB(255, 77, 115, 255);
             return "Bag lvl 2";
         }
 
-        if (s.contains("Armor_Lv2") && getConfig("Vest L2")) {
-            mTextPainti.setARGB(255, 77, 115, 255);
+        if (s.contains("Armor_Lv2") && getConfig("Vest L2")) { mItemsPaint.setARGB(255, 77, 115, 255);
             return "Vest lvl 2";
         }
 
 
-        if (s.contains("Armor_Lv1") && getConfig("Vest L1")) {
-            mTextPainti.setARGB(255, 127, 154, 250);
+        if (s.contains("Armor_Lv1") && getConfig("Vest L1")) { mItemsPaint.setARGB(255, 127, 154, 250);
             return "Vest lvl 1";
         }
 
 
-        if (s.contains("Armor_Lv3") && getConfig("Vest L3")) {
-            mTextPainti.setARGB(255, 36, 83, 255);
+        if (s.contains("Armor_Lv3") && getConfig("Vest L3")) { mItemsPaint.setARGB(255, 36, 83, 255);
             return "Vest lvl 3";
         }
 
 
-        if (s.contains("Helmet_Lv2") && getConfig("Helmet L2")) {
-            mTextPainti.setARGB(255, 77, 115, 255);
+        if (s.contains("Helmet_Lv2") && getConfig("Helmet L2")) { mItemsPaint.setARGB(255, 77, 115, 255);
             return "Helmet lvl 2";
         }
 
-        if (s.contains("Helmet_Lv1") && getConfig("Helmet L1")) {
-            mTextPainti.setARGB(255, 127, 154, 250);
+        if (s.contains("Helmet_Lv1") && getConfig("Helmet L1")) { mItemsPaint.setARGB(255, 127, 154, 250);
             return "Helmet lvl 1";
         }
 
-        if (s.contains("Helmet_Lv3") && getConfig("Helmet L3")) {
-            mTextPainti.setARGB(255, 36, 83, 255);
+        if (s.contains("Helmet_Lv3") && getConfig("Helmet L3")) { mItemsPaint.setARGB(255, 36, 83, 255);
             return "Helmet lvl 3";
         }
 
         //Healthkits
-        if (s.contains("Pills") && getConfig("PainKiller")) {
-            mTextPainti.setARGB(255, 227, 91, 54);
+        if (s.contains("Pills") && getConfig("PainKiller")) { mItemsPaint.setARGB(255, 227, 91, 54);
             return "PainKiller";
         }
 
-        if (s.contains("Injection") && getConfig("Injection")) {
-            mTextPainti.setARGB(255, 204, 193, 190);
+        if (s.contains("Injection") && getConfig("Injection")) { mItemsPaint.setARGB(255,204, 193, 190);
             return "Injection";
         }
 
-        if (s.contains("Drink") && getConfig("EnergyDrink")) {
-            mTextPainti.setARGB(255, 54, 175, 227);
+        if (s.contains("Drink") && getConfig("EnergyDrink")) { mItemsPaint.setARGB(255, 54, 175, 227);
             return "Energy Drink";
         }
 
-        if (s.contains("Firstaid") && getConfig("FirstAid")) {
-            mTextPainti.setARGB(255, 194, 188, 109);
+        if (s.contains("Firstaid") && getConfig("FirstAid")) { mItemsPaint.setARGB(255, 194, 188, 109);
             return "FirstAid";
         }
 
-        if (s.contains("Bandage") && getConfig("Bandage")) {
-            mTextPainti.setARGB(255, 43, 189, 48);
+        if (s.contains("Bandage") && getConfig("Bandage")) { mItemsPaint.setARGB(255, 43, 189, 48);
             return "Bandage";
         }
 
-        if (s.contains("FirstAidbox") && getConfig("MedKit")) {
-            mTextPainti.setARGB(255, 0, 171, 6);
+        if (s.contains("FirstAidbox") && getConfig("MedKit")) { mItemsPaint.setARGB(255, 0, 171, 6);
             return "Medkit";
         }
 
         //Throwables
-        if (s.contains("Grenade_Stun") && getConfig("Stun")) {
-            mTextPainti.setARGB(255, 204, 193, 190);
+        if (s.contains("Grenade_Stun") && getConfig("Stun")) { mItemsPaint.setARGB(255,204, 193, 190);
             return "Stun";
         }
 
-        if (s.contains("Grenade_Shoulei") && getConfig("Grenade")) {
-            mTextPainti.setARGB(255, 2, 77, 4);
-            return "Grenade";
+        if (s.contains("Grenade_Shoulei") && getConfig("Shoulei")) { mItemsPaint.setARGB(255, 2, 77, 4);
+            return "Shoulei";
         }
 
-        if (s.contains("Grenade_Smoke") && getConfig("Smoke")) {
-            mTextPainti.setColor(Color.WHITE);
+        if (s.contains("Grenade_Smoke") && getConfig("Smoke")) { mItemsPaint.setColor(Color.WHITE);
             return "Smoke";
         }
 
-        if (s.contains("Grenade_Burn") && getConfig("Molotov")) {
-            mTextPainti.setARGB(255, 230, 175, 64);
+        if (s.contains("Grenade_Burn") && getConfig("Molotov")) { mItemsPaint.setARGB(255, 230, 175, 64);
             return "Molotov";
         }
 
         //others
-        if (s.contains("Large_FlashHider") && getConfig("Flash Hider Ar")) {
-            mTextPainti.setARGB(255, 255, 213, 130);
+        if (s.contains("Large_FlashHider") && getConfig("Flash Hider Ar")) { mItemsPaint.setARGB(255, 255, 213, 130);
             return "Flash Hider Ar";
         }
 
-        if (s.contains("QK_Large_C") && getConfig("Compensator Ar")) {
-            mTextPainti.setARGB(255, 255, 213, 130);
+        if (s.contains("QK_Large_C") && getConfig("Compensator Ar")) { mItemsPaint.setARGB(255, 255, 213, 130);
             return "Compensator Ar";
         }
 
-        if (s.contains("Mid_FlashHider") && getConfig("Flash Hider SMG")) {
-            mTextPainti.setARGB(255, 255, 213, 130);
+        if (s.contains("Mid_FlashHider") && getConfig("Flash Hider SMG")) { mItemsPaint.setARGB(255, 255, 213, 130);
             return "Flash Hider SMG";
         }
 
-        if (s.contains("QT_A_") && getConfig("Tactical Stock")) {
-            mTextPainti.setARGB(255, 158, 222, 195);
+        if (s.contains("QT_A_") && getConfig("Tactical Stock")) { mItemsPaint.setARGB(255, 158, 222, 195);
             return "Tactical Stock";
         }
 
-        if (s.contains("DuckBill") && getConfig("Duckbill")) {
-            mTextPainti.setARGB(255, 158, 222, 195);
+        if (s.contains("DuckBill") && getConfig("Duckbill")) { mItemsPaint.setARGB(255, 158, 222, 195);
             return "DuckBill";
         }
 
-        if (s.contains("Sniper_FlashHider") && getConfig("Flash Hider Sniper")) {
-            mTextPainti.setARGB(255, 158, 222, 195);
+        if (s.contains("Sniper_FlashHider") && getConfig("Flash Hider Sniper")) { mItemsPaint.setARGB(255, 158, 222, 195);
             return "Flash Hider Sniper";
         }
 
-        if (s.contains("Mid_Suppressor") && getConfig("Suppressor SMG")) {
-            mTextPainti.setARGB(255, 158, 222, 195);
+        if (s.contains("Mid_Suppressor") && getConfig("Suppressor SMG")) { mItemsPaint.setARGB(255, 158, 222, 195);
             return "Suppressor SMG";
         }
 
-        if (s.contains("Choke") && getConfig("Choke")) {
-            mTextPainti.setARGB(255, 155, 189, 222);
+        if (s.contains("Choke") && getConfig("Choke")) { mItemsPaint.setARGB(255, 155, 189, 222);
             return "Choke";
         }
 
-        if (s.contains("QT_UZI") && getConfig("Stock Micro UZI")) {
-            mTextPainti.setARGB(255, 155, 189, 222);
+        if (s.contains("QT_UZI") && getConfig("Stock Micro UZI")) { mItemsPaint.setARGB(255, 155, 189, 222);
             return "Stock Micro UZI";
         }
 
-        if (s.contains("QK_Sniper") && getConfig("Compensator Sniper")) {
-            mTextPainti.setARGB(255, 60, 127, 194);
+        if (s.contains("QK_Sniper") && getConfig("Compensator Sniper")) { mItemsPaint.setARGB(255, 60, 127, 194);
             return "Compensator Sniper";
         }
 
-        if (s.contains("Sniper_Suppressor") && getConfig("Suppressor Sniper")) {
-            mTextPainti.setARGB(255, 60, 127, 194);
+        if (s.contains("Sniper_Suppressor") && getConfig("Suppressor Sniper")) { mItemsPaint.setARGB(255, 60, 127, 194);
             return "Suppressor Sniper";
         }
 
-        if (s.contains("Large_Suppressor") && getConfig("Suppressor Ar")) {
-            mTextPainti.setARGB(255, 60, 127, 194);
+        if (s.contains("Large_Suppressor") && getConfig("Suppressor Ar")) { mItemsPaint.setARGB(255, 60, 127, 194);
             return "Suppressor Ar";
         }
 
 
-        if (s.contains("Sniper_EQ_") && getConfig("Extended QD Sniper")) {
-            mTextPainti.setARGB(255, 193, 140, 222);
+        if (s.contains("Sniper_EQ_") && getConfig("Extended QD Sniper")) { mItemsPaint.setARGB(255, 193, 140, 222);
             return "Ex.Qd.Sniper";
         }
 
-        if (s.contains("Sniper_E_") && getConfig("Extended Mag Sniper")) {
-            mTextPainti.setARGB(255, 193, 163, 209);
+        if (s.contains("Sniper_E_") && getConfig("Extended Mag Sniper")) { mItemsPaint.setARGB(255, 193, 163, 209);
             return "Ex.Sniper";
         }
 
-        if (s.contains("Sniper_Q_") && getConfig("QuickDraw Mag Sniper")) {
-            mTextPainti.setARGB(255, 193, 163, 209);
+        if (s.contains("Sniper_Q_") && getConfig("QuickDraw Mag Sniper")) { mItemsPaint.setARGB(255, 193, 163, 209);
             return "Qd.Sniper";
         }
 
-        if (s.contains("Large_EQ_") && getConfig("Extended QD Ar")) {
-            mTextPainti.setARGB(255, 193, 140, 222);
+        if (s.contains("Large_EQ_") && getConfig("Extended QD Ar")) { mItemsPaint.setARGB(255, 193, 140, 222);
             return "Extended QD Ar";
         }
 
-        if (s.contains("Large_E_") && getConfig("Extended Mag Ar")) {
-            mTextPainti.setARGB(255, 193, 163, 209);
+        if (s.contains("Large_E_") && getConfig("Extended Mag Ar")) { mItemsPaint.setARGB(255, 193, 163, 209);
             return "Extended Mag Ar";
         }
 
-        if (s.contains("Large_Q_") && getConfig("QuickDraw Mag Ar")) {
-            mTextPainti.setARGB(255, 193, 163, 209);
+        if (s.contains("Large_Q_") && getConfig("QuickDraw Mag Ar")) { mItemsPaint.setARGB(255, 193, 163, 209);
             return "QuickDraw Mag Ar";
         }
 
-        if (s.contains("Mid_EQ_") && getConfig("Extended QD SMG")) {
-            mTextPainti.setARGB(255, 193, 140, 222);
+        if (s.contains("Mid_EQ_") && getConfig("Extended QD SMG")) { mItemsPaint.setARGB(255, 193, 140, 222);
             return "Ex.Qd.SMG";
         }
 
-        if (s.contains("Mid_E_") && getConfig("Extended Mag SMG")) {
-            mTextPainti.setARGB(255, 193, 163, 209);
+        if (s.contains("Mid_E_") && getConfig("Extended Mag SMG")) { mItemsPaint.setARGB(255, 193, 163, 209);
             return "Ex.SMG";
         }
 
-        if (s.contains("Mid_Q_") && getConfig("QuickDraw Mag SMG")) {
-            mTextPainti.setARGB(255, 193, 163, 209);
+        if (s.contains("Mid_Q_") && getConfig("QuickDraw Mag SMG")) { mItemsPaint.setARGB(255, 193, 163, 209);
             return "Qd.SMG";
         }
 
-        if (s.contains("Crossbow_Q") && getConfig("Quiver CrossBow")) {
-            mTextPainti.setARGB(255, 148, 121, 163);
+        if (s.contains("Crossbow_Q") && getConfig("Quiver CrossBow")) { mItemsPaint.setARGB(255, 148, 121, 163);
             return "Quiver CrossBow";
         }
 
-        if (s.contains("ZDD_Sniper") && getConfig("Bullet Loop")) {
-            mTextPainti.setARGB(255, 148, 121, 163);
+        if (s.contains("ZDD_Sniper") && getConfig("Bullet Loop")) { mItemsPaint.setARGB(255, 148, 121, 163);
             return "Bullet Loop";
         }
 
 
-        if (s.contains("ThumbGrip") && getConfig("Thumb Grip")) {
-            mTextPainti.setARGB(255, 148, 121, 163);
+        if (s.contains("ThumbGrip") && getConfig("Thumb Grip")) { mItemsPaint.setARGB(255, 148, 121, 163);
             return "Thumb Grip";
         }
 
-        if (s.contains("Lasersight") && getConfig("Laser Sight")) {
-            mTextPainti.setARGB(255, 148, 121, 163);
+        if (s.contains("Lasersight") && getConfig("Laser Sight")) { mItemsPaint.setARGB(255, 148, 121, 163);
             return "Laser Sight";
         }
 
-        if (s.contains("Angled") && getConfig("Angled Grip")) {
-            mTextPainti.setARGB(255, 219, 219, 219);
+        if (s.contains("Angled") && getConfig("Angled Grip")) { mItemsPaint.setARGB(255, 219, 219, 219);
             return "Angled Grip";
         }
 
-        if (s.contains("LightGrip") && getConfig("Light Grip")) {
-            mTextPainti.setARGB(255, 219, 219, 219);
+        if (s.contains("LightGrip") && getConfig("Light Grip")) { mItemsPaint.setARGB(255, 219, 219, 219);
             return "Light Grip";
         }
 
-        if (s.contains("Vertical") && getConfig("Vertical Grip")) {
-            mTextPainti.setARGB(255, 219, 219, 219);
+        if (s.contains("Vertical") && getConfig("Vertical Grip")) { mItemsPaint.setARGB(255, 219, 219, 219);
             return "Vertical Grip";
         }
 
-        if (s.contains("HalfGrip") && getConfig("Half Grip")) {
-            mTextPainti.setARGB(255, 155, 189, 222);
+        if (s.contains("HalfGrip") && getConfig("Half Grip")) { mItemsPaint.setARGB(255, 155, 189, 222);
             return "Half Grip";
         }
 
 
-        if (s.contains("GasCan") && getConfig("Gas Can")) {
-            mTextPainti.setARGB(255, 255, 143, 203);
+        if (s.contains("GasCan") && getConfig("Gas Can")) { mItemsPaint.setARGB(255, 255, 143, 203);
             return "Gas Can";
         }
 
-        if (s.contains("Mid_Compensator") && getConfig("Compensator SMG")) {
-            mTextPainti.setARGB(255, 219, 219, 219);
+        if (s.contains("Mid_Compensator") && getConfig("Compensator SMG")) { mItemsPaint.setARGB(255, 219, 219, 219);
             return "Compensator SMG";
         }
 
         //special
-        if (s.contains("Flaregun") && getConfig("FlareGun")) {
-            mTextPainti.setARGB(255, 242, 63, 159);
+        if (s.contains("Flaregun") && getConfig("FlareGun")) { mItemsPaint.setARGB(255, 242, 63, 159);
             return "Flare Gun";
         }
-        if (s.contains("Ammo_Flare") && getConfig("FlareGun")) {
-            mTextPainti.setARGB(255, 242, 63, 159);
+        if (s.contains("Ammo_Flare") && getConfig("FlareGun")) { mItemsPaint.setARGB(255, 242, 63, 159);
             return "Flare Gun";
         }
 
-        if (s.contains("Ghillie") && getConfig("Ghillie Suit")) {
-            mTextPainti.setARGB(255, 139, 247, 67);
+        if (s.contains("Ghillie") && getConfig("Ghillie Suit")) { mItemsPaint.setARGB(255, 139, 247, 67);
             return "Ghillie Suit";
         }
-        if (s.contains("CheekPad") && getConfig("CheekPad")) {
-            mTextPainti.setARGB(255, 112, 55, 55);
+        if (s.contains("CheekPad") && getConfig("CheekPad")) { mItemsPaint.setARGB(255, 112, 55, 55);
             return "CheekPad";
         }
-        if (s.contains("PickUpListWrapperActor") && getConfig("LootBox")) {
-            mTextPainti.setARGB(255, 255, 255, 255);
+        if ( s.contains("PickUpListWrapperActor") && getConfig("LootBox")) { mItemsPaint.setARGB(255, 255, 255, 255);
             return "LootBox";
         }
-        if ((s.contains("AirDropPlane")) && getConfig("DropPlane")) {
-            mTextPainti.setARGB(255, 0, 255, 255);
+        if ((s.contains("AirDropPlane")) && getConfig("DropPlane")) { mItemsPaint.setARGB(255, 0, 255, 255);
             return "DropPlane";
         }
-        if ((s.contains("AirDropBox")) && getConfig("AirDrop")) {
-            mTextPainti.setARGB(255, 0, 200, 0);
+        if ((s.contains("AirDropBox")) && getConfig("AirDrop")) { mItemsPaint.setARGB(255, 0, 200, 0);
             return "AirDrop";
         }
         return null;
@@ -2247,11 +1831,11 @@ public class ESPView extends View implements Runnable {
             return "CoupeRB";
         if (s.contains("glider") && getConfig("Motor Glider"))
             return "Motor Glider";
-        if (s.contains("UTV") && getConfig("UTV"))
+        if(s.contains("UTV") && getConfig("UTV"))
             return "UTV";
-        if (s.contains("ATV1") && getConfig("ATV1"))
+        if(s.contains("ATV1") && getConfig("ATV1"))
             return "ATV1";
-        if (s.contains("Reindeer") && getConfig("Reindeer"))
+        if(s.contains("Reindeer") && getConfig("Reindeer"))
             return "Reindeer";
         return "";
     }
@@ -2260,20 +1844,20 @@ public class ESPView extends View implements Runnable {
         // Determine the constrained dimension, which determines both dimensions.
         int width;
         int height;
-        float widthRatio = (float) bitmap.getWidth() / maxWidth;
-        float heightRatio = (float) bitmap.getHeight() / maxHeight;
+        float widthRatio = (float)bitmap.getWidth() / maxWidth;
+        float heightRatio = (float)bitmap.getHeight() / maxHeight;
         // Width constrained.
         if (widthRatio >= heightRatio) {
             width = maxWidth;
-            height = (int) (((float) width / bitmap.getWidth()) * bitmap.getHeight());
+            height = (int)(((float)width / bitmap.getWidth()) * bitmap.getHeight());
         } else {
             height = maxHeight;
-            width = (int) (((float) height / bitmap.getHeight()) * bitmap.getWidth());
+            width = (int)(((float)height / bitmap.getHeight()) * bitmap.getWidth());
         }
         Bitmap scaledBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
 
-        float ratioX = (float) width / bitmap.getWidth();
-        float ratioY = (float) height / bitmap.getHeight();
+        float ratioX = (float)width / bitmap.getWidth();
+        float ratioY = (float)height / bitmap.getHeight();
         float middleX = width / 2.0f;
         float middleY = height / 2.0f;
         Matrix scaleMatrix = new Matrix();

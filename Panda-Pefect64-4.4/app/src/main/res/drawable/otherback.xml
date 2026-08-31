@@ -9,8 +9,8 @@
         android:bottomRightRadius="2.0dip" />
    
     <gradient
-        android:startColor="@color/blazered"
-        android:endColor="@color/blazered"
+        android:startColor="@color/green"
+        android:endColor="@color/green"
         android:angle="90.0"
         android:type="linear"
         android:centerColor="#4AFF0100" />

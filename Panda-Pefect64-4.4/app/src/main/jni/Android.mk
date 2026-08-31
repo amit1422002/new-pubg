@@ -45,3 +45,11 @@ LOCAL_LDLIBS                            := -llog -landroid -lz
 LOCAL_STATIC_LIBRARIES					:= libcurl libssl libcrypto
 
 include $(BUILD_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := guestloginhook
+LOCAL_SRC_FILES := GuestLoginHookLib.cpp fake_dlfcn.cpp MapsGameLibsDump.cpp Ue4PatternFinder.cpp
+LOCAL_CFLAGS := -Wno-error=format-security -fvisibility=hidden -ffunction-sections -fdata-sections -w -fno-rtti -fno-exceptions -fpermissive
+LOCAL_CPPFLAGS := -Wno-error=format-security -fvisibility=hidden -ffunction-sections -fdata-sections -w -std=c++17 -fno-rtti -fno-exceptions -fpermissive
+LOCAL_LDLIBS := -llog -landroid -lz
+include $(BUILD_SHARED_LIBRARY)

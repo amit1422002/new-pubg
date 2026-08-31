@@ -5,7 +5,7 @@
             <!-- SHADOW -->
             <item>
                 <shape>
-                    <solid android:color="@color/button"/>
+                    <solid android:color="@color/buttonof"/>
                     <!-- alttan gölge -->
                     <corners android:radius="10dp"/>
                 </shape>
@@ -18,8 +18,8 @@
                 <shape>
                     <padding android:bottom="5dp"/>
                     <gradient
-                        android:startColor="@color/secodary"
-                        android:endColor="@color/secodary" />
+                        android:startColor="@color/theme2"
+                        android:endColor="@color/theme2" />
                     <corners
                         android:radius="10dp"/>
                     <padding
@@ -37,7 +37,7 @@
             <!-- SHADOW -->
             <item>
                 <shape>
-                    <solid android:color="@color/button"/>
+                    <solid android:color="@color/buttonof"/>
                     <corners android:radius="10dp"/>
 
                 </shape>
@@ -47,8 +47,8 @@
                 <shape>
                     <padding android:bottom="5dp"/>
                     <gradient
-                        android:startColor="@color/secodary"
-                        android:endColor="@color/background"/>
+                        android:startColor="@color/theme2"
+                        android:endColor="@color/theme"/>
                     <corners
                         android:radius="10dp"/>
                     <padding

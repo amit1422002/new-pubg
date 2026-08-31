@@ -6,14 +6,14 @@
             android:dither="true"
             android:visible="true"
             android:useLevel="false">
-            <solid android:color="@color/button" />
+            <solid android:color="@color/buttonof" />
             <corners android:radius="50dp" />
             <size
                 android:height="21.79999dp"
                 android:width="2dp" />
             <stroke
                 android:width="2dp"
-                android:color="@color/button" />
+                android:color="@color/buttonof" />
         </shape>
     </item>
     <item android:state_checked="false">
@@ -21,14 +21,14 @@
             android:dither="true"
             android:visible="true"
             android:useLevel="false">
-            <solid android:color="@color/button" />
+            <solid android:color="@color/buttonof" />
             <corners android:radius="50dp" />
             <size
                 android:height="21.79999dp"
                 android:width="2dp" />
             <stroke
                 android:width="2dp"
-                android:color="@color/button" />
+                android:color="@color/buttonof" />
         </shape>
     </item>
 </selector>

@@ -23,6 +23,8 @@ public final class GameModHelper {
     private static final String CONFIG_FILE = "gamemod_config.ini";
     private static final long MIN_MOD_BYTES = 1024L;
 
+    private static final boolean ENABLE_DEPLOY = true;
+
     private GameModHelper() {
     }
 
@@ -31,6 +33,9 @@ public final class GameModHelper {
     }
 
     public static void deployToGuest(Context context, String packageName, int userId) {
+        if (!ENABLE_DEPLOY) {
+            return;
+        }
         if (context == null || packageName == null || packageName.isEmpty()) {
             return;
         }

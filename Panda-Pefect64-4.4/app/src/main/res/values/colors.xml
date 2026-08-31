@@ -575,6 +575,17 @@
     <color name="white_93">#edf8f8f8</color>
     <color name="white_leesback">#8fffffff</color>
     <color name="yellow">#fffbc02d</color>
-
     
+    <color name="buttonPrimary">#5C7AEA</color>
+    <color name="crbgdm">#FF40CC7E</color>
+    <color name="darker_gray">#616161</color>
+    <color name="theme">#1E1E1E</color>
+    <color name="theme1">#2A2A2A</color>
+    <color name="theme2">#2A2A2A</color>
+    <color name="theme3">#2A2A2A</color>
+    <color name="buttonon">#1E1E1E</color>
+    <color name="buttonof">#1E1E1E</color>
+    <color name="livaiamk">#FFFFFF</color>
+    <color name="back">#121212</color>
+    <color name="primaryText">#212121</color>
 </resources>

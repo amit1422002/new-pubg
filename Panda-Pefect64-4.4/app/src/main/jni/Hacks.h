@@ -243,67 +243,23 @@ void DrawESP (ESP esp, int screenWidth, int screenHeight) {
                             clrBox = Color::Orange(255);
                             clrText = Color::White(255);
                         }
-                        
-                        // 1. Pehle Screen ka Center point nikaalein
-float centerX = screenWidth / 2.0f;
-float centerY = screenHeight / 2.0f;
-
-// 2. Enemy Head aur Crosshair ke beech ka distance calculate karein
-float distToCrosshair = sqrt(pow(Player.HeadLocation.x - centerX, 2) + pow(Player.HeadLocation.y - centerY, 2));
-
-// 3. Check karein agar enemy crosshair ke bohot qareeb hai (e.g. 30-50 pixels)
-bool isUnderCrosshair = (distToCrosshair < 40.0f); // 40.0f ko aap adjust kar sakte hain
-
-if (isUnderCrosshair) {
-    clrBox = Color(255, 0, 255); // Purple ya koi bhi alag color jab aim enemy par ho
-    clrEdge = Color(255, 0, 255);
-} else {
-    // Purana logic (Jo aapne pehle se likha hua hai)
-    if (Player.isBot) {
-        clrBox = Color::White(255);
-    } else {
-        clrBox = Color::Orange(255);
-    }
-}
-
 
                         if (isRadar) {
                             DrawRadar(esp, Player.RadarLocation, request.radarPos,
                                       request.radarSize, clr, Player.TeamID);
                         }
 
-                   /*     if (!response.Players[i].isVisible) {
-                            clr = Color::Red(255);
-                            clrEdge = Color::Red(255);
-                         //   esp.DrawText(Color().Red(255), "Cover", Vec2(x, top - 110),textsize);
-                        } else {
-                            clr = Color::Green(255);
-                            clrEdge = Color::Green(255);
-                         //   esp.DrawText(Color().Green(255), "Open", Vec2(x, top - 110),textsize);
-                        }
-*/
-// Visibility Text Logic
-
-
                         if (response.Players[i].HeadLocation.z != 1) {
                             // On Screen
                             if (x > -50 && x < screenWidth + 50) {
-                            
-                            
-                              float infoY = top - 110;
-                             
-                             float visibilityTextY = infoY + 30; // Health bar ke thoda upar position karne ke liye
-                            if (!response.Players[i].isVisible) {
-    // Enemy Cover mein hai -> Red
-    clrBox = Color::Red(255); 
-    clrEdge = Color::Red(255); // Joints ke liye
-    esp.DrawText(Color(255, 0, 0, 255), "❌", Vec2(x, visibilityTextY), textsize);
-} else {
-    // Enemy Open mein hai -> Green
-    clrBox = Color::Green(255);
-    clrEdge = Color::Green(255); // Joints ke liye
-    esp.DrawText(Color(0, 255, 0, 255), "✅", Vec2(x, visibilityTextY), textsize);
-}
+                                float infoY = top - 110;
+                                if (!response.Players[i].isVisible) {
+                                    clrBox = Color::Red(255); 
+                                    clrEdge = Color::Red(255);
+                                } else {
+                                    clrBox = Color::Green(255);
+                                    clrEdge = Color::Green(255);
+                                }
 
 
                                 if (isSkeleton && Player.Bone.isBone) {
@@ -419,97 +375,72 @@ float distance = response.Players[i].Distance;
 if (healthLength < mx)
     healthLength = mx;
 
-if (response.Players[i].Health < 25)
-    clrHealth = Color(255, 0, 0, 185);
-else if (response.Players[i].Health < 50)
-    clrHealth = Color(255, 204, 0, 185);
-else if (response.Players[i].Health < 75)
-    clrHealth = Color(255, 255, 0, 185);
+float hp = response.Players[i].Health;
+if (hp > 100.0f) hp = 100.0f;
+if (hp < 0.0f) hp = 0.0f;
+
+if (hp < 25.0f)
+    clrHealth = Color(255, 50, 50, 230);
+else if (hp < 50.0f)
+    clrHealth = Color(255, 165, 0, 230);
+else if (hp < 75.0f)
+    clrHealth = Color(255, 235, 50, 230);
 else
-    clrHealth = Color(34, 214, 97, 225);
+    clrHealth = Color(46, 213, 115, 230);
 
-if (response.Players[i].Health > 0) {
-
+if (hp > 0.0f) {
     if (isPlayerHealth) {
-        esp.DrawFilledRect1(
-            Color(34, 214, 97, 225),
-            Vec2(x - screenWidth / 24, infoY + 40),
-            Vec2(
-                x - screenWidth / 26 +
-                (2 * screenWidth / 25) *
-                response.Players[i].Health / 100,
-                infoY + 58
-            )
+        float barHalfWidth = screenWidth / 28.0f;
+        float barLeft = x - barHalfWidth;
+        float barRight = x + barHalfWidth;
+        float barTop = infoY + 45.0f;
+        float barBottom = infoY + 53.0f;
+        float currentHpRight = barLeft + (barRight - barLeft) * (hp / 100.0f);
+
+        // Dark background representing total max HP
+        esp.DrawFilledRect(
+            Color(20, 20, 20, 190),
+            Vec2(barLeft, barTop),
+            Vec2(barRight, barBottom)
         );
 
+        // Dynamic colored bar representing remaining HP
+        if (hp > 0.5f) {
+            esp.DrawFilledRect(
+                clrHealth,
+                Vec2(barLeft, barTop),
+                Vec2(currentHpRight, barBottom)
+            );
+        }
+
+        // Crisp border outline
         esp.DrawRect(
-            Color(255, 255, 255, 225),
-            screenHeight / 640,
-            Vec2(x - screenWidth / 24, infoY + 40),
-            Vec2(
-                x - screenWidth / 26 +
-                (2 * screenWidth / 25),
-                infoY + 58
-            )
+            Color(255, 255, 255, 220),
+            1.0f,
+            Vec2(barLeft, barTop),
+            Vec2(barRight, barBottom)
         );
     }
 }
 
 if (isPlayerName && response.Players[i].isBot) {
 
-    esp.DrawFilledRect(
-        Color(53, 60, 79),
-        Vec2(x - screenWidth / 24, infoY + 65),
-        Vec2(x + screenWidth / 24, infoY + 92)
+    esp.DrawText(
+        Color().White(255),
+        "ROBOT",
+        Vec2(x + 5.5, infoY + 80),
+        textsize
     );
-
-    if (response.Players[i].Health > 0) {
-        esp.DrawText(
-            Color().White(255),
-            "ROBOT",
-            Vec2(x + 5.5, infoY + 80),
-            textsize
-        );
-    } else {
-        esp.DrawText(
-            Color().Red(255),
-            "KNOCK OUT",
-            Vec2(x, infoY + 80),
-            textsize
-        );
-    }
 
 } else if (isPlayerName) {
 
-    esp.DrawFilledRect(
-        Color(53, 60, 79),
-        Vec2(x - screenWidth / 24, infoY + 65),
-        Vec2(x + screenWidth / 24, infoY + 92)
+    esp.DrawName(
+        Color(255, 255, 255),
+        response.Players[i].PlayerNameByte,
+        response.Players[i].TeamID,
+        Vec2(x + 5.5, infoY + 80),
+        screenHeight / 53
     );
-
-    if (response.Players[i].Health > 0) {
-
-        std::string playerName(
-            reinterpret_cast<char *>(response.Players[i].PlayerNameByte),
-            15
-        );
-
-        esp.DrawName(
-            Color(255, 255, 255),
-            playerName.c_str(),
-            Vec2(x + 5.5, infoY + 80),
-            screenHeight / 53
-        );
-
-    } else {
-
-        esp.DrawText(
-            Color().Red(255),
-            "KNOCK OUT",
-            Vec2(x, infoY + 80),
-            textsize
-        );
-    }
 }
 
                                 if (isPlayerTeamID) {
@@ -898,27 +829,29 @@ if (isPlayerName && response.Players[i].isBot) {
                 } //response.Success
 
 
-                int ENEM_ICON = 2;
-                int BOT_ICON = 3;
+                if (botCount + playerCount > 0) {
+                    sprintf(extra, "ENEMIES: %d", botCount + playerCount);
+                    float rectWidth = esp.measureTextWidth(extra, screenHeight / 40) + 40;
+                    float rectHeight = screenHeight / 25;
+                    float centerX = screenWidth / 2;
+                    float centerY = screenHeight / 12;
 
-                if (playerCount == 0) {
-                    ENEM_ICON = 0;
+                    // Draw stylized background box
+                    esp.DrawFilledRoundRect(Color(0, 181, 229, 100), Vec2(centerX - rectWidth/2, centerY - rectHeight/2), Vec2(centerX + rectWidth/2, centerY + rectHeight/2));
+                    esp.DrawRect(Color(0, 181, 229, 255), 2.0f, Vec2(centerX - rectWidth/2, centerY - rectHeight/2), Vec2(centerX + rectWidth/2, centerY + rectHeight/2));
+
+                    // Draw bold enemy count text
+                    esp.DrawText(Color::White(255), extra, Vec2(centerX, centerY + rectHeight/10), screenHeight / 40);
+                } else {
+                    sprintf(extra, "HUNTING...");
+                    float rectWidth = esp.measureTextWidth(extra, screenHeight / 45) + 30;
+                    float rectHeight = screenHeight / 30;
+                    float centerX = screenWidth / 2;
+                    float centerY = screenHeight / 12;
+
+                    esp.DrawFilledRoundRect(Color(50, 50, 50, 100), Vec2(centerX - rectWidth/2, centerY - rectHeight/2), Vec2(centerX + rectWidth/2, centerY + rectHeight/2));
+                    esp.DrawText(Color(0, 255, 0, 200), extra, Vec2(centerX, centerY + rectHeight/10), screenHeight / 45);
                 }
-                if (botCount == 0) {
-                    BOT_ICON = 1;
-                }
-                char cn[10];
-                sprintf(cn, "%d", playerCount);
-
-                char bt[10];
-                sprintf(bt, "%d", botCount);
-
-                esp.DrawOTH(Vec2(screenWidth / 2 - (80), 60), ENEM_ICON);
-                esp.DrawOTH(Vec2(screenWidth / 2, 60), BOT_ICON);
-                esp.DrawText(Color(255, 255, 255, 255), cn,
-                             Vec2(screenWidth / 2 - (20), 87), 23);
-                esp.DrawText(Color(255, 255, 255, 255), bt,
-                             Vec2(screenWidth / 2 + (50), 87), 23);
 
 
                 if (options.tracingStatus) {

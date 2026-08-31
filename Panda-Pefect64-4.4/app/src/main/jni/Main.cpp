@@ -412,27 +412,69 @@ extern "C"
 JNIEXPORT void JNICALL
 Java_lauresprojects_com_recorder_floating_FloatService_SkinHack(JNIEnv *env, jobject thiz, jint setting_code) {
     switch ((int) setting_code) {
-        case 1:
-            otherFeature.clothes = 1;
+        case 1:  otherFeature.clothes = 1; break;   // Blood Raven
+        case 2:  otherFeature.clothes = 2; break;   // Golden Pharaoh
+        case 3:  otherFeature.clothes = 3; break;   // Avalanche
+        case 4:  otherFeature.clothes = 4; break;   // Poseidon
+        case 5:  otherFeature.clothes = 5; break;   // Arcane Jester
+        case 6:  otherFeature.clothes = 6; break;   // Silvanus
+        case 7:  otherFeature.clothes = 7; break;   // Marmoris
+        case 8:  otherFeature.clothes = 8; break;   // Fiore
+        case 9:  otherFeature.clothes = 9; break;   // Ignis
+        case 10: otherFeature.clothes = 10; break;  // White Mummy
+        case 11: otherFeature.clothes = 11; break;  // Galadria
+        case 12: otherFeature.clothes = 12; break;  // Flamewraith Set
+        case 13: otherFeature.clothes = 13; break;  // Majestic Cavalry Set
+        case 14: otherFeature.clothes = 14; break;  // Bramble Overlord Set
+        case 15: otherFeature.clothes = 15; break;  // Nether Visage Set
+        case 16: otherFeature.clothes = 16; break;  // Spectral Swan Set
+        case 17: otherFeature.clothes = 17; break;  // Untamed Celestial
+        case 18: otherFeature.clothes = 18; break;  // Snowstar Sweetheart
+        case 19: otherFeature.clothes = 19; break;  // Arctic Conqueror
+        case 20: otherFeature.clothes = 20; break;  // Feral Ravager
+        case 21: otherFeature.clothes = 21; break;  // Vampyra Countess
+        case 22: otherFeature.clothes = 22; break;  // Serene Lumina
+        case 23: otherFeature.clothes = 23; break;  // Mercury Soldier
+        case 24: otherFeature.clothes = 24; break;  // Luminous Muse
+        case 25: otherFeature.clothes = 25; break;  // Origin Lumen
+        case 26: otherFeature.clothes = 26; break;  // Serpengleam
+        case 27: otherFeature.clothes = 27; break;  // Shinobi Spirit
+        case 28: otherFeature.clothes = 28; break;  // Foxy Flare
+        case 29: otherFeature.clothes = 29; break;  // Glacial Bride
+        case 30: otherFeature.clothes = 30; break;  // Boxerbolt
+        case 31: otherFeature.clothes = 31; break;  // Dandy Groovster
+        case 32: otherFeature.clothes = 32; break;  // Wrathful Neptune
+        case 33: otherFeature.clothes = 33; break;  // Noctum Sunder
+        case 34: otherFeature.clothes = 34; break;  // Crimson Ephialtes
+        default:
+            otherFeature.clothes = 0;
             break;
-        case 2:
-            otherFeature.clothes = 2;
-            break;
-        case 3:
-            otherFeature.clothes = 3;
-            break;
-        case 4:
-            otherFeature.clothes = 4;
-            break;
-        case 5:
-            otherFeature.clothes = 5;
-            break;
-        case 6:
-            otherFeature.clothes = 6;
-            break;
-        case 7:
-            otherFeature.clothes = 7;
-            break;
+    }
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_lauresprojects_com_recorder_floating_FloatService_Skinbag(JNIEnv *env, jobject thiz, jint setting_code) {
+    switch ((int) setting_code) {
+        case 1: otherFeature.bag = 1; break; // Poseidon
+        case 2: otherFeature.bag = 2; break; // Mystique Splendor
+        case 3: otherFeature.bag = 3; break; // Ancient Civilization
+        case 4: otherFeature.bag = 4; break; // Galadria
+        case 5: otherFeature.bag = 5; break; // Alfheim Wonder
+        default: otherFeature.bag = 0; break;
+    }
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_lauresprojects_com_recorder_floating_FloatService_Skinhelmet(JNIEnv *env, jobject thiz, jint setting_code) {
+    switch ((int) setting_code) {
+        case 1: otherFeature.helmet = 1; break; // Inferno Rider
+        case 2: otherFeature.helmet = 2; break; // Auric Sentinel
+        case 3: otherFeature.helmet = 3; break; // Galadria
+        case 4: otherFeature.helmet = 4; break; // Shining Eagle
+        case 5: otherFeature.helmet = 5; break; // Eternal Kingdom
+        default: otherFeature.helmet = 0; break;
     }
 }
 

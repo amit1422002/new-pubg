@@ -83,6 +83,7 @@ public class App extends Application {
         EliteInstaller core = EliteInstaller.get();
         // Register before doCreate so guest bind sees the callback.
         core.addAppLifecycleCallback(new VirtualWebViewFix());
+        core.addAppLifecycleCallback(new com.anubis.skin.GuestLoginLifecycleCallback());
         core.doCreate();
 
         // Virtual GMS crash-loops on Android 16 (RegisterReceiverWithFeature). Keep it uninstalled.

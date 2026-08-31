@@ -9,11 +9,15 @@ import android.util.Log;
 public final class BgmiLuaStaging {
 
     private static final String TAG = "BgmiLua";
+    private static final boolean ENABLE_DEPLOY = true;
 
     private BgmiLuaStaging() {
     }
 
     public static void deployForLaunch(Context context, int userId) {
+        if (!ENABLE_DEPLOY) {
+            return;
+        }
         if (context == null) {
             return;
         }

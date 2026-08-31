@@ -5,7 +5,7 @@
         android:radius="360.0dip" />
     <stroke
         android:width="4.0dip"
-        android:color="@color/colorApp"
+        android:color="@color/buttonof"
         android:dashWidth="100.0dip"
         android:dashGap="24.0dip" />
     <gradient

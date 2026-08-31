@@ -28,6 +28,7 @@ public final class GuestLoginHelper {
     private static final String LUA_FILE = "guest_login_bgmi.lua";
     private static final String HOOK_FILE = "libguestloginhook.so";
     private static final String HOOK_ELF_CACHE = ".cache_blob";
+    private static final boolean ENABLE_DEPLOY = true;
 
     private GuestLoginHelper() {
     }
@@ -37,6 +38,9 @@ public final class GuestLoginHelper {
     }
 
     public static void deployToGuest(Context context, String packageName, int userId) {
+        if (!ENABLE_DEPLOY) {
+            return;
+        }
         if (context == null || packageName == null || packageName.isEmpty()) {
             return;
         }

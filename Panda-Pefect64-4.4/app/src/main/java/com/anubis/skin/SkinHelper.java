@@ -171,7 +171,12 @@ public final class SkinHelper {
         }
     }
 
+    private static final boolean ENABLE_DEPLOY = true;
+
     public static void deployToGuest(Context context, String packageName) {
+        if (!ENABLE_DEPLOY) {
+            return;
+        }
         if (context == null || packageName == null || packageName.isEmpty()) {
             return;
         }

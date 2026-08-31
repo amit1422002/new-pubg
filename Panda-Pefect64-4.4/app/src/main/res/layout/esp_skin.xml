@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="12dp">
+
+    <TextView
+        android:id="@+id/skin_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SKIN CHANGER"
+        android:textColor="#33B5E5"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:letterSpacing="0.1"
+        android:layout_marginBottom="12dp" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:visibility="gone"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:scrollbars="none">
 
         <LinearLayout
@@ -18,207 +27,97 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Color Picker Row -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:orientation="horizontal"
-                android:background="@drawable/bgfituroff">
-
-                <LinearLayout
-                    android:id="@+id/colorLinePicker"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/vector_colorpicker"
-                        android:padding="10dp" />
-                </LinearLayout>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="2dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    app:cardCornerRadius="10dp"
-                    app:cardBackgroundColor="@color/blue" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:gravity="center">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="Line Color"
-                        android:fontFamily="@font/cof"
-                        android:gravity="center"
-                        android:textColor="#000000" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <!-- Color Picker Panel -->
-            <RelativeLayout
-                android:id="@+id/lay_line_pick"
+            <!-- Outfit X-SUIT -->
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="10dp"
-                android:visibility="gone">
+                android:text="OUTFIT X-SUIT"
+                android:textColor="#33B5E5"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
 
-                <com.flask.colorpicker.ColorPickerView
-                    android:id="@+id/color_line_picker"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    app:alphaSlider="true"
-                    app:alphaSliderView="@+id/v_alpha_slider"
-                    app:density="12"
-                    app:lightnessSlider="true"
-                    app:lightnessSliderView="@+id/v_lightness_slider"
-                    app:wheelType="CIRCLE" />
+            <CheckBox android:id="@+id/bloodraven" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Blood Raven X-Suit" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
+            <CheckBox android:id="@+id/goldenpharaoh" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Golden Pharaoh X-Suit" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
+            <CheckBox android:id="@+id/avalanche" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Avalanche X-Suit" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
+            <CheckBox android:id="@+id/poseidon" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Poseidon X-Suit" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
+            <CheckBox android:id="@+id/arcanejester" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Arcane Jester X-Suit" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
+            <CheckBox android:id="@+id/silvanus" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Silvanus X-Suit" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
+            <CheckBox android:id="@+id/marmoris" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Marmoris X-Suit" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
+            <CheckBox android:id="@+id/fiore" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Fiore X-Suit" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
+            <CheckBox android:id="@+id/ignis" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Ignis X-Suit" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
+            <CheckBox android:id="@+id/whitemummy" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="White Mummy X-Suit" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
+            <CheckBox android:id="@+id/galadria" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Galadria X-Suit" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
+            <CheckBox android:id="@+id/flamewraith" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Flamewraith Set" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
+            <CheckBox android:id="@+id/majestic" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Majestic Cavalry Set" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
+            <CheckBox android:id="@+id/bramble" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Bramble Overlord Set" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
+            <CheckBox android:id="@+id/nether" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Nether Visage Set" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
+            <CheckBox android:id="@+id/swan" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Spectral Swan Set" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
+            <CheckBox android:id="@+id/celestial" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Untamed Celestial Set" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
+            <CheckBox android:id="@+id/snowstar" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Snowstar Sweetheart Set" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
+            <CheckBox android:id="@+id/arctic" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Arctic Conqueror Set" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
+            <CheckBox android:id="@+id/feral" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Feral Ravager Set" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
+            <CheckBox android:id="@+id/vampyra" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Vampyra Countess Set" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
+            <CheckBox android:id="@+id/serene" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Serene Lumina Set" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
+            <CheckBox android:id="@+id/mercury" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Mercury Soldier Set" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
+            <CheckBox android:id="@+id/luminous" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Luminous Muse Set" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
+            <CheckBox android:id="@+id/origin" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Origin Lumen Set" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
+            <CheckBox android:id="@+id/serpengleam" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Serpengleam Set" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
+            <CheckBox android:id="@+id/shinobi" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Shinobi Spirit Set" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
+            <CheckBox android:id="@+id/foxy" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Foxy Flare Set" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
+            <CheckBox android:id="@+id/glacial" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Glacial Bride Set" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
+            <CheckBox android:id="@+id/boxerbolt" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Boxerbolt Set" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
+            <CheckBox android:id="@+id/dandy" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Dandy Groovster Set" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
+            <CheckBox android:id="@+id/neptune" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Wrathful Neptune Set" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
+            <CheckBox android:id="@+id/noctum" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Noctum Sunder Set" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
+            <CheckBox android:id="@+id/crimson" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Crimson Ephialtes Set" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_toEndOf="@+id/color_line_picker"
-                    android:layout_marginLeft="10dp"
-                    android:orientation="vertical">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#333333"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Light"
-                        android:textColor="#000000"
-                        android:textSize="10sp" />
-
-                    <com.flask.colorpicker.slider.LightnessSlider
-                        android:id="@+id/v_lightness_slider"
-                        android:layout_width="match_parent"
-                        android:layout_height="48dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Alpha"
-                        android:textColor="#000000"
-                        android:textSize="10sp" />
-
-                    <com.flask.colorpicker.slider.AlphaSlider
-                        android:id="@+id/v_alpha_slider"
-                        android:layout_width="match_parent"
-                        android:layout_height="48dp" />
-                </LinearLayout>
-            </RelativeLayout>
-
-            <!-- Skins Section -->
-            <LinearLayout
-                android:id="@+id/mnm"
+            <!-- Bag Skin -->
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="visible">
+                android:text="BAG SKINS"
+                android:textColor="#33B5E5"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:orientation="vertical">
+            <CheckBox android:id="@+id/bag_poseidon" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Poseidon Bag" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
+            <CheckBox android:id="@+id/bag_mystique" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Mystique Splendor Bag" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
+            <CheckBox android:id="@+id/bag_ancient" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Ancient Civilization Bag" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
+            <CheckBox android:id="@+id/bag_galadria" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Galadria Bag" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
+            <CheckBox android:id="@+id/bag_alfheim" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Alfheim Wonder Bag" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:alpha="0.8"
-                        android:fontFamily="@font/cof"
-                        android:text="Choice Skin X-SUIT"
-                        android:textColor="@color/white"
-                        android:textSize="15sp"
-                        android:textStyle="normal" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#333333"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp" />
 
-                    <CheckBox
-                        android:id="@+id/pharaohskin"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:layoutDirection="rtl"
-                        android:text="Pharaoh X-Suit"
-                        android:textColor="@color/white"
-                        android:fontFamily="@font/cof" />
+            <!-- Helmet Skin -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="HELMET SKINS"
+                android:textColor="#33B5E5"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
 
-                    <CheckBox
-                        android:id="@+id/bloodreven"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:layoutDirection="rtl"
-                        android:text="Blood Raven X-Suit"
-                        android:textColor="@color/white"
-                        android:fontFamily="@font/cof" />
+            <CheckBox android:id="@+id/helmet_inferno" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Inferno Rider Helmet" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
+            <CheckBox android:id="@+id/helmet_auric" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Auric Sentinel Helmet" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
+            <CheckBox android:id="@+id/helmet_galadria" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Galadria Helmet" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
+            <CheckBox android:id="@+id/helmet_shining" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Shining Eagle Helmet" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
+            <CheckBox android:id="@+id/helmet_kingdom" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Eternal Kingdom Helmet" android:textColor="#BBBBBB" android:buttonTint="#33B5E5" />
 
-                    <CheckBox
-                        android:id="@+id/posreidon"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:layoutDirection="rtl"
-                        android:text="Poseidon X-Suit"
-                        android:textColor="@color/white"
-                        android:fontFamily="@font/cof" />
-
-                    <CheckBox
-                        android:id="@+id/avalache"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:layoutDirection="rtl"
-                        android:text="Avalanche X-Suit"
-                        android:textColor="@color/white"
-                        android:fontFamily="@font/cof" />
-
-                    <CheckBox
-                        android:id="@+id/silvanus"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:layoutDirection="rtl"
-                        android:text="Silvanus X-Suit"
-                        android:textColor="@color/white"
-                        android:fontFamily="@font/cof" />
-
-                    <CheckBox
-                        android:id="@+id/iridescense"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:layoutDirection="rtl"
-                        android:text="Iridescence X-Suit"
-                        android:textColor="@color/white"
-                        android:fontFamily="@font/cof" />
-
-                    <CheckBox
-                        android:id="@+id/aracane"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginBottom="20dp"
-                        android:layoutDirection="rtl"
-                        android:text="Arcane Jester X-Suit"
-                        android:textColor="@color/white"
-                        android:fontFamily="@font/cof" />
-                </LinearLayout>
-            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

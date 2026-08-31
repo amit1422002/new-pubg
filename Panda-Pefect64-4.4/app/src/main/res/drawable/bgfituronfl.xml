@@ -13,7 +13,7 @@
 	
 
 	<!--Fill Color of the Button-->
-	<gradient android:startColor="@color/blazered"
-        android:endColor="@color/blazered"
+	<gradient android:startColor="@color/green"
+        android:endColor="@color/green"
         android:angle="90"/>
 </shape>

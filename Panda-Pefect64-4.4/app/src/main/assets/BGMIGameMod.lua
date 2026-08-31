@@ -293,7 +293,7 @@ end
 
 -- Anti-cheat bypass only via body InitializeBypass() when gamemod_config.ini BYPASS=1
 
--- Small crosshair / tight spread (weapon nerf — NOT aimbot)
+-- Small crosshair / game deviation only (all other features off)
 local function applyWeaponNerf(Character)
     if not isValid(Character) then return end
     local Weapon = Character.GetCurrentWeapon and Character:GetCurrentWeapon()
@@ -301,21 +301,6 @@ local function applyWeaponNerf(Character)
     local ShootEntity = Weapon.ShootWeaponEntity or Weapon.ShootWeaponEntity_GEN_VARIABLE
     if not isValid(ShootEntity) then return end
     ShootEntity.GameDeviationFactor = 0.1
-    ShootEntity.AccessoriesHRecoilFactor = 0.5
-    ShootEntity.AccessoriesVRecoilFactor = 0.3
-    ShootEntity.RecoilKickADS = 0.11
-    --[[ AUTO AIM — off
-    if ShootEntity.AutoAimingConfig then
-        if ShootEntity.AutoAimingConfig.OuterRange then
-            ShootEntity.AutoAimingConfig.OuterRange.Speed = 7.5
-            ShootEntity.AutoAimingConfig.OuterRange.SpeedRate = 6.5
-        end
-        if ShootEntity.AutoAimingConfig.InnerRange then
-            ShootEntity.AutoAimingConfig.InnerRange.Speed = 8.0
-            ShootEntity.AutoAimingConfig.InnerRange.SpeedRate = 7.5
-        end
-    end
-    ]]
 end
 
 local function tickAimMagic()

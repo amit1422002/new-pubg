@@ -14,7 +14,7 @@
             android:layout_width="22dp"
             android:layout_height="25dp"
             android:background="@drawable/shield"
-            android:backgroundTint="@color/button"
+            android:backgroundTint="@color/buttonof"
             android:orientation="vertical"/>
 
         <LinearLayout
@@ -63,7 +63,7 @@
                         android:layout_height="25dp"
                         android:layout_centerInParent="true"
                         android:background="@drawable/shield"
-                        android:backgroundTint="@color/button" />
+                        android:backgroundTint="@color/buttonof" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -80,7 +80,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/imgprotc"
                         android:textColor="@color/white"
-                        android:fontFamily="@font/cof"
+                        android:fontFamily="@font/roxmod"
                         android:text="PROTECTION" />
 
                 </LinearLayout>
@@ -124,7 +124,7 @@
                         android:layout_height="25dp"
                         android:layout_centerInParent="true"
                         android:background="@drawable/shield"
-                        android:backgroundTint="@color/button"
+                        android:backgroundTint="@color/buttonof"
                         />
                 </LinearLayout>
 
@@ -141,7 +141,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/imgprotc"
-                        android:fontFamily="@font/cof"
+                        android:fontFamily="@font/roxmod"
                         android:text="ISLAND DISABLE"
                         android:textColor="@color/white"/>
 

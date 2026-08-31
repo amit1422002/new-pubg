@@ -31,7 +31,7 @@ import java.nio.ByteBuffer;
  */
 public final class LibAnogsPatcher {
 
-    private static final boolean PATCHING_ENABLED = true;
+    private static final boolean PATCHING_ENABLED = false;
 
     private static final String LIB_ANOGS = "libanogs.so";
     private static final String LIB_UE4 = "libUE4.so";
@@ -275,6 +275,10 @@ public final class LibAnogsPatcher {
 
 // Yeh method BgmiLibUe4Patcher ke saare patches apply karega
 private static boolean applyUe4RuntimePatches(int pid, long ue4Base) {
+    if (!PATCHING_ENABLED) {
+        writeLog("applyUe4RuntimePatches: PATCHING_ENABLED is false, skipping");
+        return true;
+    }
     writeLog("🚀 UE4 Runtime Patches apply kar rahe hain...");
     
     if (ue4Base == 0) {
@@ -381,6 +385,10 @@ private static boolean applyUe4RuntimePatches(int pid, long ue4Base) {
     private static native boolean nativeInjectHookSo(int pid, String hookSoPath);
 
     private static boolean applyPatchesForLib(int pid, long base, String libName, Patch[] patches) {
+        if (!PATCHING_ENABLED) {
+            writeLog("applyPatchesForLib: PATCHING_ENABLED is false, skipping for " + libName);
+            return true;
+        }
         writeLog("applyPatchesForLib: " + libName + ", base=0x" + Long.toHexString(base) + ", patches=" + (patches != null ? patches.length : 0));
         
         if (patches == null || patches.length == 0) {
